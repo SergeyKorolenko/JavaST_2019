@@ -9,6 +9,7 @@ import by.korolenko.mobile.service.factory.ServiceFactory;
 import by.korolenko.mobile.service.input.FileDataReader;
 import by.korolenko.mobile.service.output.FileDataWriter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,10 +53,19 @@ public class TariffFileServiceImpl implements TariffFileService {
     /**
      * Write to file.
      *
-     * @param data data
+     * @return number of written
      */
     @Override
-    public void writeToFile(final List<String> data) {
+    public int writeToFile() {
         FileDataWriter fileDataWriter = new FileDataWriter();
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        TariffCommonService tariffCommonService = serviceFactory.
+                getTariffCommonService();
+        List<Tariff> tariffList = tariffCommonService.getAllTariff();
+        List<String> data = new ArrayList<>();
+        for (Tariff tariff : tariffList) {
+            data.add(tariff.toString());
+        }
+        return fileDataWriter.writeData(data, OUTPUT_FILE);
     }
 }

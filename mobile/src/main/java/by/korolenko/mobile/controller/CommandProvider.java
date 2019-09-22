@@ -10,10 +10,10 @@ import by.korolenko.mobile.controller.command.impl.FindByName;
 import by.korolenko.mobile.controller.command.impl.GetAllTariff;
 import by.korolenko.mobile.controller.command.impl.ReadFromFile;
 import by.korolenko.mobile.controller.command.impl.SortById;
+import by.korolenko.mobile.controller.command.impl.SortByIdAndName;
 import by.korolenko.mobile.controller.command.impl.SortByName;
 import by.korolenko.mobile.controller.command.impl.UpdateTariff;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.korolenko.mobile.controller.command.impl.WriteToFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,12 +24,6 @@ import java.util.Map;
  * @since 18.09.2019
  */
 final class CommandProvider {
-
-    /**
-     * This is the logger.
-     */
-    private static Logger log = LogManager.
-            getLogger(CommandProvider.class.getName());
     /**
      * This is the map of commands.
      */
@@ -49,6 +43,9 @@ final class CommandProvider {
         commandStorage.put(CommandName.FIND_BY_ID, new FindById());
         commandStorage.put(CommandName.FIND_BY_NAME, new FindByName());
         commandStorage.put(CommandName.FIND_BETWEEN_ID, new FindBetweenId());
+        commandStorage.put(CommandName.SORT_BY_ID_AND_NAME,
+                new SortByIdAndName());
+        commandStorage.put(CommandName.WRITE_TO_FILE, new WriteToFile());
     }
 
     /**

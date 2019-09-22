@@ -49,5 +49,9 @@ public enum CommandName {
     /**
      * Sort by id and name.
      */
-    SORT_BY_ID_AND_NAME
+    SORT_BY_ID_AND_NAME,
+    /**
+     * Write to file.
+     */
+    WRITE_TO_FILE
 }

@@ -23,7 +23,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="by.korolenko.mobile.view" level="info"
+        <Logger name="by.korolenko.mobile.controller.Controller" level="info"
                 additivity="true">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="InfoFile"/>

@@ -1,7 +1,5 @@
 package by.korolenko.mobile.service;
 
-import java.util.List;
-
 /**
  * @author Sergei Korolenko
  * @version 1.0
@@ -18,7 +16,7 @@ public interface TariffFileService {
     /**
      * Write to file.
      *
-     * @param data data
+     * @return number of written
      */
-    void writeToFile(List<String> data);
+    int writeToFile();
 }

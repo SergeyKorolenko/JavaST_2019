@@ -1,0 +1,11 @@
+2019-09-22 22:55:18.448 [main] INFO  by.korolenko.mobile.controller.Controller - command result: 3
+2019-09-22 22:55:33.964 [main] INFO  by.korolenko.mobile.controller.Controller - command result: 0
+2019-09-22 22:56:57.741 [main] ERROR by.korolenko.mobile.controller.Controller - Request error
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+	at java.lang.String.substring(String.java:1967) ~[?:1.8.0_211]
+	at by.korolenko.mobile.controller.Controller.executeRequest(Controller.java:36) [classes/:?]
+	at by.korolenko.mobile.view.Menu.start(Menu.java:187) [classes/:?]
+	at by.korolenko.mobile.controller.Controller.main(Controller.java:59) [classes/:?]
+2019-09-23 00:48:37.470 [main] INFO  by.korolenko.mobile.controller.Controller - command result: 3
+2019-09-23 00:48:39.001 [main] INFO  by.korolenko.mobile.controller.Controller - command result: [BUSINESS,test2,15.5,100,4,100, HOME,test1,20.5,200,8,45, SOCIAL,test3,25.6,300,16,VIBER]
+2019-09-23 00:49:44.657 [main] INFO  by.korolenko.mobile.controller.Controller - command result: 3

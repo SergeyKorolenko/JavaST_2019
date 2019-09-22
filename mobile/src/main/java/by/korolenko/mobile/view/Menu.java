@@ -188,6 +188,11 @@ public class Menu {
                     showResponse(response);
                     break;
                 case "12":
+                    request = "WRITE_TO_FILE,";
+                    response = controller.executeRequest(request);
+                    showResponse(response);
+                    break;
+                case "13":
                     flag = false;
                     break;
                 default:
@@ -212,6 +217,7 @@ public class Menu {
                 + "9 - search by name\n"
                 + "10 - search between id\n"
                 + "11 - sort by id and name\n"
-                + "12 - exit");
+                + "12 - write to file\n"
+                + "13 - exit");
     }
 }
