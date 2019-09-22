@@ -6,4 +6,8 @@ package by.korolenko.mobile.service.impl;
  * @since 18.09.2019
  */
 public class TariffFileServiceImplTest {
+
+    public void readFromFileTest() {
+
+    }
 }
