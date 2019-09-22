@@ -2,6 +2,8 @@ package by.korolenko.mobile.service.validator;
 
 import by.korolenko.mobile.bean.enums.Messenger;
 import by.korolenko.mobile.bean.enums.TariffType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Sergei Korolenko
@@ -9,6 +11,13 @@ import by.korolenko.mobile.bean.enums.TariffType;
  * @since 18.09.2019
  */
 public class TariffValidator {
+
+    /**
+     * Logger.
+     */
+    private final Logger log = LogManager.getLogger(TariffValidator.class.
+            getName());
+
     /**
      * This method check tariff data.
      *
@@ -44,6 +53,7 @@ public class TariffValidator {
                 result = false;
             }
         } catch (IllegalArgumentException e) {
+            log.error("Incorrect tariff type: " + data[tariffType], e);
             result = false;
         }
         return result;
@@ -83,7 +93,7 @@ public class TariffValidator {
     }
 
     /**
-     * Thismethod checks tariff type.
+     * This method checks tariff type.
      *
      * @param type tariff type
      * @return result
@@ -93,6 +103,7 @@ public class TariffValidator {
             Messenger messenger = Messenger.valueOf(type);
             return true;
         } catch (IllegalArgumentException e) {
+            log.error("Incorrect messenger type: " + type, e);
             return false;
         }
     }
