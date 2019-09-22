@@ -3,6 +3,11 @@ package by.korolenko.mobile.service.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class StringValidator {
 
     /**

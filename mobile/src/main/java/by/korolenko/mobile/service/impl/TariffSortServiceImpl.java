@@ -11,6 +11,11 @@ import by.korolenko.mobile.service.comparator.TariffNameComparator;
 
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class TariffSortServiceImpl implements TariffSortService {
 
     /**

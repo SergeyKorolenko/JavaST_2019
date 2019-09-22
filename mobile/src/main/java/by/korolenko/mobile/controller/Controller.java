@@ -31,7 +31,7 @@ public final class Controller {
      * @return response as a string
      */
     public String executeRequest(final String request) {
-        String response = null;
+        String response;
         try {
             String commandName = request.substring(0, request.
                     indexOf(DELIMITER));

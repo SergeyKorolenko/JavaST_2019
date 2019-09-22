@@ -14,7 +14,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${patternshort}"/>
         </Console>
-        <File name="TxtFile" fileName="logs/info.log" bufferedIO="true">
+        <File name="InfoFile" fileName="logs/info.log" bufferedIO="true">
             <PatternLayout pattern="${patternfull}"/>
         </File>
         <File name="ErrorFile" fileName="logs/error.log" bufferedIO="true">
@@ -23,10 +23,10 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="by.korolenko.mobile.view.Menu" level="debug"
+        <Logger name="by.korolenko.mobile.view" level="info"
                 additivity="true">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="TxtFile"/>
+            <AppenderRef ref="InfoFile"/>
         </Logger>
 
         <!-- Root Logger -->

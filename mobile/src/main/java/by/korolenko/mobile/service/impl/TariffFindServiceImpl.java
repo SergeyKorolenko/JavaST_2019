@@ -10,10 +10,14 @@ import by.korolenko.mobile.service.TariffFindService;
 import by.korolenko.mobile.service.parser.StringParser;
 import by.korolenko.mobile.service.validator.ParamValidator;
 import by.korolenko.mobile.service.validator.NumberValidator;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class TariffFindServiceImpl implements TariffFindService {
 
     /**
@@ -34,7 +38,7 @@ public class TariffFindServiceImpl implements TariffFindService {
         ParamValidator validator = new ParamValidator();
         NumberValidator numberValidator = new NumberValidator();
         final int idIndex = 0;
-        if (validator.isTwoParam(result) && numberValidator.
+        if (validator.isOneParam(result) && numberValidator.
                 isInt(result[idIndex])) {
             int id = Integer.parseInt(result[idIndex]);
             return repository.query(new FindById(id));
@@ -54,7 +58,7 @@ public class TariffFindServiceImpl implements TariffFindService {
         String[] result = parser.parseToString(data);
         ParamValidator validator = new ParamValidator();
         final int nameIndex = 0;
-        if (validator.isTwoParam(result)) {
+        if (validator.isOneParam(result)) {
             String name = result[nameIndex];
             return repository.query(new FindByName(name));
         }
@@ -75,7 +79,7 @@ public class TariffFindServiceImpl implements TariffFindService {
         NumberValidator numberValidator = new NumberValidator();
         final int startIdIndex = 0;
         final int endIdIndex = 1;
-        if (validator.isThreeParam(result) && numberValidator.
+        if (validator.isTwoParam(result) && numberValidator.
                 isInt(result[startIdIndex]) && numberValidator.
                 isInt(result[endIdIndex])) {
             int startId = Integer.parseInt(result[startIdIndex]);

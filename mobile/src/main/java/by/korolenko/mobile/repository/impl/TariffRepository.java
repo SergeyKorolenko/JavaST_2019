@@ -35,6 +35,7 @@ public class TariffRepository implements Repository<Tariff> {
      */
     @Override
     public void delete(final Tariff item) {
+        System.out.println(item.toString());
         storage.getTariffList().remove(item);
     }
 
@@ -45,6 +46,13 @@ public class TariffRepository implements Repository<Tariff> {
      */
     @Override
     public void update(final Tariff item) {
+        System.out.println(item.toString());
+        List<Tariff> list = storage.getTariffList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == item.getId()) {
+                storage.getTariffList().set(i, item);
+            }
+        }
     }
 
     /**

@@ -9,6 +9,11 @@ import by.korolenko.mobile.service.impl.TariffFileServiceImpl;
 import by.korolenko.mobile.service.impl.TariffFindServiceImpl;
 import by.korolenko.mobile.service.impl.TariffSortServiceImpl;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public final class ServiceFactory {
 
     /**

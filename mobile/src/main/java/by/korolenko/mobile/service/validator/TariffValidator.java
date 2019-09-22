@@ -3,6 +3,11 @@ package by.korolenko.mobile.service.validator;
 import by.korolenko.mobile.bean.enums.Messenger;
 import by.korolenko.mobile.bean.enums.TariffType;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class TariffValidator {
 
     /**
@@ -27,19 +32,11 @@ public class TariffValidator {
                     case BUSINESS:
                     case HOME:
                         final int channelOrRoaming = 5;
-                        if (isIntNumber(data[channelOrRoaming])) {
-                            result = true;
-                        } else {
-                            result = false;
-                        }
+                        result = isIntNumber(data[channelOrRoaming]);
                         break;
                     case SOCIAL:
                         final int messenger = 5;
-                        if (isMessengerType(data[messenger])) {
-                            result = true;
-                        } else {
-                            result = false;
-                        }
+                        result = isMessengerType(data[messenger].toUpperCase());
                         break;
                     default:
                         result = false;

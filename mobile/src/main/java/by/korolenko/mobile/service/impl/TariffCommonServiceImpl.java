@@ -9,10 +9,14 @@ import by.korolenko.mobile.service.factory.TariffFactory;
 import by.korolenko.mobile.service.parser.StringParser;
 import by.korolenko.mobile.service.validator.ParamValidator;
 import by.korolenko.mobile.service.validator.TariffValidator;
-
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class TariffCommonServiceImpl implements TariffCommonService {
 
     /**

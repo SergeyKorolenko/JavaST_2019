@@ -14,7 +14,7 @@ public class ParamValidator {
      * @return check result
      */
     public boolean isSevenParam(final String[] param) {
-        final int length = 6;
+        final int length = 7;
         return length == param.length;
     }
 
@@ -35,8 +35,8 @@ public class ParamValidator {
      * @param param param
      * @return check result
      */
-    public boolean isTwoParam(final String[] param) {
-        final int length = 2;
+    public boolean isOneParam(final String[] param) {
+        final int length = 1;
         return length == param.length;
     }
 
@@ -46,8 +46,8 @@ public class ParamValidator {
      * @param param param
      * @return check result
      */
-    public boolean isThreeParam(final String[] param) {
-        final int length = 3;
+    public boolean isTwoParam(final String[] param) {
+        final int length = 2;
         return length == param.length;
     }
 }

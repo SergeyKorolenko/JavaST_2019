@@ -4,6 +4,11 @@ import by.korolenko.mobile.bean.Tariff;
 
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public interface TariffCommonService {
 
     /**

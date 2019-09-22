@@ -1,7 +1,0 @@
-2019-09-22 16:37:37.676 [main] ERROR by.korolenko.mobile.controller.CommandProvider - incorrect command
-java.lang.IllegalArgumentException: No enum constant by.korolenko.mobile.controller.command.CommandName.AD_TARIFF
-	at java.lang.Enum.valueOf(Enum.java:238) ~[?:1.8.0_211]
-	at by.korolenko.mobile.controller.command.CommandName.valueOf(CommandName.java:8) ~[classes/:?]
-	at by.korolenko.mobile.controller.CommandProvider.getCommand(CommandProvider.java:53) [classes/:?]
-	at by.korolenko.mobile.controller.Controller.executeRequest(Controller.java:30) [classes/:?]
-	at by.korolenko.mobile.controller.Controller.main(Controller.java:40) [classes/:?]

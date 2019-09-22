@@ -11,6 +11,11 @@ import by.korolenko.mobile.service.output.FileDataWriter;
 
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class TariffFileServiceImpl implements TariffFileService {
 
     /**
@@ -18,9 +23,13 @@ public class TariffFileServiceImpl implements TariffFileService {
      */
     private final Repository<Tariff> repository = new TariffRepository();
     /**
-     * This is the file name.
+     * This is the input file.
      */
-    public static final String INPUT_FILE = "data/input.txt";
+    private static final String INPUT_FILE = "data/input.txt";
+    /**
+     * This is the input file.
+     */
+    private static final String OUTPUT_FILE = "data/output.txt";
 
     /**
      * Read from file.

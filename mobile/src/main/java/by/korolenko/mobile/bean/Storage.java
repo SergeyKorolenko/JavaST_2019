@@ -20,6 +20,9 @@ public final class Storage {
      */
     private List<Tariff> tariffList = new ArrayList<>();
 
+    /**
+     * Private constructor.
+     */
     private Storage() {
     }
 

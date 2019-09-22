@@ -35,6 +35,9 @@ final class CommandProvider {
      */
     private final Map<CommandName, Command> commandStorage = new HashMap<>();
 
+    /**
+     * This is the command provider.
+     */
     CommandProvider() {
         commandStorage.put(CommandName.ADD_TARIFF, new AddTariff());
         commandStorage.put(CommandName.GET_ALL, new GetAllTariff());
@@ -48,6 +51,13 @@ final class CommandProvider {
         commandStorage.put(CommandName.FIND_BETWEEN_ID, new FindBetweenId());
     }
 
+    /**
+     * This method is for getting any command.
+     *
+     * @param name name
+     * @return any command
+     * @throws IllegalArgumentException exception
+     */
     Command getCommand(final String name) throws IllegalArgumentException {
         Command command = null;
         CommandName commandName = CommandName.valueOf(name.toUpperCase());

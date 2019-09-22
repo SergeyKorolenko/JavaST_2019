@@ -7,6 +7,11 @@ import by.korolenko.mobile.bean.Tariff;
 import by.korolenko.mobile.bean.enums.Messenger;
 import by.korolenko.mobile.bean.enums.TariffType;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 18.09.2019
+ */
 public class TariffFactory {
 
     /**
