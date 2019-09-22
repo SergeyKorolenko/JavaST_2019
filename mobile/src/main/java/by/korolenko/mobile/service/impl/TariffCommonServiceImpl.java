@@ -33,64 +33,77 @@ public class TariffCommonServiceImpl implements TariffCommonService {
      * Add method.
      *
      * @param data data
+     * @return number of added
      */
     @Override
-    public void addTariff(final String data) {
+    public int addTariff(final String data) {
         StringParser parser = new StringParser();
         String[] tariffData = parser.parseToString(data);
         ParamValidator paramValidator = new ParamValidator();
         TariffValidator tariffValidator = new TariffValidator();
+        int result = 0;
         if (paramValidator.isSixParam(tariffData)
                 && tariffValidator.isTariff(tariffData)) {
             Tariff tariff = tariffFactory.create(tariffData);
-            repository.add(tariff);
+            result = repository.add(tariff);
         }
+        return result;
     }
 
     /**
      * Update method.
      *
      * @param data data
+     * @return number of updated
      */
     @Override
-    public void updateTariff(final String data) {
+    public int updateTariff(final String data) {
         StringParser parser = new StringParser();
         String[] tariffData = parser.parseToString(data);
         ParamValidator paramValidator = new ParamValidator();
         TariffValidator tariffValidator = new TariffValidator();
+        int result = 0;
         if (paramValidator.isSevenParam(tariffData)) {
             final int id = 6;
             if (tariffValidator.isIntNumber(tariffData[id])) {
                 final int newLength = 6;
                 String[] newTariffData = Arrays.copyOf(tariffData, newLength);
-                Tariff tariff = tariffFactory.create(newTariffData);
-                tariff.setId(Integer.parseInt(tariffData[id]));
-                repository.update(tariff);
+                if (tariffValidator.isTariff(newTariffData)) {
+                    Tariff tariff = tariffFactory.create(newTariffData);
+                    tariff.setId(Integer.parseInt(tariffData[id]));
+                    result = repository.update(tariff);
+                }
             }
         }
+        return result;
     }
 
     /**
      * Delete method.
      *
      * @param data data
+     * @return number of deleted
      */
     @Override
-    public void deleteTariff(final String data) {
+    public int deleteTariff(final String data) {
         StringParser parser = new StringParser();
         String[] tariffData = parser.parseToString(data);
         ParamValidator paramValidator = new ParamValidator();
         TariffValidator tariffValidator = new TariffValidator();
+        int result = 0;
         if (paramValidator.isSevenParam(tariffData)) {
             final int id = 6;
             if (tariffValidator.isIntNumber(tariffData[id])) {
                 final int newLength = 6;
                 String[] newTariffData = Arrays.copyOf(tariffData, newLength);
-                Tariff tariff = tariffFactory.create(newTariffData);
-                tariff.setId(Integer.parseInt(tariffData[id]));
-                repository.delete(tariff);
+                if (tariffValidator.isTariff(newTariffData)) {
+                    Tariff tariff = tariffFactory.create(newTariffData);
+                    tariff.setId(Integer.parseInt(tariffData[id]));
+                    result = repository.delete(tariff);
+                }
             }
         }
+        return result;
     }
 
     /**

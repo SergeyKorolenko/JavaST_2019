@@ -21,7 +21,7 @@ public class DeleteTariff implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         TariffCommonService tariffCommonService = serviceFactory.
                 getTariffCommonService();
-        tariffCommonService.deleteTariff(request);
-        return null;
+        Integer response = tariffCommonService.deleteTariff(request);
+        return response.toString();
     }
 }

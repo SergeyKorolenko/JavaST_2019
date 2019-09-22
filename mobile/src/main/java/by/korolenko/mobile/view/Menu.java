@@ -183,6 +183,11 @@ public class Menu {
                     showResponse(response);
                     break;
                 case "11":
+                    request = "SORT_BY_ID_AND_NAME,";
+                    response = controller.executeRequest(request);
+                    showResponse(response);
+                    break;
+                case "12":
                     flag = false;
                     break;
                 default:
@@ -206,6 +211,7 @@ public class Menu {
                 + "8 - search by id\n"
                 + "9 - search by name\n"
                 + "10 - search between id\n"
-                + "11 - exit");
+                + "11 - sort by id and name\n"
+                + "12 - exit");
     }
 }

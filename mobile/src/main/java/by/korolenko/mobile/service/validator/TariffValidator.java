@@ -9,7 +9,6 @@ import by.korolenko.mobile.bean.enums.TariffType;
  * @since 18.09.2019
  */
 public class TariffValidator {
-
     /**
      * This method check tariff data.
      *

@@ -13,7 +13,6 @@ import by.korolenko.mobile.bean.enums.TariffType;
  * @since 18.09.2019
  */
 public class TariffFactory {
-
     /**
      * This is the tariff factory instance.
      */
@@ -32,38 +31,33 @@ public class TariffFactory {
         final int price = 2;
         final int minute = 3;
         final int traffic = 4;
-        try {
-            TariffType tariffType = TariffType.valueOf(type.toUpperCase());
-            switch (tariffType) {
-                case SOCIAL:
-                    final int messenger = 5;
-                    tariff = new SocialTariff(data[name], Double.
-                            parseDouble(data[price]), Integer.
-                            parseInt(data[minute]), Integer.
-                            parseInt(data[traffic]), Messenger.
-                            valueOf(data[messenger].toUpperCase()));
-                    break;
-                case HOME:
-                    final int channel = 5;
-                    tariff = new HomeTariff(data[name], Double.
-                            parseDouble(data[price]), Integer.
-                            parseInt(data[minute]), Integer.
-                            parseInt(data[traffic]), Integer.
-                            parseInt(data[channel]));
-                    break;
-                case BUSINESS:
-                    final int roaming = 5;
-                    tariff = new BusinessTariff(data[name], Double.
-                            parseDouble(data[price]), Integer.
-                            parseInt(data[minute]), Integer.
-                            parseInt(data[traffic]), Integer.
-                            parseInt(data[roaming]));
-                    break;
-                default:
-                    throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+        TariffType tariffType = TariffType.valueOf(type.toUpperCase());
+        switch (tariffType) {
+            case SOCIAL:
+                final int messenger = 5;
+                tariff = new SocialTariff(data[name], Double.
+                        parseDouble(data[price]), Integer.
+                        parseInt(data[minute]), Integer.
+                        parseInt(data[traffic]), Messenger.
+                        valueOf(data[messenger].toUpperCase()));
+                break;
+            case HOME:
+                final int channel = 5;
+                tariff = new HomeTariff(data[name], Double.
+                        parseDouble(data[price]), Integer.
+                        parseInt(data[minute]), Integer.
+                        parseInt(data[traffic]), Integer.
+                        parseInt(data[channel]));
+                break;
+            case BUSINESS:
+                final int roaming = 5;
+                tariff = new BusinessTariff(data[name], Double.
+                        parseDouble(data[price]), Integer.
+                        parseInt(data[minute]), Integer.
+                        parseInt(data[traffic]), Integer.
+                        parseInt(data[roaming]));
+                break;
+            default:
         }
         return tariff;
     }

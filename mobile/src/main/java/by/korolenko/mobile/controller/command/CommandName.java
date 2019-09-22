@@ -45,5 +45,9 @@ public enum CommandName {
     /**
      * Find between two id.
      */
-    FIND_BETWEEN_ID
+    FIND_BETWEEN_ID,
+    /**
+     * Sort by id and name.
+     */
+    SORT_BY_ID_AND_NAME
 }

@@ -15,22 +15,25 @@ public interface Repository<T> {
      * Add method.
      *
      * @param item item
+     * @return number of added
      */
-    void add(T item);
+    int add(T item);
 
     /**
      * Delete method.
      *
      * @param item item
+     * @return number of deleted
      */
-    void delete(T item);
+    int delete(T item);
 
     /**
      * Update method.
      *
      * @param item item
+     * @return number of updated
      */
-    void update(T item);
+    int update(T item);
 
     /**
      * Query method.

@@ -33,17 +33,20 @@ public class TariffFileServiceImpl implements TariffFileService {
 
     /**
      * Read from file.
+     * @return number of read
      */
     @Override
-    public void readFromFile() {
+    public int readFromFile() {
         FileDataReader fileDataReader = new FileDataReader();
         List<String> data = fileDataReader.readData(INPUT_FILE);
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         TariffCommonService tariffCommonService = serviceFactory.
                 getTariffCommonService();
+        int result = 0;
         for (String line : data) {
-            tariffCommonService.addTariff(line);
+            result += tariffCommonService.addTariff(line);
         }
+        return result;
     }
 
     /**

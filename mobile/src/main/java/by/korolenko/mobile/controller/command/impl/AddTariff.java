@@ -29,7 +29,7 @@ public class AddTariff implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         TariffCommonService tariffCommonService = serviceFactory.
                 getTariffCommonService();
-        tariffCommonService.addTariff(request);
-        return null;
+        Integer response = tariffCommonService.addTariff(request);
+        return response.toString();
     }
 }

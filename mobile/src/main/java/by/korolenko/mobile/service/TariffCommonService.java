@@ -15,22 +15,25 @@ public interface TariffCommonService {
      * Add method.
      *
      * @param data data
+     * @return number of added
      */
-    void addTariff(String data);
+    int addTariff(String data);
 
     /**
      * Update method.
      *
      * @param data data
+     * @return number of updated
      */
-    void updateTariff(String data);
+    int updateTariff(String data);
 
     /**
      * Delete method.
      *
      * @param data data
+     * @return number of deleted
      */
-    void deleteTariff(String data);
+    int deleteTariff(String data);
 
     /**
      * Get tariffs.

@@ -11,8 +11,9 @@ public interface TariffFileService {
 
     /**
      * Read from file.
+     * @return number of read
      */
-    void readFromFile();
+    int readFromFile();
 
     /**
      * Write to file.

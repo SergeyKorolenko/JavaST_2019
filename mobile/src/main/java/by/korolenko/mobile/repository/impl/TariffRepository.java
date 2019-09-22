@@ -22,37 +22,45 @@ public class TariffRepository implements Repository<Tariff> {
      * Add any tariff.
      *
      * @param item tariff
+     * @return number of added
      */
     @Override
-    public void add(final Tariff item) {
+    public int add(final Tariff item) {
+        int beforeSize = storage.getTariffList().size();
         storage.getTariffList().add(item);
+        return storage.getTariffList().size() - beforeSize;
     }
 
     /**
      * Any tariff.
      *
      * @param item tariff
+     * @return number of deleted
      */
     @Override
-    public void delete(final Tariff item) {
-        System.out.println(item.toString());
+    public int delete(final Tariff item) {
+        int beforeSize = storage.getTariffList().size();
         storage.getTariffList().remove(item);
+        return beforeSize - storage.getTariffList().size();
     }
 
     /**
      * Any tariff.
      *
      * @param item tariff
+     * @return number of updated
      */
     @Override
-    public void update(final Tariff item) {
-        System.out.println(item.toString());
+    public int update(final Tariff item) {
         List<Tariff> list = storage.getTariffList();
+        int updated = 0;
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == item.getId()) {
                 storage.getTariffList().set(i, item);
+                updated++;
             }
         }
+        return updated;
     }
 
     /**

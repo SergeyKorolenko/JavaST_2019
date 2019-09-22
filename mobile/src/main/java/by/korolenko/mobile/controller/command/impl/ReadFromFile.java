@@ -22,7 +22,7 @@ public class ReadFromFile implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         TariffFileService tariffFileService = serviceFactory.
                 getTariffFileService();
-        tariffFileService.readFromFile();
-        return null;
+        Integer response = tariffFileService.readFromFile();
+        return response.toString();
     }
 }

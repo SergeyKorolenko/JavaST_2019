@@ -21,7 +21,7 @@ public class UpdateTariff implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         TariffCommonService tariffCommonService = serviceFactory.
                 getTariffCommonService();
-        tariffCommonService.updateTariff(request);
-        return null;
+        Integer response = tariffCommonService.updateTariff(request);
+        return response.toString();
     }
 }
