@@ -1,9 +1,11 @@
 package by.korolenko.mobile.service.output;
 
+import by.korolenko.mobile.service.validator.FileValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +32,10 @@ public class FileDataWriter {
      */
     public int writeData(final List<String> data, final String fileName) {
         int result = 0;
+        FileValidator fileValidator = new FileValidator();
+        if (!fileValidator.isFile(new File(fileName))) {
+            return result;
+        }
         try (BufferedWriter bufferedWriter = new BufferedWriter(
                 new FileWriter(fileName))) {
             for (String line : data) {
