@@ -9,3 +9,14 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: -1
 2019-09-23 00:48:37.470 [main] INFO  by.korolenko.mobile.controller.Controller - command result: 3
 2019-09-23 00:48:39.001 [main] INFO  by.korolenko.mobile.controller.Controller - command result: [BUSINESS,test2,15.5,100,4,100, HOME,test1,20.5,200,8,45, SOCIAL,test3,25.6,300,16,VIBER]
 2019-09-23 00:49:44.657 [main] INFO  by.korolenko.mobile.controller.Controller - command result: 3
+2019-09-23 02:09:29.620 [main] ERROR korolenko.mobile.service.validator.NumberValidator - Not int: 
+java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65) ~[?:1.8.0_211]
+	at java.lang.Integer.parseInt(Integer.java:592) ~[?:1.8.0_211]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[?:1.8.0_211]
+	at by.korolenko.mobile.service.validator.NumberValidator.isInt(NumberValidator.java:27) [classes/:?]
+	at by.korolenko.mobile.service.impl.TariffFindServiceImpl.findById(TariffFindServiceImpl.java:42) [classes/:?]
+	at by.korolenko.mobile.controller.command.impl.FindById.execute(FindById.java:24) [classes/:?]
+	at by.korolenko.mobile.controller.Controller.executeRequest(Controller.java:40) [classes/:?]
+	at by.korolenko.mobile.view.Menu.start(Menu.java:172) [classes/:?]
+	at by.korolenko.mobile.controller.Controller.main(Controller.java:58) [classes/:?]
