@@ -1,4 +1,4 @@
-package by.korolenko.demothreads.ex5c_deamon;
+package by.korolenko.demothreads.ex05c_deamon;
 
 import java.util.concurrent.TimeUnit;
 
