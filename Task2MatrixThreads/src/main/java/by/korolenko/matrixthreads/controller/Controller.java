@@ -1,6 +1,7 @@
 package by.korolenko.matrixthreads.controller;
 
-import by.korolenko.matrixthreads.service.MatrixFillingService;
+import by.korolenko.matrixthreads.controller.command.Command;
+import by.korolenko.matrixthreads.view.Menu;
 
 /**
  * @author Sergei Korolenko
@@ -8,21 +9,35 @@ import by.korolenko.matrixthreads.service.MatrixFillingService;
  * @since 25.09.2019
  */
 public final class Controller {
-    /**
-     * Private constructor.
-     */
-    private Controller() {
-    }
 
+    /**
+     * This is command provider which contains map of commands.
+     */
+    private final CommandProvider provider = new CommandProvider();
+
+    /**
+     * This method takes the query string and executes it.
+     *
+     * @param request the request string
+     * @return response as a string
+     */
+    public String executeRequest(final String request) {
+        String response;
+        try {
+            Command executionCommand = provider.getCommand(request);
+            response = executionCommand.execute();
+        } catch (IllegalArgumentException e) {
+            response = "Incorrect command.";
+        }
+        return response;
+    }
     /**
      * This is the main method.
      *
      * @param args command line args
      */
     public static void main(final String[] args) {
-        MatrixFillingService matrixService = new MatrixFillingService();
-        matrixService.fillMatrix();
-        //matrixService.fillDiagonal();
-        matrixService.fillDiagonalByLocker();
+        Menu menu = new Menu();
+        menu.start();
     }
 }

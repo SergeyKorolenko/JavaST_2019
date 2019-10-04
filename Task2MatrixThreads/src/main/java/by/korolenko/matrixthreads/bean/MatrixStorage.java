@@ -1,5 +1,7 @@
 package by.korolenko.matrixthreads.bean;
 
+import java.util.Arrays;
+
 /**
  * @author Sergei Korolenko
  * @version 1.0
@@ -32,6 +34,10 @@ public final class MatrixStorage {
     private int[][] matrix;
 
     /**
+     * This is the array of numbers.
+     */
+    private int[] numbers;
+    /**
      * Getter for matrix.
      *
      * @return matrix
@@ -53,5 +59,23 @@ public final class MatrixStorage {
      */
     public void setMatrix(final int[][] newMatrix) {
         this.matrix = newMatrix;
+    }
+
+    /**
+     * This is the copy of numbers array.
+     *
+     * @return copy array
+     */
+    public int[] getNumbers() {
+        return Arrays.copyOf(numbers, numbers.length);
+    }
+
+    /**
+     * Setter for numbers.
+     *
+     * @param newNumbers numbers
+     */
+    public void setNumbers(final int[] newNumbers) {
+        this.numbers = newNumbers;
     }
 }
