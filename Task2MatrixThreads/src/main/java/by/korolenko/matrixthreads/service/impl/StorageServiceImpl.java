@@ -2,7 +2,7 @@ package by.korolenko.matrixthreads.service.impl;
 
 import by.korolenko.matrixthreads.repository.Repository;
 import by.korolenko.matrixthreads.repository.impl.MatrixRepository;
-import by.korolenko.matrixthreads.service.StorageCreatingService;
+import by.korolenko.matrixthreads.service.StorageService;
 import by.korolenko.matrixthreads.service.input.FileDataReader;
 import by.korolenko.matrixthreads.service.input.PropertyReader;
 import by.korolenko.matrixthreads.service.input.enums.PropertyKey;
@@ -11,10 +11,9 @@ import by.korolenko.matrixthreads.service.parser.StringParser;
 import by.korolenko.matrixthreads.service.validator.MatrixValidator;
 import by.korolenko.matrixthreads.service.validator.NumberValidator;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class StorageCreatingServiceImpl implements StorageCreatingService {
+public class StorageServiceImpl implements StorageService {
 
     /**
      * Repository.
@@ -26,15 +25,16 @@ public class StorageCreatingServiceImpl implements StorageCreatingService {
      *
      * @return response
      */
-    public String createStorage() {
+    public Boolean createStorage() {
         int[][] matrix = createMatrix();
         int[] numbers = createNumbers();
-        if (matrix.length != 0 && numbers.length != 0) {
+        if (matrix.length != 0 && numbers.length != 0
+                && matrix.length > numbers.length) {
             repository.addMatrix(matrix);
             repository.addNumbers(numbers);
-            return toString(matrix) + "\n" + Arrays.toString(numbers) + "\n";
+            return true;
         }
-        return "Creating storage error";
+        return false;
     }
 
     /**
@@ -92,12 +92,11 @@ public class StorageCreatingServiceImpl implements StorageCreatingService {
     }
 
     /**
-     * Creating matrix as a string.
-     *
-     * @param matrix matrix
-     * @return matrix as a string
+     * Showing data.
+     * @return response
      */
-    private String toString(final int[][] matrix) {
+    public String showStorageData() {
+        int[][] matrix = repository.getMatrix();
         String result = "";
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {

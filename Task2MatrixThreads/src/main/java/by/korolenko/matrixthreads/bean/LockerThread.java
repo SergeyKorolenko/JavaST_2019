@@ -21,14 +21,14 @@ public class LockerThread extends Thread {
     private int[][] matrix;
 
     /**
-     * Semaphore.
+     * Locker.
      */
     private ReentrantLock locker;
 
     /**
      * This is the constructor with parameters.
      *
-     * @param newLocker semaphore
+     * @param newLocker locker
      * @param newNumber number
      * @param newMatrix matrix
      */
@@ -50,8 +50,8 @@ public class LockerThread extends Thread {
                 System.out.println(getName() + " added number to line " + i);
                 matrix[i][i] = number;
             }
-            i++;
             locker.unlock();
+            i++;
             final int timeout = 30;
             try {
                 TimeUnit.MILLISECONDS.sleep(timeout);

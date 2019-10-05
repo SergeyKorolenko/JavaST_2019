@@ -5,11 +5,18 @@ package by.korolenko.matrixthreads.service;
  * @version 1.0
  * @since 25.09.2019
  */
-public interface StorageCreatingService {
+public interface StorageService {
     /**
      * Creating storage.
      *
      * @return response
      */
-    String createStorage();
+    Boolean createStorage();
+
+    /**
+     * Showing data from storage.
+     *
+     * @return response
+     */
+    String showStorageData();
 }

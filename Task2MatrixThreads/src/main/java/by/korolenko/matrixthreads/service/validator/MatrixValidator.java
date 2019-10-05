@@ -25,10 +25,7 @@ public class MatrixValidator {
                 ++count;
             }
         }
-        if (count == rowNumber) {
-            return true;
-        }
-        return false;
+        return count == rowNumber;
     }
 
     /**

@@ -21,7 +21,7 @@ public class FileDataReader {
     /**
      * This is the logger.
      */
-    private final Logger log = LogManager.
+    private static final Logger LOGGER = LogManager.
             getLogger(FileDataReader.class.getName());
 
     /**
@@ -35,7 +35,7 @@ public class FileDataReader {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             data = stream.collect(Collectors.toList());
         } catch (IOException e) {
-            log.error("error of reading from file" + fileName, e);
+            LOGGER.error("error of reading from file" + fileName, e);
         }
         return data;
     }

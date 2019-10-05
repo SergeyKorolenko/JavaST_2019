@@ -1,5 +1,8 @@
 package by.korolenko.matrixthreads.service.input;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -10,6 +13,12 @@ import java.util.Properties;
  * @since 25.09.2019
  */
 public class PropertyReader {
+
+    /**
+     * This is the logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(PropertyReader.class.getName());
 
     /**
      * This method reads properties.
@@ -26,7 +35,7 @@ public class PropertyReader {
             property.load(fis);
             fileName = property.getProperty(key);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("property file error", e);
             fileName = "";
         }
         return fileName;

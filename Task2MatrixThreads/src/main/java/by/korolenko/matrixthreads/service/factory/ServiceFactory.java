@@ -1,9 +1,9 @@
 package by.korolenko.matrixthreads.service.factory;
 
 import by.korolenko.matrixthreads.service.MatrixFillingService;
-import by.korolenko.matrixthreads.service.StorageCreatingService;
+import by.korolenko.matrixthreads.service.StorageService;
 import by.korolenko.matrixthreads.service.impl.MatrixFillingServiceImpl;
-import by.korolenko.matrixthreads.service.impl.StorageCreatingServiceImpl;
+import by.korolenko.matrixthreads.service.impl.StorageServiceImpl;
 
 /**
  * @author Sergei Korolenko
@@ -20,8 +20,8 @@ public final class ServiceFactory {
     /**
      * Storage creating service.
      */
-    private final StorageCreatingService storageCreatingService =
-            new StorageCreatingServiceImpl();
+    private final StorageService storageService =
+            new StorageServiceImpl();
 
     /**
      * Matrix filling service.
@@ -49,8 +49,8 @@ public final class ServiceFactory {
      *
      * @return storage creating service.
      */
-    public StorageCreatingService getStorageCreatingService() {
-        return storageCreatingService;
+    public StorageService getStorageService() {
+        return storageService;
     }
 
     /**

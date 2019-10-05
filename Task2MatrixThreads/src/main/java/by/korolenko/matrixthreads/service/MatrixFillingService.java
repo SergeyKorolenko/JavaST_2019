@@ -11,10 +11,23 @@ public interface MatrixFillingService {
      * @return response
      */
     String fillByLocker();
-
     /**
      * Filling matrix using semaphore.
      * @return response
      */
     String fillBySemaphore();
+
+    /**
+     * Filling matrix using callable.
+     *
+     * @return response
+     */
+    String fillByCallable();
+
+    /**
+     * Filling matrix using phaser.
+     *
+     * @return response
+     */
+    String fillByPhaser();
 }

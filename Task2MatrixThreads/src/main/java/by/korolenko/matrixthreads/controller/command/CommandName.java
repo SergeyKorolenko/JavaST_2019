@@ -7,7 +7,7 @@ package by.korolenko.matrixthreads.controller.command;
  */
 public enum CommandName {
     /**
-     * Methods of filling matrix.
+     * Actions with matrix.
      */
-    CREATE_STORAGE, LOCK, SEMAPHORE
+    SHOW_STORAGE_MATRIX, CREATE_STORAGE, LOCK, SEMAPHORE, CALLABLE, PHASER
 }

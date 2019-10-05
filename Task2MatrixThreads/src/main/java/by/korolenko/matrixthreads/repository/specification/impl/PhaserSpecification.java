@@ -1,18 +1,12 @@
 package by.korolenko.matrixthreads.repository.specification.impl;
 
-import by.korolenko.matrixthreads.bean.SemaphoreThread;
+import by.korolenko.matrixthreads.bean.PhaserThread;
 import by.korolenko.matrixthreads.repository.specification.Specification;
 
-import java.util.Random;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author Sergei Korolenko
- * @version 1.0
- * @since 25.09.2019
- */
-public class SemaphoreSpecification implements Specification {
+public class PhaserSpecification implements Specification {
     /**
      * This is the specified method.
      *
@@ -22,12 +16,11 @@ public class SemaphoreSpecification implements Specification {
      */
     @Override
     public int[][] specified(final int[][] matrix, final int[] numbers) {
-        Random random = new Random();
-        int permits = random.nextInt(numbers.length + 1) + 1;
-        Semaphore semaphore = new Semaphore(permits);
+        Phaser phaser = new Phaser(1);
         for (int i = 0; i < numbers.length; i++) {
-            new SemaphoreThread(semaphore, numbers[i], matrix).start();
+            new PhaserThread(phaser, numbers[i], matrix).start();
         }
+        phaser.arriveAndDeregister();
         final int timeout = 1;
         try {
             TimeUnit.SECONDS.sleep(timeout);
