@@ -1,5 +1,8 @@
 package by.korolenko.matrixthreads.bean;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +12,11 @@ import java.util.concurrent.TimeUnit;
  * @since 25.09.2019
  */
 public class SemaphoreThread extends Thread {
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(SemaphoreThread.class.getName());
 
     /**
      * Number to be filled.
@@ -44,8 +52,7 @@ public class SemaphoreThread extends Thread {
      */
     @Override
     public void run() {
-        int i = 0;
-        while (i < matrix.length) {
+        for (int i = 0; i < matrix.length; i++) {
             try {
                 semaphore.acquire();
                 if (matrix[i][i] == 0) {
@@ -57,9 +64,8 @@ public class SemaphoreThread extends Thread {
                     TimeUnit.MILLISECONDS.sleep(timeout);
                 }
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
+                LOGGER.error("thread error", e);
             }
-            i++;
             semaphore.release();
         }
     }

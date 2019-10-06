@@ -4,6 +4,11 @@ import by.korolenko.matrixthreads.controller.Controller;
 
 import java.util.Scanner;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 25.09.2019
+ */
 public class Menu {
 
     /**
@@ -44,9 +49,6 @@ public class Menu {
                         showResponse(controller.executeRequest("PHASER"));
                         break;
                     case "6":
-                        showResponse(controller.executeRequest("5"));
-                        break;
-                    case "7":
                         flag = false;
                         break;
                     default:
@@ -67,8 +69,7 @@ public class Menu {
                 + "3 - use semaphore\n"
                 + "4 - use callable\n"
                 + "5 - use phaser\n"
-                + "6 - use fifth method\n"
-                + "7 - exit");
+                + "6 - exit");
     }
 
     /**

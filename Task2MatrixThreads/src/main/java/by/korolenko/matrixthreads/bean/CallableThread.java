@@ -3,33 +3,24 @@ package by.korolenko.matrixthreads.bean;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 25.09.2019
+ */
 public class CallableThread implements Callable<Integer> {
-
-    /**
-     * Count.
-     */
-    private static int count = 0;
     /**
      * Number.
      */
     private int number;
-    /**
-     * Numbers.
-     */
-    private int[] numbers;
 
     /**
      * Constructor.
      *
-     * @param newNumbers number
+     * @param newNumber number
      */
-    public CallableThread(final int[] newNumbers) {
-        this.numbers = newNumbers;
-        if (count < numbers.length) {
-            this.number = numbers[count++];
-        } else {
-            count = 0;
-        }
+    public CallableThread(final int newNumber) {
+        this.number = newNumber;
     }
 
     /**

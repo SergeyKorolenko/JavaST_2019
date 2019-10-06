@@ -2,6 +2,8 @@ package by.korolenko.matrixthreads.repository.specification.impl;
 
 import by.korolenko.matrixthreads.bean.LockerThread;
 import by.korolenko.matrixthreads.repository.specification.Specification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -13,6 +15,12 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockerSpecification implements Specification {
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(LockerSpecification.class.getName());
+
+    /**
      * This is the specified method.
      *
      * @param matrix  matrix
@@ -22,14 +30,14 @@ public class LockerSpecification implements Specification {
     @Override
     public int[][] specified(final int[][] matrix, final int[] numbers) {
         ReentrantLock locker = new ReentrantLock();
-        for (int i = 0; i < numbers.length; i++) {
-            new LockerThread(locker, numbers[i], matrix).start();
+        for (int number : numbers) {
+            new LockerThread(locker, number, matrix).start();
         }
         final int timeout = 1;
         try {
             TimeUnit.SECONDS.sleep(timeout);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("thread error", e);
         }
         return matrix;
     }

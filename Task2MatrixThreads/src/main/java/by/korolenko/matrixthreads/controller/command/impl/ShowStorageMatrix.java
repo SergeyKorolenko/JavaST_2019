@@ -4,6 +4,11 @@ import by.korolenko.matrixthreads.controller.command.Command;
 import by.korolenko.matrixthreads.service.StorageService;
 import by.korolenko.matrixthreads.service.factory.ServiceFactory;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 25.09.2019
+ */
 public class ShowStorageMatrix implements Command {
     /**
      * Execute method.

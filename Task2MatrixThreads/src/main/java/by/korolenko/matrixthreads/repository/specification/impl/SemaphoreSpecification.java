@@ -2,6 +2,8 @@ package by.korolenko.matrixthreads.repository.specification.impl;
 
 import by.korolenko.matrixthreads.bean.SemaphoreThread;
 import by.korolenko.matrixthreads.repository.specification.Specification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
@@ -14,6 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class SemaphoreSpecification implements Specification {
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(SemaphoreSpecification.class.getName());
+
+    /**
      * This is the specified method.
      *
      * @param matrix  matrix
@@ -25,14 +33,14 @@ public class SemaphoreSpecification implements Specification {
         Random random = new Random();
         int permits = random.nextInt(numbers.length + 1) + 1;
         Semaphore semaphore = new Semaphore(permits);
-        for (int i = 0; i < numbers.length; i++) {
-            new SemaphoreThread(semaphore, numbers[i], matrix).start();
+        for (int number : numbers) {
+            new SemaphoreThread(semaphore, number, matrix).start();
         }
         final int timeout = 1;
         try {
             TimeUnit.SECONDS.sleep(timeout);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("thread error", e);
         }
         return matrix;
     }

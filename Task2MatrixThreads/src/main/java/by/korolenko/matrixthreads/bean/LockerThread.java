@@ -1,5 +1,8 @@
 package by.korolenko.matrixthreads.bean;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -10,6 +13,11 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockerThread extends Thread {
 
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(LockerThread.class.getName());
     /**
      * Number to be filled.
      */
@@ -42,21 +50,20 @@ public class LockerThread extends Thread {
     /**
      * Run method.
      */
+    @Override
     public void run() {
-        int i = 0;
-        while (i < matrix.length) {
+        for (int i = 0; i < matrix.length; i++) {
             locker.lock();
             if (matrix[i][i] == 0) {
                 System.out.println(getName() + " added number to line " + i);
                 matrix[i][i] = number;
             }
             locker.unlock();
-            i++;
             final int timeout = 30;
             try {
                 TimeUnit.MILLISECONDS.sleep(timeout);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error("thread error", e);
             }
         }
     }

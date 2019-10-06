@@ -41,7 +41,6 @@ final class CommandProvider {
      *
      * @param name name
      * @return any command
-     * @throws IllegalArgumentException exception
      */
     Command getCommand(final String name) {
         Command command;

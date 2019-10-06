@@ -6,6 +6,11 @@ import by.korolenko.matrixthreads.repository.specification.Specification;
 import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 25.09.2019
+ */
 public class PhaserSpecification implements Specification {
     /**
      * This is the specified method.
@@ -16,11 +21,10 @@ public class PhaserSpecification implements Specification {
      */
     @Override
     public int[][] specified(final int[][] matrix, final int[] numbers) {
-        Phaser phaser = new Phaser(1);
+        Phaser phaser = new Phaser();
         for (int i = 0; i < numbers.length; i++) {
             new PhaserThread(phaser, numbers[i], matrix).start();
         }
-        phaser.arriveAndDeregister();
         final int timeout = 1;
         try {
             TimeUnit.SECONDS.sleep(timeout);

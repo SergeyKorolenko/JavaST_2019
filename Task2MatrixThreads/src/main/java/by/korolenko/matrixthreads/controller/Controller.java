@@ -2,6 +2,8 @@ package by.korolenko.matrixthreads.controller;
 
 import by.korolenko.matrixthreads.controller.command.Command;
 import by.korolenko.matrixthreads.view.Menu;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Sergei Korolenko
@@ -10,6 +12,11 @@ import by.korolenko.matrixthreads.view.Menu;
  */
 public final class Controller {
 
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(Controller.class.getName());
     /**
      * This is command provider which contains map of commands.
      */
@@ -27,6 +34,7 @@ public final class Controller {
             Command executionCommand = provider.getCommand(request);
             response = executionCommand.execute();
         } catch (IllegalArgumentException e) {
+            LOGGER.error("incorrect command", e);
             response = "Incorrect command.";
         }
         return response;

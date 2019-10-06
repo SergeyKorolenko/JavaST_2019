@@ -7,6 +7,8 @@ import by.korolenko.matrixthreads.repository.specification.impl.LockerSpecificat
 import by.korolenko.matrixthreads.repository.specification.impl.PhaserSpecification;
 import by.korolenko.matrixthreads.repository.specification.impl.SemaphoreSpecification;
 import by.korolenko.matrixthreads.service.MatrixFillingService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +19,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class MatrixFillingServiceImpl implements MatrixFillingService {
 
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(MatrixFillingServiceImpl.class.getName());
     /**
      * Repository.
      */
