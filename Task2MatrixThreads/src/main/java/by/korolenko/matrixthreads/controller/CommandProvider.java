@@ -4,9 +4,9 @@ import by.korolenko.matrixthreads.controller.command.Command;
 import by.korolenko.matrixthreads.controller.command.CommandName;
 import by.korolenko.matrixthreads.controller.command.impl.CreateStorage;
 import by.korolenko.matrixthreads.controller.command.impl.ShowStorageMatrix;
-import by.korolenko.matrixthreads.controller.command.impl.UseCallable;
-import by.korolenko.matrixthreads.controller.command.impl.UseLock;
 import by.korolenko.matrixthreads.controller.command.impl.UsePhaser;
+import by.korolenko.matrixthreads.controller.command.impl.UseCountDownLatch;
+import by.korolenko.matrixthreads.controller.command.impl.UseLock;
 import by.korolenko.matrixthreads.controller.command.impl.UseSemaphore;
 
 import java.util.HashMap;
@@ -32,8 +32,9 @@ final class CommandProvider {
         commandStorage.put(CommandName.CREATE_STORAGE, new CreateStorage());
         commandStorage.put(CommandName.LOCK, new UseLock());
         commandStorage.put(CommandName.SEMAPHORE, new UseSemaphore());
-        commandStorage.put(CommandName.CALLABLE, new UseCallable());
         commandStorage.put(CommandName.PHASER, new UsePhaser());
+        commandStorage.put(CommandName.COUNT_DOWN_LATCH,
+                new UseCountDownLatch());
     }
 
     /**

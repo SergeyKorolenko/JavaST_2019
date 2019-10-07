@@ -43,10 +43,11 @@ public class Menu {
                         showResponse(controller.executeRequest("SEMAPHORE"));
                         break;
                     case "4":
-                        showResponse(controller.executeRequest("CALLABLE"));
+                        showResponse(controller.executeRequest("PHASER"));
                         break;
                     case "5":
-                        showResponse(controller.executeRequest("PHASER"));
+                        showResponse(controller.
+                                executeRequest("COUNT_DOWN_LATCH"));
                         break;
                     case "6":
                         flag = false;
@@ -67,8 +68,8 @@ public class Menu {
         System.out.println("1 - show storage matrix\n"
                 + "2 - use lock\n"
                 + "3 - use semaphore\n"
-                + "4 - use callable\n"
-                + "5 - use phaser\n"
+                + "4 - use phaser\n"
+                + "5 - use count down latch\n"
                 + "6 - exit");
     }
 

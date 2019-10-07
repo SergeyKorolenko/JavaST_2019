@@ -2,7 +2,7 @@ package by.korolenko.matrixthreads.service.impl;
 
 import by.korolenko.matrixthreads.repository.Repository;
 import by.korolenko.matrixthreads.repository.impl.MatrixRepository;
-import by.korolenko.matrixthreads.repository.specification.impl.CallableSpecification;
+import by.korolenko.matrixthreads.repository.specification.impl.CountDownLatchSpecification;
 import by.korolenko.matrixthreads.repository.specification.impl.LockerSpecification;
 import by.korolenko.matrixthreads.repository.specification.impl.PhaserSpecification;
 import by.korolenko.matrixthreads.repository.specification.impl.SemaphoreSpecification;
@@ -73,8 +73,8 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
      * @return matrix
      */
     @Override
-    public String fillByCallable() {
-        int[][] matrix = repository.query(new CallableSpecification());
+    public String fillByPhaser() {
+        int[][] matrix = repository.query(new PhaserSpecification());
         try {
             TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
@@ -90,8 +90,8 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
      * @return matrix
      */
     @Override
-    public String fillByPhaser() {
-        int[][] matrix = repository.query(new PhaserSpecification());
+    public String fillByCountDownLatch() {
+        int[][] matrix = repository.query(new CountDownLatchSpecification());
         try {
             TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {

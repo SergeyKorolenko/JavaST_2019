@@ -1,11 +1,11 @@
 package by.korolenko.matrixthreads.repository.specification.impl;
 
-import by.korolenko.matrixthreads.bean.PhaserThread;
+import by.korolenko.matrixthreads.bean.CountDownLatchThread;
 import by.korolenko.matrixthreads.repository.specification.Specification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.Phaser;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -14,18 +14,18 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version 1.0
  * @since 25.09.2019
  */
-public class PhaserSpecification implements Specification {
-
-    /**
-     * Timeout.
-     */
-    private static final int TIMEOUT = 30;
+public class CountDownLatchSpecification implements Specification {
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = LogManager.
-            getLogger(PhaserSpecification.class.getName());
+            getLogger(CountDownLatchSpecification.class.getName());
+    /**
+     * Timeout.
+     */
+    private static final int TIMEOUT = 1;
+
     /**
      * This is the specified method.
      *
@@ -35,18 +35,18 @@ public class PhaserSpecification implements Specification {
      */
     @Override
     public int[][] specified(final int[][] matrix, final int[] numbers) {
-        Phaser phaser = new Phaser(1);
+        CountDownLatch countDownLatch = new CountDownLatch(numbers.length + 1);
         ReentrantLock locker = new ReentrantLock();
         for (int number : numbers) {
-            new PhaserThread(phaser, locker, number, matrix).start();
+            new CountDownLatchThread(countDownLatch, locker, number, matrix).
+                    start();
         }
         try {
-            for (int i = 0; i < matrix.length; i++) {
+            while (countDownLatch.getCount() > 1) {
                 TimeUnit.MILLISECONDS.sleep(TIMEOUT);
-                phaser.arriveAndAwaitAdvance();
             }
-            phaser.arriveAndDeregister();
-            TimeUnit.SECONDS.sleep(1);
+            countDownLatch.countDown();
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
             LOGGER.error("Thread error", e);
         }

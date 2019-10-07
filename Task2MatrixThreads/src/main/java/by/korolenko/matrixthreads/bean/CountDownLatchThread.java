@@ -3,7 +3,7 @@ package by.korolenko.matrixthreads.bean;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.Phaser;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -12,17 +12,16 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version 1.0
  * @since 25.09.2019
  */
-public class PhaserThread extends Thread {
+public class CountDownLatchThread extends Thread {
     /**
      * Timeout fo threads.
      */
-    private static final int TIMEOUT = 10;
+    private static final int TIMEOUT = 30;
     /**
      * Logger.
      */
     private static final Logger LOGGER = LogManager.
-            getLogger(PhaserThread.class.getName());
-
+            getLogger(CountDownLatchThread.class.getName());
     /**
      * Number to be filled.
      */
@@ -34,29 +33,30 @@ public class PhaserThread extends Thread {
     private int[][] matrix;
 
     /**
-     * Semaphore.
+     * Count down latch.
      */
-    private Phaser phaser;
+    private CountDownLatch countDownLatch;
 
     /**
      * Locker.
      */
     private ReentrantLock locker;
+
     /**
      * This is the constructor with parameters.
      *
-     * @param newPhaser phaser
-     * @param newLocker locker
-     * @param newNumber number
-     * @param newMatrix matrix
+     * @param newCountDownLatch count down latch
+     * @param newLocker         locker
+     * @param newNumber         number
+     * @param newMatrix         matrix
      */
-    public PhaserThread(final Phaser newPhaser, final ReentrantLock newLocker,
-                        final int newNumber, final int[][] newMatrix) {
-        this.phaser = newPhaser;
+    public CountDownLatchThread(final CountDownLatch newCountDownLatch,
+                                final ReentrantLock newLocker,
+                                final int newNumber, final int[][] newMatrix) {
         this.locker = newLocker;
+        this.countDownLatch = newCountDownLatch;
         this.number = newNumber;
         this.matrix = newMatrix;
-        phaser.register();
     }
 
     /**
@@ -64,10 +64,11 @@ public class PhaserThread extends Thread {
      */
     @Override
     public void run() {
-        for (int i = 0; i < matrix.length; i++) {
-            try {
-                TimeUnit.MILLISECONDS.sleep(TIMEOUT);
-                phaser.arriveAndAwaitAdvance();
+        try {
+            TimeUnit.MILLISECONDS.sleep(TIMEOUT);
+            countDownLatch.countDown();
+            countDownLatch.await();
+            for (int i = 0; i < matrix.length; i++) {
                 locker.lock();
                 if (matrix[i][i] == 0) {
                     System.out.println(getName() + " has added number "
@@ -76,10 +77,9 @@ public class PhaserThread extends Thread {
                 }
                 locker.unlock();
                 TimeUnit.MILLISECONDS.sleep(TIMEOUT);
-            } catch (InterruptedException e) {
-                LOGGER.error("Thread error", e);
             }
+        } catch (InterruptedException e) {
+            LOGGER.error("Thread error", e);
         }
-        phaser.arriveAndDeregister();
     }
 }

@@ -9,5 +9,9 @@ public enum CommandName {
     /**
      * Actions with matrix.
      */
-    SHOW_STORAGE_MATRIX, CREATE_STORAGE, LOCK, SEMAPHORE, CALLABLE, PHASER
+    SHOW_STORAGE_MATRIX, CREATE_STORAGE, LOCK, SEMAPHORE, PHASER,
+    /**
+     * Actions with matrix.
+     */
+    COUNT_DOWN_LATCH
 }

@@ -59,7 +59,7 @@ public class LockerThread extends Thread {
         for (int i = 0; i < matrix.length; i++) {
             locker.lock();
             if (matrix[i][i] == 0) {
-                System.out.println(getName() + " has added number"
+                System.out.println(getName() + " has added number "
                         + number + " to line " + i);
                 matrix[i][i] = number;
             }

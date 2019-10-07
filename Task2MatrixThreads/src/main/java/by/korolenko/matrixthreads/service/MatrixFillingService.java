@@ -22,12 +22,12 @@ public interface MatrixFillingService {
      *
      * @return response
      */
-    String fillByCallable();
+    String fillByPhaser();
 
     /**
      * Filling matrix using phaser.
      *
      * @return response
      */
-    String fillByPhaser();
+    String fillByCountDownLatch();
 }

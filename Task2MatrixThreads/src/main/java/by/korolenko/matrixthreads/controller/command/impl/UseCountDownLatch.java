@@ -9,7 +9,7 @@ import by.korolenko.matrixthreads.service.factory.ServiceFactory;
  * @version 1.0
  * @since 25.09.2019
  */
-public class UseCallable implements Command {
+public class UseCountDownLatch implements Command {
     /**
      * Execute method.
      *
@@ -20,6 +20,6 @@ public class UseCallable implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         MatrixFillingService matrixFillingService = serviceFactory.
                 getMatrixFillingService();
-        return matrixFillingService.fillByCallable();
+        return matrixFillingService.fillByCountDownLatch();
     }
 }
