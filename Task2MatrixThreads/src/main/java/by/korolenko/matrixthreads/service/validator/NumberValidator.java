@@ -23,16 +23,6 @@ public class NumberValidator {
     }
 
     /**
-     * This method checks number on positive value.
-     *
-     * @param number number to be checked
-     * @return result
-     */
-    public boolean isPositiveInt(final int number) {
-        return number > 0;
-    }
-
-    /**
      * This method checks array on positive value.
      *
      * @param array array to be checked
@@ -40,8 +30,8 @@ public class NumberValidator {
      */
     public boolean isPositiveArray(final int[] array) {
         int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > 0) {
+        for (int value : array) {
+            if (value > 0) {
                 ++count;
             }
         }

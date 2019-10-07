@@ -22,13 +22,13 @@ public class NumberParser {
         List<int[]> list = new ArrayList<>();
         NumberValidator numberValidator = new NumberValidator();
         for (String[] line : data) {
-            int[] ints = new int[line.length];
-            for (int i = 0; i < ints.length; i++) {
+            int[] values = new int[line.length];
+            for (int i = 0; i < values.length; i++) {
                 if (numberValidator.isIntNumber(line[i])) {
-                    ints[i] = parseToInt(line[i]);
+                    values[i] = parseToInt(line[i]);
                 }
             }
-            list.add(ints);
+            list.add(values);
         }
         return list;
     }

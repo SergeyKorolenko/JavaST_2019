@@ -33,7 +33,7 @@ public class StorageServiceImpl implements StorageService {
     public Boolean createStorage() {
         int[][] matrix = createMatrix();
         int[] numbers = createNumbers();
-        if (matrix.length != 0 && numbers.length != 0
+        if (numbers.length != 0
                 && matrix.length > numbers.length) {
             repository.addMatrix(matrix);
             repository.addNumbers(numbers);
@@ -55,7 +55,7 @@ public class StorageServiceImpl implements StorageService {
                 readFilePath(PropertyKey.MATRIX.getKeyName()));
         List<String[]> arrayList = parser.parseToStringArray(stringList);
         MatrixValidator matrixValidator = new MatrixValidator();
-        if (matrixValidator.isCanBeMatrix(arrayList)) {
+        if (!arrayList.isEmpty() && matrixValidator.isCanBeMatrix(arrayList)) {
             NumberParser numberParser = new NumberParser();
             List<int[]> intList = numberParser.
                     parseStringToInt(arrayList);
@@ -102,13 +102,13 @@ public class StorageServiceImpl implements StorageService {
      */
     public String showStorageData() {
         int[][] matrix = repository.getMatrix();
-        String result = "";
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                result += matrix[i][j] + " ";
+        StringBuilder result = new StringBuilder();
+        for (int[] values : matrix) {
+            for (int value : values) {
+                result.append(value).append(' ');
             }
-            result += "\n";
+            result.append('\n');
         }
-        return result;
+        return result.toString();
     }
 }

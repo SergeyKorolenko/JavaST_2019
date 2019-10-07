@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="WARN">
 
     <Properties>
         <Property name="patternfull">
@@ -14,21 +14,12 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${patternshort}"/>
         </Console>
-        <File name="InfoFile" fileName="logs/info.log" bufferedIO="true">
-            <PatternLayout pattern="${patternfull}"/>
-        </File>
         <File name="ErrorFile" fileName="logs/error.log" bufferedIO="true">
             <PatternLayout pattern="${patternfull}"/>
         </File>
     </Appenders>
 
     <Loggers>
-        <Logger name="by.korolenko.matrixthreads.controller.Controller"
-                level="info"
-                additivity="true">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="InfoFile"/>
-        </Logger>
         <!-- Root Logger -->
         <Root level="error">
             <AppenderRef ref="Console"/>

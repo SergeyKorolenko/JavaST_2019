@@ -12,6 +12,11 @@ import java.util.concurrent.TimeUnit;
  * @since 25.09.2019
  */
 public class SemaphoreThread extends Thread {
+
+    /**
+     * Timeout fo threads.
+     */
+    private static final int TIMEOUT = 100;
     /**
      * Logger.
      */
@@ -60,8 +65,7 @@ public class SemaphoreThread extends Thread {
                     System.out.println("Thread " + getName()
                             + " has added number " + number
                             + " to line " + i);
-                    final int timeout = 100;
-                    TimeUnit.MILLISECONDS.sleep(timeout);
+                    TimeUnit.MILLISECONDS.sleep(TIMEOUT);
                 }
             } catch (InterruptedException e) {
                 LOGGER.error("thread error", e);

@@ -14,6 +14,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LockerThread extends Thread {
 
     /**
+     * Timeout fo threads.
+     */
+    private static final int TIMEOUT = 30;
+    /**
      * Logger.
      */
     private static final Logger LOGGER = LogManager.
@@ -55,13 +59,13 @@ public class LockerThread extends Thread {
         for (int i = 0; i < matrix.length; i++) {
             locker.lock();
             if (matrix[i][i] == 0) {
-                System.out.println(getName() + " added number to line " + i);
+                System.out.println(getName() + " has added number"
+                        + number + " to line " + i);
                 matrix[i][i] = number;
             }
             locker.unlock();
-            final int timeout = 30;
             try {
-                TimeUnit.MILLISECONDS.sleep(timeout);
+                TimeUnit.MILLISECONDS.sleep(TIMEOUT);
             } catch (InterruptedException e) {
                 LOGGER.error("thread error", e);
             }

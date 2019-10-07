@@ -35,7 +35,7 @@ public class FileDataReader {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             data = stream.collect(Collectors.toList());
         } catch (IOException e) {
-            LOGGER.error("error of reading from file" + fileName, e);
+            LOGGER.error("error of reading from file: " + fileName, e);
         }
         return data;
     }

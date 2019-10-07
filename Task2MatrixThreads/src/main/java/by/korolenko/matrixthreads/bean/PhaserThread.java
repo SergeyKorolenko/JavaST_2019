@@ -43,6 +43,7 @@ public class PhaserThread extends Thread {
         this.phaser = newPhaser;
         this.number = newNumber;
         this.matrix = newMatrix;
+        phaser.register();
     }
 
     /**
@@ -52,14 +53,13 @@ public class PhaserThread extends Thread {
     public void run() {
         final int timeout = 10;
         try {
-            phaser.register();
             for (int i = 0; i < matrix.length; i++) {
+                phaser.arriveAndAwaitAdvance();
                 if (matrix[i][i] == 0) {
                     System.out.println(Thread.currentThread().getName()
                             + " line " + i);
                     matrix[i][i] = number;
                 }
-                phaser.arriveAndAwaitAdvance();
                 TimeUnit.MILLISECONDS.sleep(timeout);
             }
         } catch (InterruptedException e) {

@@ -15,6 +15,11 @@ import java.util.concurrent.TimeUnit;
  * @since 25.09.2019
  */
 public class SemaphoreSpecification implements Specification {
+
+    /**
+     * Timeout.
+     */
+    private static final int TIMEOUT = 1;
     /**
      * Logger.
      */
@@ -36,9 +41,8 @@ public class SemaphoreSpecification implements Specification {
         for (int number : numbers) {
             new SemaphoreThread(semaphore, number, matrix).start();
         }
-        final int timeout = 1;
         try {
-            TimeUnit.SECONDS.sleep(timeout);
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
             LOGGER.error("thread error", e);
         }

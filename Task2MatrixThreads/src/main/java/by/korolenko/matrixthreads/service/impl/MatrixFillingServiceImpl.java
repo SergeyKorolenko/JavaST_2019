@@ -18,6 +18,10 @@ import java.util.concurrent.TimeUnit;
  * @since 25.09.2019
  */
 public class MatrixFillingServiceImpl implements MatrixFillingService {
+    /**
+     * Timeout.
+     */
+    private static final int TIMEOUT = 1;
 
     /**
      * Logger.
@@ -38,9 +42,10 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
     public String fillByLocker() {
         int[][] matrix = repository.query(new LockerSpecification());
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Thread error : "
+                    + Thread.currentThread().getName(), e);
         }
         return toString(matrix);
     }
@@ -54,9 +59,10 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
     public String fillBySemaphore() {
         int[][] matrix = repository.query(new SemaphoreSpecification());
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Error of thread : " + Thread.
+                    currentThread().getName(), e);
         }
         return toString(matrix);
     }
@@ -70,9 +76,10 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
     public String fillByCallable() {
         int[][] matrix = repository.query(new CallableSpecification());
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Thread error: "
+                    + Thread.currentThread().getName(), e);
         }
         return toString(matrix);
     }
@@ -86,9 +93,9 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
     public String fillByPhaser() {
         int[][] matrix = repository.query(new PhaserSpecification());
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Thread error", e);
         }
         return toString(matrix);
     }
@@ -100,13 +107,13 @@ public class MatrixFillingServiceImpl implements MatrixFillingService {
      * @return matrix as a string
      */
     private String toString(final int[][] matrix) {
-        String result = "";
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                result += matrix[i][j] + " ";
+        StringBuilder result = new StringBuilder();
+        for (int[] values : matrix) {
+            for (int value : values) {
+                result.append(value).append(' ');
             }
-            result += "\n";
+            result.append('\n');
         }
-        return result;
+        return result.toString();
     }
 }

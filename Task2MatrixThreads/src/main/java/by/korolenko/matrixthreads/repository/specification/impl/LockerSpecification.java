@@ -14,6 +14,11 @@ import java.util.concurrent.locks.ReentrantLock;
  * @since 25.09.2019
  */
 public class LockerSpecification implements Specification {
+
+    /**
+     * Timeout.
+     */
+    private static final int TIMEOUT = 1;
     /**
      * Logger.
      */
@@ -33,9 +38,8 @@ public class LockerSpecification implements Specification {
         for (int number : numbers) {
             new LockerThread(locker, number, matrix).start();
         }
-        final int timeout = 1;
         try {
-            TimeUnit.SECONDS.sleep(timeout);
+            TimeUnit.SECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
             LOGGER.error("thread error", e);
         }
