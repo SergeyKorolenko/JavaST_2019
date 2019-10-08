@@ -1,20 +1,6 @@
 package by.korolenko.composite.bean;
 
-public class Paragraph implements Component {
-
-    /**
-     * Paragraph.
-     */
-    private String paragraph;
-
-    /**
-     * Constructor.
-     *
-     * @param newParagraph paragraph
-     */
-    public Paragraph(final String newParagraph) {
-        this.paragraph = newParagraph;
-    }
+public class Paragraph extends Composite {
 
     /**
      * This method collects string.
@@ -22,6 +8,6 @@ public class Paragraph implements Component {
      * @return string
      */
     public String collect() {
-        return "";
+        return "    " + super.collect();
     }
 }

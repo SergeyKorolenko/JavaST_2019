@@ -1,9 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.Composite;
-
-import java.util.Arrays;
-import java.util.List;
+import by.korolenko.composite.bean.Lexeme;
 
 public class LexemeParser extends Parser {
 
@@ -28,12 +26,9 @@ public class LexemeParser extends Parser {
      */
     @Override
     public Composite parse(final Composite composite, final String text) {
-        List<String> stringList = Arrays.asList(text.split(" "));
+        String[] stringList = text.split(" ");
         for (String line : stringList) {
-            System.out.println("Lexeme");
-            Composite lexeme = new Composite();
-            System.out.println(line);
-            //sentence.add(new Sentence(line));
+            Composite lexeme = new Lexeme();
             lexeme = wordParser.parse(lexeme, line);
             composite.add(lexeme);
         }

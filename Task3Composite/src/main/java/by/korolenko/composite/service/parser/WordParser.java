@@ -1,9 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.Composite;
-
-import java.util.Arrays;
-import java.util.List;
+import by.korolenko.composite.bean.Word;
 
 public class WordParser extends Parser {
     /**
@@ -27,12 +25,9 @@ public class WordParser extends Parser {
      */
     @Override
     public Composite parse(final Composite composite, final String text) {
-        List<String> stringList = Arrays.asList(text.split(" "));
+        String[] stringList = text.split(" ");
         for (String line : stringList) {
-            System.out.println("Word");
-            Composite word = new Composite();
-            System.out.println(line);
-            //sentence.add(new Sentence(line));
+            Composite word = new Word();
             word = symbolParser.parse(word, line);
             composite.add(word);
         }

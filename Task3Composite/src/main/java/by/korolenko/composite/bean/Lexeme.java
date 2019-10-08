@@ -1,20 +1,6 @@
 package by.korolenko.composite.bean;
 
-public class Lexeme implements Component {
-
-    /**
-     * Lexeme.
-     */
-    private String lexeme;
-
-    /**
-     * Constructor.
-     *
-     * @param newLexeme lexeme
-     */
-    public Lexeme(final String newLexeme) {
-        this.lexeme = newLexeme;
-    }
+public class Lexeme extends Composite {
 
     /**
      * This method collects string.
@@ -22,6 +8,6 @@ public class Lexeme implements Component {
      * @return string
      */
     public String collect() {
-        return lexeme;
+        return " " + super.collect();
     }
 }
