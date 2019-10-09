@@ -3,7 +3,12 @@ package by.korolenko.composite.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Composite implements Component {
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
+public class TextComposite implements Component {
     /**
      * list of components.
      */

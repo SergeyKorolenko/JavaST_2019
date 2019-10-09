@@ -1,8 +1,13 @@
 package by.korolenko.composite.controller;
 
 import by.korolenko.composite.service.CompositeService;
-import by.korolenko.composite.service.impl.CompositeServiceImpl;
+import by.korolenko.composite.service.factory.ServiceFactory;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public final class Controller {
     private Controller() {
     }
@@ -13,8 +18,10 @@ public final class Controller {
      * @param args args
      */
     public static void main(final String[] args) {
-        CompositeService service = new CompositeServiceImpl();
-        service.add();
-        service.collect();
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        CompositeService compositeService = serviceFactory.
+                getCompositeService();
+        compositeService.add();
+        compositeService.collect();
     }
 }

@@ -1,9 +1,14 @@
 package by.korolenko.composite.repository.impl;
 
-import by.korolenko.composite.bean.Composite;
+import by.korolenko.composite.bean.TextComposite;
 import by.korolenko.composite.bean.CompositeStorage;
 import by.korolenko.composite.repository.Repository;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class CompositeRepository implements Repository {
     /**
      * Storage.
@@ -13,10 +18,10 @@ public class CompositeRepository implements Repository {
     /**
      * Add method.
      *
-     * @param composite composite
+     * @param textComposite composite
      */
-    public void add(final Composite composite) {
-        storage.setComposite(composite);
+    public void add(final TextComposite textComposite) {
+        storage.setTextComposite(textComposite);
     }
 
     /**
@@ -24,7 +29,7 @@ public class CompositeRepository implements Repository {
      *
      * @return composite
      */
-    public Composite take() {
-        return storage.getComposite();
+    public TextComposite take() {
+        return storage.getTextComposite();
     }
 }

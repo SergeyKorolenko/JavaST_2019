@@ -1,6 +1,11 @@
 package by.korolenko.composite.bean;
 
-public class Word extends Composite {
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
+public class WordTextComposite extends TextComposite {
     /**
      * This method collects string.
      *

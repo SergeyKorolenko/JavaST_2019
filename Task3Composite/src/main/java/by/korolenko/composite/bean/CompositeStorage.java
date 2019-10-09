@@ -1,5 +1,10 @@
 package by.korolenko.composite.bean;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public final class CompositeStorage {
 
     /**
@@ -13,24 +18,24 @@ public final class CompositeStorage {
     /**
      * Composite.
      */
-    private Composite composite;
+    private TextComposite textComposite;
 
     /**
      * Getter for composite.
      *
      * @return composite
      */
-    public Composite getComposite() {
-        return composite;
+    public TextComposite getTextComposite() {
+        return textComposite;
     }
 
     /**
      * Setter for composite.
      *
-     * @param newComposite composite
+     * @param newTextComposite composite
      */
-    public void setComposite(final Composite newComposite) {
-        this.composite = newComposite;
+    public void setTextComposite(final TextComposite newTextComposite) {
+        this.textComposite = newTextComposite;
     }
 
     /**

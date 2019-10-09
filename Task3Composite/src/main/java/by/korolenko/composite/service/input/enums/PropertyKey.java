@@ -1,5 +1,10 @@
 package by.korolenko.composite.service.input.enums;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public enum PropertyKey {
     /**
      * There are keys.
