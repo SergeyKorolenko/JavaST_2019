@@ -1,7 +1,12 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.TextComposite;
-import by.korolenko.composite.bean.WordTextComposite;
+import by.korolenko.composite.bean.WordComposite;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Sergei Korolenko
@@ -12,7 +17,7 @@ public class WordParser extends Parser {
     /**
      * Paragraph regex.
      */
-    private static final String WORD_REGEX = " ";
+    private static final String WORD_REGEX = "[!,\\.+\\?]+";
     /**
      * Lexeme parser.
      */
@@ -35,9 +40,17 @@ public class WordParser extends Parser {
     @Override
     public TextComposite parse(final TextComposite textComposite,
                                final String text) {
-        String[] stringList = text.split(WORD_REGEX);
+        List<String> stringList = new ArrayList<>();
+        Pattern pattern = Pattern.compile(WORD_REGEX);
+        Matcher matcher = pattern.matcher(text);
+        if (!matcher.find()) {
+            stringList.add(text);
+        } else {
+            stringList.add(text.substring(0, matcher.start()));
+            stringList.add(matcher.group());
+        }
         for (String line : stringList) {
-            TextComposite word = new WordTextComposite();
+            TextComposite word = new WordComposite();
             word = symbolParser.parse(word, line);
             textComposite.add(word);
         }

@@ -1,10 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.TextComposite;
-import by.korolenko.composite.bean.ParagraphTextComposite;
-
-import java.util.Arrays;
-import java.util.List;
+import by.korolenko.composite.bean.ParagraphComposite;
 
 /**
  * @author Sergei Korolenko
@@ -34,25 +31,19 @@ public class ParagraphParser extends Parser {
      * Parse method.
      *
      * @param textComposite composite
-     * @param text      line
+     * @param text          line
      * @return composite
      */
     @Override
     public TextComposite parse(final TextComposite textComposite,
                                final String text) {
-        List<String> list = Arrays.asList(text.split(PARAGRAPH_REGEX));
-        list = list.subList(1, list.size());
+
+        String[] list = text.trim().split(PARAGRAPH_REGEX);
         for (String line : list) {
-            TextComposite paragraph = new ParagraphTextComposite();
+            TextComposite paragraph = new ParagraphComposite();
             paragraph = sentenceParser.parse(paragraph, line);
             textComposite.add(paragraph);
         }
-        /*Pattern pattern = Pattern.compile(PARAGRAPH_REGEX);
-        Matcher matcher = pattern.matcher(text);
-        while (matcher.find()) {
-            System.out.println(matcher.start());
-            System.out.println(matcher.end());
-        }*/
         return textComposite;
     }
 }

@@ -5,14 +5,13 @@ package by.korolenko.composite.bean;
  * @version 1.0
  * @since 08.10.2019
  */
-public class ParagraphTextComposite extends TextComposite {
-
+public class WordComposite extends TextComposite {
     /**
      * This method collects string.
      *
      * @return string
      */
     public String collect() {
-        return "    " + super.collect().trim() + "\n";
+        return super.collect();
     }
 }

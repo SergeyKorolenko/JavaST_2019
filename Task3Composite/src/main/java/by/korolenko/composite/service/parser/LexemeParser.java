@@ -1,6 +1,6 @@
 package by.korolenko.composite.service.parser;
 
-import by.korolenko.composite.bean.LexemeTextComposite;
+import by.korolenko.composite.bean.LexemeComposite;
 import by.korolenko.composite.bean.TextComposite;
 
 /**
@@ -38,7 +38,7 @@ public class LexemeParser extends Parser {
                                final String text) {
         String[] stringList = text.split(LEXEME_REGEX);
         for (String line : stringList) {
-            TextComposite lexeme = new LexemeTextComposite();
+            TextComposite lexeme = new LexemeComposite();
             lexeme = wordParser.parse(lexeme, line);
             textComposite.add(lexeme);
         }

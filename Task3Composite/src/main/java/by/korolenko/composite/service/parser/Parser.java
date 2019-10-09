@@ -13,7 +13,7 @@ public abstract class Parser {
      * Parsing method.
      *
      * @param textComposite composite
-     * @param text      line
+     * @param text          line
      * @return composite
      */
     public abstract TextComposite parse(TextComposite textComposite,
