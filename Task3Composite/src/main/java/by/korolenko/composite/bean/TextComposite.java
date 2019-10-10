@@ -29,10 +29,10 @@ public class TextComposite implements Component {
      * @return string
      */
     public String collect() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Component component : components) {
-            result += component.collect();
+            result.append(component.collect());
         }
-        return result;
+        return result.toString();
     }
 }

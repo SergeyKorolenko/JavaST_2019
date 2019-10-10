@@ -10,6 +10,29 @@ import by.korolenko.composite.bean.TextComposite;
 public abstract class Parser {
 
     /**
+     * Parser.
+     */
+    private Parser nextParser;
+
+    /**
+     * Getter for parser.
+     *
+     * @return parser
+     */
+    public Parser getNextParser() {
+        return nextParser;
+    }
+
+    /**
+     * Setter for parser.
+     *
+     * @param newNextParser next parser.
+     */
+    public void setNextParser(final Parser newNextParser) {
+        this.nextParser = newNextParser;
+    }
+
+    /**
      * Parsing method.
      *
      * @param textComposite composite

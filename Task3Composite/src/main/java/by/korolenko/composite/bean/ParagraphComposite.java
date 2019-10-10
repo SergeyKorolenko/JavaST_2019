@@ -8,11 +8,16 @@ package by.korolenko.composite.bean;
 public class ParagraphComposite extends TextComposite {
 
     /**
+     * Paragraph.
+     */
+    private static final String PARAGRAPH_DELIMITER = "    ";
+    /**
      * This method collects string.
      *
      * @return string
      */
+    @Override
     public String collect() {
-        return "    " + super.collect().trim();
+        return PARAGRAPH_DELIMITER + super.collect().trim();
     }
 }

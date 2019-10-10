@@ -11,6 +11,7 @@ public class SentenceComposite extends TextComposite {
      *
      * @return string
      */
+    @Override
     public String collect() {
         return super.collect();
     }

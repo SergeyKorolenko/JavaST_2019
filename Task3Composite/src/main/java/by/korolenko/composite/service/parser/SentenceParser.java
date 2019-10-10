@@ -1,5 +1,6 @@
 package by.korolenko.composite.service.parser;
 
+import by.korolenko.composite.bean.StringLeaf;
 import by.korolenko.composite.bean.TextComposite;
 import by.korolenko.composite.bean.SentenceComposite;
 
@@ -19,27 +20,16 @@ public class SentenceParser extends Parser {
      * Paragraph regex.
      */
     private static final String SENTENCE_REGEX = "[!\\?\\.] ";
-    /**
-     * Lexeme parser.
-     */
-    private Parser lexemeParser;
-
-    /**
-     * Constructor.
-     */
-    public SentenceParser() {
-        this.lexemeParser = new LexemeParser();
-    }
 
     /**
      * Parse method.
      *
-     * @param textComposite composite
+     * @param composite composite
      * @param text          line
      * @return composite
      */
     @Override
-    public TextComposite parse(final TextComposite textComposite,
+    public TextComposite parse(final TextComposite composite,
                                final String text) {
         String[] list = text.split(SENTENCE_REGEX);
         List<String> stringList = new ArrayList<>();
@@ -53,9 +43,13 @@ public class SentenceParser extends Parser {
         stringList.add(list[list.length - 1]);
         for (String line : stringList) {
             TextComposite sentence = new SentenceComposite();
-            sentence = lexemeParser.parse(sentence, line.trim());
-            textComposite.add(sentence);
+            if (getNextParser() == null) {
+                sentence.add(new StringLeaf(line + " "));
+            } else {
+                sentence = getNextParser().parse(sentence, line.trim());
+            }
+            composite.add(sentence);
         }
-        return textComposite;
+        return composite;
     }
 }

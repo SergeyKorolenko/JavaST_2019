@@ -8,11 +8,16 @@ package by.korolenko.composite.bean;
 public class LexemeComposite extends TextComposite {
 
     /**
+     * Space.
+     */
+    private static final String LEXEME_DELIMITER = " ";
+    /**
      * This method collects string.
      *
      * @return string
      */
+    @Override
     public String collect() {
-        return super.collect() + " ";
+        return super.collect() + LEXEME_DELIMITER;
     }
 }

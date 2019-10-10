@@ -1,7 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.TextComposite;
-import by.korolenko.composite.bean.Symbol;
+import by.korolenko.composite.bean.StringLeaf;
 
 /**
  * @author Sergei Korolenko
@@ -13,18 +13,18 @@ public class SymbolParser extends Parser {
     /**
      * Parse method.
      *
-     * @param textComposite composite
+     * @param composite composite
      * @param text      line
      * @return composite
      */
     @Override
-    public TextComposite parse(final TextComposite textComposite,
+    public TextComposite parse(final TextComposite composite,
                                final String text) {
         char[] chars = text.toCharArray();
         for (char symbol : chars) {
-            textComposite.add(new Symbol(symbol));
+            composite.add(new StringLeaf(Character.toString(symbol)));
         }
-        return textComposite;
+        return composite;
     }
 
 }

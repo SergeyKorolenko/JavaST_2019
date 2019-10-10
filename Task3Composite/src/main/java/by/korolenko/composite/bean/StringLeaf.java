@@ -5,18 +5,18 @@ package by.korolenko.composite.bean;
  * @version 1.0
  * @since 08.10.2019
  */
-public class Symbol implements Component {
+public class StringLeaf implements Component {
     /**
      * Symbol.
      */
-    private char symbol;
+    private String symbol;
 
     /**
      * Constructor.
      *
      * @param newSymbol symbol
      */
-    public Symbol(final char newSymbol) {
+    public StringLeaf(final String newSymbol) {
         this.symbol = newSymbol;
     }
 
@@ -26,6 +26,6 @@ public class Symbol implements Component {
      * @return string
      */
     public String collect() {
-        return Character.toString(symbol);
+        return symbol;
     }
 }

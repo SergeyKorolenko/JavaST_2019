@@ -1,6 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.LexemeComposite;
+import by.korolenko.composite.bean.StringLeaf;
 import by.korolenko.composite.bean.TextComposite;
 
 /**
@@ -14,34 +15,27 @@ public class LexemeParser extends Parser {
      * Paragraph regex.
      */
     private static final String LEXEME_REGEX = " ";
-    /**
-     * Word parser.
-     */
-    private Parser wordParser;
-
-    /**
-     * Constructor.
-     */
-    public LexemeParser() {
-        this.wordParser = new WordParser();
-    }
 
     /**
      * Parse method.
      *
-     * @param textComposite composite
+     * @param composite composite
      * @param text      line
      * @return composite
      */
     @Override
-    public TextComposite parse(final TextComposite textComposite,
+    public TextComposite parse(final TextComposite composite,
                                final String text) {
         String[] stringList = text.split(LEXEME_REGEX);
         for (String line : stringList) {
             TextComposite lexeme = new LexemeComposite();
-            lexeme = wordParser.parse(lexeme, line);
-            textComposite.add(lexeme);
+            if (getNextParser() == null) {
+                lexeme.add(new StringLeaf(line));
+            } else {
+                lexeme = getNextParser().parse(lexeme, line);
+            }
+            composite.add(lexeme);
         }
-        return textComposite;
+        return composite;
     }
 }

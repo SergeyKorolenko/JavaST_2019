@@ -11,6 +11,7 @@ public class WordComposite extends TextComposite {
      *
      * @return string
      */
+    @Override
     public String collect() {
         return super.collect();
     }

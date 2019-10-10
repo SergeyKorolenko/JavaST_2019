@@ -1,5 +1,6 @@
 package by.korolenko.composite.service.parser;
 
+import by.korolenko.composite.bean.StringLeaf;
 import by.korolenko.composite.bean.TextComposite;
 import by.korolenko.composite.bean.ParagraphComposite;
 
@@ -16,34 +17,25 @@ public class ParagraphParser extends Parser {
     private static final String PARAGRAPH_REGEX = " {4}";
 
     /**
-     * Sentence parser.
-     */
-    private Parser sentenceParser;
-
-    /**
-     * Constructor.
-     */
-    public ParagraphParser() {
-        this.sentenceParser = new SentenceParser();
-    }
-
-    /**
      * Parse method.
      *
-     * @param textComposite composite
-     * @param text          line
+     * @param composite composite
+     * @param text      line
      * @return composite
      */
     @Override
-    public TextComposite parse(final TextComposite textComposite,
+    public TextComposite parse(final TextComposite composite,
                                final String text) {
-
         String[] list = text.trim().split(PARAGRAPH_REGEX);
         for (String line : list) {
             TextComposite paragraph = new ParagraphComposite();
-            paragraph = sentenceParser.parse(paragraph, line);
-            textComposite.add(paragraph);
+            if (getNextParser() == null) {
+                paragraph.add(new StringLeaf(line));
+            } else {
+                paragraph = getNextParser().parse(paragraph, line);
+            }
+            composite.add(paragraph);
         }
-        return textComposite;
+        return composite;
     }
 }
