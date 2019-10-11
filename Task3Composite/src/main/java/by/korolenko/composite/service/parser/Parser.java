@@ -1,6 +1,6 @@
 package by.korolenko.composite.service.parser;
 
-import by.korolenko.composite.bean.TextComposite;
+import by.korolenko.composite.bean.Composite;
 
 /**
  * @author Sergei Korolenko
@@ -35,10 +35,10 @@ public abstract class Parser {
     /**
      * Parsing method.
      *
-     * @param textComposite composite
+     * @param composite composite
      * @param text          line
      * @return composite
      */
-    public abstract TextComposite parse(TextComposite textComposite,
-                                        String text);
+    public abstract Composite parse(Composite composite,
+                                    String text);
 }

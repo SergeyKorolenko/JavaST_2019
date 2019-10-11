@@ -1,6 +1,6 @@
 package by.korolenko.composite.service.impl;
 
-import by.korolenko.composite.bean.TextComposite;
+import by.korolenko.composite.bean.Composite;
 import by.korolenko.composite.repository.Repository;
 import by.korolenko.composite.repository.impl.CompositeRepository;
 import by.korolenko.composite.service.CompositeService;
@@ -34,21 +34,22 @@ public class CompositeServiceImpl implements CompositeService {
         PropertyReader propertyReader = new PropertyReader();
         String text = fileDataReader.readData(propertyReader.
                 readFilePath(PropertyKey.TEXT.getKeyName()));
-        TextComposite textComposite = new TextComposite();
+        Composite composite = new Composite();
+        System.out.println(text.length());
         System.out.println(text);
         Parser paragraphParser = new ParagraphParser();
-        SentenceParser sentenceParser = new SentenceParser();
-        LexemeParser lexemeParser = new LexemeParser();
-        WordParser wordParser = new WordParser();
-        SymbolParser symbolParser = new SymbolParser();
+        Parser sentenceParser = new SentenceParser();
+        Parser lexemeParser = new LexemeParser();
+        Parser wordParser = new WordParser();
+        Parser symbolParser = new SymbolParser();
 
         paragraphParser.setNextParser(sentenceParser);
         sentenceParser.setNextParser(lexemeParser);
         lexemeParser.setNextParser(wordParser);
         wordParser.setNextParser(symbolParser);
 
-        textComposite = paragraphParser.parse(textComposite, text);
-        repository.add(textComposite);
+        composite = paragraphParser.parse(composite, text);
+        repository.add(composite);
     }
 
     /**
@@ -57,8 +58,9 @@ public class CompositeServiceImpl implements CompositeService {
      * @return text
      */
     public String collect() {
-        TextComposite textComposite = repository.take();
-        String result = textComposite.collect();
+        Composite composite = repository.take();
+        String result = composite.collect();
+        System.out.println(result.length());
         System.out.println(result);
         return result;
     }

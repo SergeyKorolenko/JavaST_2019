@@ -5,12 +5,7 @@ package by.korolenko.composite.bean;
  * @version 1.0
  * @since 08.10.2019
  */
-public class ParagraphComposite extends TextComposite {
-
-    /**
-     * Paragraph.
-     */
-    private static final String PARAGRAPH_DELIMITER = "    ";
+public class Sentence extends Composite {
     /**
      * This method collects string.
      *
@@ -18,6 +13,6 @@ public class ParagraphComposite extends TextComposite {
      */
     @Override
     public String collect() {
-        return PARAGRAPH_DELIMITER + super.collect().trim();
+        return super.collect();
     }
 }

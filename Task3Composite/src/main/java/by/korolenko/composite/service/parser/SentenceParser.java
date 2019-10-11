@@ -1,8 +1,7 @@
 package by.korolenko.composite.service.parser;
 
-import by.korolenko.composite.bean.StringLeaf;
-import by.korolenko.composite.bean.TextComposite;
-import by.korolenko.composite.bean.SentenceComposite;
+import by.korolenko.composite.bean.Composite;
+import by.korolenko.composite.bean.Sentence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,35 +18,31 @@ public class SentenceParser extends Parser {
     /**
      * Paragraph regex.
      */
-    private static final String SENTENCE_REGEX = "[!\\?\\.] ";
+    private static final String SENTENCE_REGEX = "[!?.]+[ \\r]*";
 
     /**
      * Parse method.
      *
      * @param composite composite
-     * @param text          line
+     * @param text      line
      * @return composite
      */
     @Override
-    public TextComposite parse(final TextComposite composite,
-                               final String text) {
+    public Composite parse(final Composite composite,
+                           final String text) {
         String[] list = text.split(SENTENCE_REGEX);
         List<String> stringList = new ArrayList<>();
         Pattern pattern = Pattern.compile(SENTENCE_REGEX);
         Matcher matcher = pattern.matcher(text);
         int i = 0;
-        while (matcher.find() && i < list.length - 1) {
+        while (matcher.find()) {
             stringList.add(list[i] + text.substring(matcher.start(),
-                    matcher.end() - 1));
+                    matcher.start() + 1));
+            i++;
         }
-        stringList.add(list[list.length - 1]);
         for (String line : stringList) {
-            TextComposite sentence = new SentenceComposite();
-            if (getNextParser() == null) {
-                sentence.add(new StringLeaf(line + " "));
-            } else {
-                sentence = getNextParser().parse(sentence, line.trim());
-            }
+            Composite sentence = new Sentence();
+            sentence = getNextParser().parse(sentence, line.trim());
             composite.add(sentence);
         }
         return composite;

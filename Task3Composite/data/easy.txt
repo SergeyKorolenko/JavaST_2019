@@ -1,1 +1,2 @@
-    Test text. My name is Max.
+    Test composite. Main
+function.

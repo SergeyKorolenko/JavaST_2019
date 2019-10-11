@@ -5,7 +5,7 @@ package by.korolenko.composite.bean;
  * @version 1.0
  * @since 08.10.2019
  */
-public class SentenceComposite extends TextComposite {
+public class Word extends Composite {
     /**
      * This method collects string.
      *

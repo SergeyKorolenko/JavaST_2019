@@ -1,8 +1,7 @@
 package by.korolenko.composite.service.parser;
 
-import by.korolenko.composite.bean.LexemeComposite;
-import by.korolenko.composite.bean.StringLeaf;
-import by.korolenko.composite.bean.TextComposite;
+import by.korolenko.composite.bean.Composite;
+import by.korolenko.composite.bean.Lexeme;
 
 /**
  * @author Sergei Korolenko
@@ -14,7 +13,7 @@ public class LexemeParser extends Parser {
     /**
      * Paragraph regex.
      */
-    private static final String LEXEME_REGEX = " ";
+    private static final String LEXEME_REGEX = "[ \\r]+";
 
     /**
      * Parse method.
@@ -24,16 +23,12 @@ public class LexemeParser extends Parser {
      * @return composite
      */
     @Override
-    public TextComposite parse(final TextComposite composite,
-                               final String text) {
+    public Composite parse(final Composite composite,
+                           final String text) {
         String[] stringList = text.split(LEXEME_REGEX);
         for (String line : stringList) {
-            TextComposite lexeme = new LexemeComposite();
-            if (getNextParser() == null) {
-                lexeme.add(new StringLeaf(line));
-            } else {
-                lexeme = getNextParser().parse(lexeme, line);
-            }
+            Composite lexeme = new Lexeme();
+            lexeme = getNextParser().parse(lexeme, line);
             composite.add(lexeme);
         }
         return composite;

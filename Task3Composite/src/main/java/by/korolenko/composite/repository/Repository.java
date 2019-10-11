@@ -1,6 +1,6 @@
 package by.korolenko.composite.repository;
 
-import by.korolenko.composite.bean.TextComposite;
+import by.korolenko.composite.bean.Composite;
 
 /**
  * @author Sergei Korolenko
@@ -11,14 +11,14 @@ public interface Repository {
     /**
      * Add method.
      *
-     * @param textComposite composite
+     * @param composite composite
      */
-    void add(TextComposite textComposite);
+    void add(Composite composite);
 
     /**
      * Take method.
      *
      * @return composite
      */
-    TextComposite take();
+    Composite take();
 }

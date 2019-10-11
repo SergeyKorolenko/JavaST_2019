@@ -8,7 +8,7 @@ import java.util.List;
  * @version 1.0
  * @since 08.10.2019
  */
-public class TextComposite implements Component {
+public class Composite implements Component {
     /**
      * list of components.
      */

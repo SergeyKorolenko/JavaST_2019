@@ -23,7 +23,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="by.korolenko.textComposite" level="info"
+        <Logger name="by.korolenko.composite" level="info"
                 additivity="true">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="InfoFile"/>

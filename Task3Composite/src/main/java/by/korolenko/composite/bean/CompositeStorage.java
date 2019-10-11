@@ -18,24 +18,24 @@ public final class CompositeStorage {
     /**
      * Composite.
      */
-    private TextComposite textComposite;
+    private Composite composite;
 
     /**
      * Getter for composite.
      *
      * @return composite
      */
-    public TextComposite getTextComposite() {
-        return textComposite;
+    public Composite getComposite() {
+        return composite;
     }
 
     /**
      * Setter for composite.
      *
-     * @param newTextComposite composite
+     * @param newComposite composite
      */
-    public void setTextComposite(final TextComposite newTextComposite) {
-        this.textComposite = newTextComposite;
+    public void setComposite(final Composite newComposite) {
+        this.composite = newComposite;
     }
 
     /**
