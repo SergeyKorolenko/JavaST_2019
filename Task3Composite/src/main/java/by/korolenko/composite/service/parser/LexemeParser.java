@@ -1,7 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.Composite;
-import by.korolenko.composite.bean.Lexeme;
+import by.korolenko.composite.bean.enums.TextPart;
 
 /**
  * @author Sergei Korolenko
@@ -27,7 +27,7 @@ public class LexemeParser extends Parser {
                            final String text) {
         String[] stringList = text.split(LEXEME_REGEX);
         for (String line : stringList) {
-            Composite lexeme = new Lexeme();
+            Composite lexeme = new Composite(TextPart.LEXEME);
             lexeme = getNextParser().parse(lexeme, line);
             composite.add(lexeme);
         }

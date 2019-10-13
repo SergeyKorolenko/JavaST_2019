@@ -23,5 +23,7 @@ public final class Controller {
                 getCompositeService();
         compositeService.add();
         compositeService.collect();
+        //compositeService.sortBySentence();
+        //compositeService.sortByWordLength();
     }
 }

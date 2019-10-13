@@ -1,12 +1,14 @@
 package by.korolenko.composite.service.impl;
 
 import by.korolenko.composite.bean.Composite;
+import by.korolenko.composite.bean.enums.TextPart;
 import by.korolenko.composite.repository.Repository;
 import by.korolenko.composite.repository.impl.CompositeRepository;
 import by.korolenko.composite.service.CompositeService;
 import by.korolenko.composite.service.input.FileDataReader;
 import by.korolenko.composite.service.input.PropertyReader;
 import by.korolenko.composite.service.input.enums.PropertyKey;
+import by.korolenko.composite.service.output.FileDataWriter;
 import by.korolenko.composite.service.parser.LexemeParser;
 import by.korolenko.composite.service.parser.ParagraphParser;
 import by.korolenko.composite.service.parser.Parser;
@@ -34,7 +36,7 @@ public class CompositeServiceImpl implements CompositeService {
         PropertyReader propertyReader = new PropertyReader();
         String text = fileDataReader.readData(propertyReader.
                 readFilePath(PropertyKey.TEXT.getKeyName()));
-        Composite composite = new Composite();
+        Composite composite = new Composite(TextPart.TEXT);
         System.out.println(text.length());
         System.out.println(text);
         Parser paragraphParser = new ParagraphParser();
@@ -62,6 +64,28 @@ public class CompositeServiceImpl implements CompositeService {
         String result = composite.collect();
         System.out.println(result.length());
         System.out.println(result);
+        FileDataWriter fileDataWriter = new FileDataWriter();
+        PropertyReader propertyReader = new PropertyReader();
+        fileDataWriter.writeData(result, propertyReader.
+                readFilePath(PropertyKey.OUTPUT.getKeyName()));
         return result;
+    }
+
+    /**
+     * Sort text.
+     *
+     * @return sorted text
+     */
+    public String sortBySentence() {
+        return null;
+    }
+
+    /**
+     * Sort method.
+     *
+     * @return sorted text
+     */
+    public String sortByWordLength() {
+        return null;
     }
 }

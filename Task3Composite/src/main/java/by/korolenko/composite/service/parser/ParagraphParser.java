@@ -1,7 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.Composite;
-import by.korolenko.composite.bean.Paragraph;
+import by.korolenko.composite.bean.enums.TextPart;
 
 /**
  * @author Sergei Korolenko
@@ -27,7 +27,7 @@ public class ParagraphParser extends Parser {
                            final String text) {
         String[] list = text.trim().split(PARAGRAPH_REGEX);
         for (String line : list) {
-            Composite paragraph = new Paragraph();
+            Composite paragraph = new Composite(TextPart.PARAGRAPH);
             paragraph = getNextParser().parse(paragraph, line);
             composite.add(paragraph);
         }

@@ -17,4 +17,18 @@ public interface CompositeService {
      * @return text
      */
     String collect();
+
+    /**
+     * Sort text.
+     *
+     * @return sorted text
+     */
+    String sortBySentence();
+
+    /**
+     * Sort text.
+     *
+     * @return sorted text
+     */
+    String sortByWordLength();
 }

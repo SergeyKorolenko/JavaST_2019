@@ -1,7 +1,7 @@
 package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.Composite;
-import by.korolenko.composite.bean.Sentence;
+import by.korolenko.composite.bean.enums.TextPart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +37,11 @@ public class SentenceParser extends Parser {
         int i = 0;
         while (matcher.find()) {
             stringList.add(list[i] + text.substring(matcher.start(),
-                    matcher.start() + 1));
+                    matcher.end()));
             i++;
         }
         for (String line : stringList) {
-            Composite sentence = new Sentence();
+            Composite sentence = new Composite(TextPart.SENTENCE);
             sentence = getNextParser().parse(sentence, line.trim());
             composite.add(sentence);
         }
