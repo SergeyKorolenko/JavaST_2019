@@ -14,12 +14,13 @@ import java.util.regex.Pattern;
 public class LexemeParser extends Parser {
 
     /**
-     * Paragraph regex.
+     * Lexeme regex.
      */
     private static final String LEXEME_REGEX = "[^\\s]+";
 
     /**
-     * Parser.
+     * This method parses text to lexemes.
+     *
      * @param text text
      * @return composite
      */
@@ -29,7 +30,7 @@ public class LexemeParser extends Parser {
         Pattern pattern = Pattern.compile(LEXEME_REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            composite.add(getNextParser().parse(matcher.group()));
+            composite.add(nextParser.parse(matcher.group()));
         }
         return composite;
     }

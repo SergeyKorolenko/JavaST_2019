@@ -9,10 +9,10 @@ public interface CompositeService {
     /**
      * Add.
      */
-    void add();
+    void parse();
 
     /**
-     * Collect text.
+     * This method collects text.
      *
      * @return text
      */

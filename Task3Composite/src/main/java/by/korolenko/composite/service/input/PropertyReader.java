@@ -15,7 +15,7 @@ import java.util.Properties;
 public class PropertyReader {
 
     /**
-     * This is the logger.
+     * Logger.
      */
     private static final Logger LOGGER = LogManager.
             getLogger(PropertyReader.class.getName());

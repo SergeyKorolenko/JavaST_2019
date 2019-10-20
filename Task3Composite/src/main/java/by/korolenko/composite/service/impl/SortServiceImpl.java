@@ -7,10 +7,14 @@ import by.korolenko.composite.repository.specification.impl.SortParagraphBySente
 import by.korolenko.composite.repository.specification.impl.SortSentenceByWordLength;
 import by.korolenko.composite.service.SortService;
 import by.korolenko.composite.service.comparator.LexemeComparator;
-import by.korolenko.composite.service.comparator.SentenceComparator;
+import by.korolenko.composite.service.comparator.CompositeSizeComparator;
 import by.korolenko.composite.service.comparator.StringComparator;
-import by.korolenko.composite.service.comparator.WordLengthComparator;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class SortServiceImpl implements SortService {
 
     /**
@@ -25,10 +29,8 @@ public class SortServiceImpl implements SortService {
      */
     @Override
     public String sortBySentenceCount() {
-        String result = repository.query(new SortParagraphBySentenceCount(
-                new SentenceComparator()));
-        System.out.println(result);
-        return null;
+        return repository.doAction(new SortParagraphBySentenceCount(
+                new CompositeSizeComparator()));
     }
 
     /**
@@ -38,10 +40,8 @@ public class SortServiceImpl implements SortService {
      */
     @Override
     public String sortByWordLength() {
-        String result = repository.query(new SortSentenceByWordLength(
-                new WordLengthComparator()));
-        System.out.println(result);
-        return null;
+        return repository.doAction(new SortSentenceByWordLength(
+                new CompositeSizeComparator()));
     }
 
     /**
@@ -52,9 +52,7 @@ public class SortServiceImpl implements SortService {
      */
     @Override
     public String sortLexemeBySymbol(final char symbol) {
-        String result = repository.query(new SortLexemeBySymbol(
+        return repository.doAction(new SortLexemeBySymbol(
                 new LexemeComparator(symbol), new StringComparator()));
-        System.out.println(result);
-        return null;
     }
 }

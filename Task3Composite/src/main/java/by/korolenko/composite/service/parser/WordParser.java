@@ -13,10 +13,10 @@ import java.util.regex.Pattern;
  */
 public class WordParser extends Parser {
     /**
-     * Paragraph regex.
+     * Word regex.
      */
     private static final String
-            WORD_REGEX = "[\\d()\\|\\^~\\&><]+|[\\w-']+|[^\\s\\w]+";
+            WORD_REGEX = "[\\d()\\|\\^~\\&><]+|[\\w-]+|[^\\s\\w]+";
 
     /**
      * Expression regex.
@@ -24,7 +24,7 @@ public class WordParser extends Parser {
     private static final String EXPRESSION_REGEX = "[\\d()\\|\\^~\\&><]{2,}";
 
     /**
-     * Parser.
+     * This method parses text to words.
      *
      * @param text text
      * @return composite
@@ -35,7 +35,7 @@ public class WordParser extends Parser {
         Pattern pattern = Pattern.compile(WORD_REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            composite.add(getNextParser().parse(matcher.group()));
+            composite.add(nextParser.parse(matcher.group()));
         }
         return composite;
     }

@@ -3,9 +3,14 @@ package by.korolenko.composite.service.interpreter.terminal;
 import by.korolenko.composite.service.interpreter.AbstractExpression;
 import by.korolenko.composite.service.interpreter.Context;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class TerminalExpressionXOR extends AbstractExpression {
     /**
-     * Method.
+     * Interpreting method.
      *
      * @param context context
      */

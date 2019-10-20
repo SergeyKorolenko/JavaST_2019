@@ -9,12 +9,17 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class ReversePolishNotation {
 
     /**
-     * Expression split.
+     * Expression regex.
      */
-    private static final String EXPRESSION_SPLIT =
+    private static final String EXPRESSION_REGEX =
             "[\\d]+|[|&\\^()~]|[>]+|[<]+";
     /**
      * Priority.
@@ -65,7 +70,7 @@ public class ReversePolishNotation {
      */
     public String convertToRPN(final String expressionString) {
         List<String> expression = new ArrayList<>();
-        Pattern pattern = Pattern.compile(EXPRESSION_SPLIT);
+        Pattern pattern = Pattern.compile(EXPRESSION_REGEX);
         Matcher matcher = pattern.matcher(expressionString);
         while (matcher.find()) {
             expression.add(matcher.group());
@@ -106,7 +111,7 @@ public class ReversePolishNotation {
     }
 
     /**
-     * Is number.
+     * This method check the string whether it is a number.
      *
      * @param number number
      * @return result

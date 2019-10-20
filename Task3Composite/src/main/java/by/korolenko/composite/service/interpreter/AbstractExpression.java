@@ -1,8 +1,13 @@
 package by.korolenko.composite.service.interpreter;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public abstract class AbstractExpression {
     /**
-     * Interpret.
+     * Interpreting method.
      *
      * @param context context
      */

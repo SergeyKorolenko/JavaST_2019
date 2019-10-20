@@ -10,14 +10,14 @@ import by.korolenko.composite.repository.specification.Specification;
  */
 public interface Repository {
     /**
-     * Add method.
+     * This method adds composite to the storage.
      *
      * @param composite composite
      */
     void addComposite(Composite composite);
 
     /**
-     * Take method.
+     * Getter for composite.
      *
      * @return composite
      */
@@ -29,5 +29,5 @@ public interface Repository {
      * @param specification specification
      * @return response
      */
-    String query(Specification specification);
+    String doAction(Specification specification);
 }

@@ -7,6 +7,11 @@ import by.korolenko.composite.bean.enums.TextPart;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class ComponentCollector {
 
     /**

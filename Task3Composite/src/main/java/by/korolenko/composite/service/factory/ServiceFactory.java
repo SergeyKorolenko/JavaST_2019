@@ -23,7 +23,7 @@ public final class ServiceFactory {
             new CompositeServiceImpl();
 
     /**
-     * Composite service.
+     * Sort service.
      */
     private final SortService sortService =
             new SortServiceImpl();

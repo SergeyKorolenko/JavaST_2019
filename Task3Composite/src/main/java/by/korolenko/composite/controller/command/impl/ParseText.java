@@ -1,6 +1,8 @@
 package by.korolenko.composite.controller.command.impl;
 
 import by.korolenko.composite.controller.command.Command;
+import by.korolenko.composite.service.CompositeService;
+import by.korolenko.composite.service.factory.ServiceFactory;
 
 /**
  * @author Sergei Korolenko
@@ -16,6 +18,10 @@ public class ParseText implements Command {
      */
     @Override
     public String execute() {
-        return null;
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        CompositeService compositeService = serviceFactory.
+                getCompositeService();
+        compositeService.parse();
+        return "Text has bee parsed.";
     }
 }

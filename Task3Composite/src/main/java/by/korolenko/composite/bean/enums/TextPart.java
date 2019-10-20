@@ -7,7 +7,7 @@ package by.korolenko.composite.bean.enums;
  */
 public enum TextPart {
     /**
-     * Text part.
+     * Text parts.
      */
-    PARAGRAPH, SENTENCE, LEXEME, WORD, EXPRESSION, SYMBOL
+    PARAGRAPH, SENTENCE, LEXEME, WORD, SYMBOL, EXPRESSION
 }

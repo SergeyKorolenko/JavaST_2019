@@ -12,11 +12,21 @@ import by.korolenko.composite.service.interpreter.terminal.TerminalExpressionXOR
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class ExpressionParser {
     /**
-     * Expression list.
+     * The list of expressions.
      */
     private List<AbstractExpression> expressionList;
+
+    /**
+     * Space.
+     */
+    private static final String SPACE = " ";
 
     /**
      * Constructor.
@@ -29,7 +39,7 @@ public class ExpressionParser {
     }
 
     private void parse(final String expression) {
-        String[] data = expression.split(" ");
+        String[] data = expression.split(SPACE);
         for (String operand : data) {
             switch (operand) {
                 case "~":
@@ -62,9 +72,9 @@ public class ExpressionParser {
     }
 
     /**
-     * Calculate.
+     * This method calculates the expression.
      *
-     * @return expression result
+     * @return result number
      */
     public Integer calculate() {
         Context context = new Context();

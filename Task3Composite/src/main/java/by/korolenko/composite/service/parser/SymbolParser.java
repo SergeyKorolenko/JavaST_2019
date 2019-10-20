@@ -12,7 +12,8 @@ import by.korolenko.composite.bean.enums.TextPart;
 public class SymbolParser extends Parser {
 
     /**
-     * Parser.
+     * This method parses text to symbols.
+     *
      * @param text text
      * @return composite
      */

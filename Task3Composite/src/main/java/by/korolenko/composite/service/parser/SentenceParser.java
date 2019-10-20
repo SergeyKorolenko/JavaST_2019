@@ -2,6 +2,7 @@ package by.korolenko.composite.service.parser;
 
 import by.korolenko.composite.bean.Composite;
 import by.korolenko.composite.bean.enums.TextPart;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,12 +14,13 @@ import java.util.regex.Pattern;
 public class SentenceParser extends Parser {
 
     /**
-     * Paragraph regex.
+     * Sentence regex.
      */
     private static final String SENTENCE_REGEX = "[\\S][^.!?]+[.!?]+";
 
     /**
-     * Parser.
+     * This method parses text to sentences.
+     *
      * @param text text
      * @return composite
      */
@@ -28,7 +30,7 @@ public class SentenceParser extends Parser {
         Pattern pattern = Pattern.compile(SENTENCE_REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            composite.add(getNextParser().parse(matcher.group()));
+            composite.add(nextParser.parse(matcher.group()));
         }
         return composite;
     }

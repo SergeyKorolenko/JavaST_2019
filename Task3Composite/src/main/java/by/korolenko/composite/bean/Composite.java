@@ -71,21 +71,18 @@ public class Composite implements Component {
             switch (part) {
                 case PARAGRAPH:
                     result.append("\t").append(component.collect().trim()).
-                            append('\n');
+                            append("\r\n");
                     break;
                 case LEXEME:
                     result.append(component.collect()).append(" ");
                     break;
                 case SENTENCE:
                 case WORD:
-                    String word = component.collect();
-                    result.append(word);
-                    break;
                 case SYMBOL:
                     result.append(component.collect());
                     break;
                 default:
-                    break;
+                    throw new IllegalArgumentException();
             }
         }
         return result.toString();

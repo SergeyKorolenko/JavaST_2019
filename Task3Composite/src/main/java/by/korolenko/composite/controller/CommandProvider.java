@@ -8,12 +8,20 @@ import by.korolenko.composite.controller.command.impl.ParseText;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 final class CommandProvider {
     /**
      * This is the map of commands.
      */
     private final Map<CommandName, Command> commandStorage = new HashMap<>();
 
+    /**
+     * Constructor.
+     */
     CommandProvider() {
         commandStorage.put(CommandName.PARSE_TEXT, new ParseText());
         commandStorage.put(CommandName.COLLECT_TEXT, new CollectText());

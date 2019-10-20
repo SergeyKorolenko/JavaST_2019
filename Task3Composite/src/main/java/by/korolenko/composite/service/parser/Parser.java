@@ -12,7 +12,7 @@ public abstract class Parser {
     /**
      * Parser.
      */
-    private Parser nextParser;
+    protected Parser nextParser;
 
     /**
      * Getter for parser.
@@ -33,7 +33,8 @@ public abstract class Parser {
     }
 
     /**
-     * Parser.
+     * Parsing method.
+     *
      * @param text text
      * @return composite
      */

@@ -18,7 +18,8 @@ public class ParagraphParser extends Parser {
     private static final String PARAGRAPH_REGEX = "[\\S].+";
 
     /**
-     * Parser.
+     * This method parses text to paragraphs.
+     *
      * @param text text
      * @return composite
      */
@@ -28,7 +29,7 @@ public class ParagraphParser extends Parser {
         Pattern pattern = Pattern.compile(PARAGRAPH_REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            composite.add(getNextParser().parse(matcher.group()));
+            composite.add(nextParser.parse(matcher.group()));
         }
         return composite;
     }

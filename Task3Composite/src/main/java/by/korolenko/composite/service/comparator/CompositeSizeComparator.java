@@ -5,13 +5,18 @@ import by.korolenko.composite.bean.Composite;
 
 import java.util.Comparator;
 
-public class WordLengthComparator implements Comparator<Component> {
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
+public class CompositeSizeComparator implements Comparator<Component> {
 
     /**
-     * Compare method.
+     * Compared method.
      *
-     * @param o1 object 1
-     * @param o2 object 2
+     * @param o1 first component
+     * @param o2 second component
      * @return result
      */
     @Override

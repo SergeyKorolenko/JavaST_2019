@@ -2,15 +2,20 @@ package by.korolenko.composite.service.comparator;
 
 import java.util.Comparator;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class LexemeComparator implements Comparator<String> {
 
     /**
-     * Compare symbol.
+     * Compared symbol.
      */
     private char symbol;
 
     /**
-     * Constructor.
+     * Constructor with parameter.
      *
      * @param newSymbol symbol
      */
@@ -21,9 +26,9 @@ public class LexemeComparator implements Comparator<String> {
     /**
      * Compare method.
      *
-     * @param o1 string 2
-     * @param o2 string 1
-     * @return
+     * @param o1 first string
+     * @param o2 second string
+     * @return result
      */
     @Override
     public int compare(final String o1, final String o2) {

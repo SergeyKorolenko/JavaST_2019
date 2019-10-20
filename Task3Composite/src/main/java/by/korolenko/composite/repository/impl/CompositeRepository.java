@@ -12,12 +12,12 @@ import by.korolenko.composite.repository.specification.Specification;
  */
 public class CompositeRepository implements Repository {
     /**
-     * Storage.
+     * Composite storage.
      */
     private CompositeStorage storage = CompositeStorage.getInstance();
 
     /**
-     * Add method.
+     * This method adds composite to the storage.
      *
      * @param composite composite
      */
@@ -26,7 +26,7 @@ public class CompositeRepository implements Repository {
     }
 
     /**
-     * Take method.
+     * This method returns composite.
      *
      * @return composite
      */
@@ -41,7 +41,7 @@ public class CompositeRepository implements Repository {
      * @return response
      */
     @Override
-    public String query(final Specification specification) {
+    public String doAction(final Specification specification) {
         return specification.specified(storage.getComposite());
     }
 }

@@ -2,12 +2,17 @@ package by.korolenko.composite.service.comparator;
 
 import java.util.Comparator;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class StringComparator implements Comparator<String> {
     /**
-     * Compare method.
+     * Compared method.
      *
-     * @param o1 string 1
-     * @param o2 string 2
+     * @param o1 first string
+     * @param o2 second string
      * @return result
      */
     @Override

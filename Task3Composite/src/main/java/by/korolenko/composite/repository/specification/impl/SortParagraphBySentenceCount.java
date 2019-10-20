@@ -5,7 +5,7 @@ import by.korolenko.composite.bean.Composite;
 import by.korolenko.composite.bean.enums.TextPart;
 import by.korolenko.composite.repository.collector.ComponentCollector;
 import by.korolenko.composite.repository.specification.Specification;
-import by.korolenko.composite.service.comparator.SentenceComparator;
+import by.korolenko.composite.service.comparator.CompositeSizeComparator;
 
 import java.util.stream.Collectors;
 
@@ -23,7 +23,7 @@ public class SortParagraphBySentenceCount implements Specification {
     /**
      * Comparator.
      */
-    private SentenceComparator comparator;
+    private CompositeSizeComparator comparator;
 
     /**
      * Constructor.
@@ -31,7 +31,7 @@ public class SortParagraphBySentenceCount implements Specification {
      * @param newComparator comparator
      */
     public SortParagraphBySentenceCount(
-            final SentenceComparator newComparator) {
+            final CompositeSizeComparator newComparator) {
         this.comparator = newComparator;
     }
 

@@ -22,7 +22,7 @@ public class SortLexemeBySymbol implements Specification {
      */
     private static final String DELIMITER = "\n";
     /**
-     * First.
+     * First comparator.
      */
     private LexemeComparator first;
     /**

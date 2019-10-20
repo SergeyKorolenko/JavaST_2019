@@ -14,6 +14,8 @@ import by.korolenko.composite.service.parser.Parser;
 import by.korolenko.composite.service.parser.SentenceParser;
 import by.korolenko.composite.service.parser.SymbolParser;
 import by.korolenko.composite.service.parser.WordParser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Sergei Korolenko
@@ -23,20 +25,25 @@ import by.korolenko.composite.service.parser.WordParser;
 public class CompositeServiceImpl implements CompositeService {
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(CompositeServiceImpl.class.getName());
+
+    /**
      * Repository.
      */
     private Repository repository = new CompositeRepository();
 
     /**
-     * Add.
+     * This method parses text.
      */
-    public void add() {
+    public void parse() {
         FileDataReader fileDataReader = new FileDataReader();
         PropertyReader propertyReader = new PropertyReader();
         String text = fileDataReader.readData(propertyReader.
                 readFilePath(PropertyKey.TEXT.getKeyName()));
-        System.out.println(text.length());
-        System.out.println(text);
+        LOGGER.info("Text to be parsed: " + text);
         Parser paragraphParser = new ParagraphParser();
         Parser sentenceParser = new SentenceParser();
         Parser lexemeParser = new LexemeParser();
@@ -53,15 +60,14 @@ public class CompositeServiceImpl implements CompositeService {
     }
 
     /**
-     * Collect text.
+     * This method collects text.
      *
      * @return text
      */
     public String collect() {
         Composite composite = repository.getComposite();
         String result = composite.collect();
-        System.out.println(result.length());
-        System.out.println(result);
+        LOGGER.info("Collected text: " + result);
         FileDataWriter fileDataWriter = new FileDataWriter();
         PropertyReader propertyReader = new PropertyReader();
         fileDataWriter.writeData(result, propertyReader.

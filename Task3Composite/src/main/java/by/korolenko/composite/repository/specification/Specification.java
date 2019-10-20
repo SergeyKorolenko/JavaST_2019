@@ -9,7 +9,7 @@ import by.korolenko.composite.bean.Composite;
  */
 public interface Specification {
     /**
-     * This is teh specified method.
+     * This is the specified method.
      *
      * @param composite composite
      * @return result string

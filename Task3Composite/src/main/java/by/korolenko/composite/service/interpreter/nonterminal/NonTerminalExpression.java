@@ -3,6 +3,11 @@ package by.korolenko.composite.service.interpreter.nonterminal;
 import by.korolenko.composite.service.interpreter.AbstractExpression;
 import by.korolenko.composite.service.interpreter.Context;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class NonTerminalExpression extends AbstractExpression {
 
     /**
@@ -11,7 +16,7 @@ public class NonTerminalExpression extends AbstractExpression {
     private int number;
 
     /**
-     * Constructor.
+     * Constructor with parameter.
      *
      * @param newNumber number
      */
@@ -20,7 +25,7 @@ public class NonTerminalExpression extends AbstractExpression {
     }
 
     /**
-     * Interpret.
+     * Interpreting method.
      *
      * @param context context
      */

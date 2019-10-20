@@ -3,6 +3,11 @@ package by.korolenko.composite.service.interpreter;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class Context {
 
     /**
@@ -11,7 +16,7 @@ public class Context {
     private Deque<Integer> contextValues = new ArrayDeque<>();
 
     /**
-     * Pop value from the deque.
+     * This method pops a value from the deque.
      *
      * @return value
      */
@@ -20,7 +25,7 @@ public class Context {
     }
 
     /**
-     * Push value to the deque.
+     * This method pushes a value to the deque.
      *
      * @param value value
      */

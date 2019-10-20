@@ -1,9 +1,6 @@
 package by.korolenko.composite.controller;
 
 import by.korolenko.composite.controller.command.Command;
-import by.korolenko.composite.service.CompositeService;
-import by.korolenko.composite.service.SortService;
-import by.korolenko.composite.service.factory.ServiceFactory;
 
 /**
  * @author Sergei Korolenko
@@ -36,19 +33,10 @@ public final class Controller {
     }
 
     /**
-     * Main.
+     * Main method.
      *
      * @param args args
      */
     public static void main(final String[] args) {
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        CompositeService compositeService = serviceFactory.
-                getCompositeService();
-        compositeService.add();
-        SortService sortService = serviceFactory.getSortService();
-        sortService.sortBySentenceCount();
-        //sortService.sortByWordLength();
-        compositeService.collect();
-        //sortService.sortLexemeBySymbol('a');
     }
 }

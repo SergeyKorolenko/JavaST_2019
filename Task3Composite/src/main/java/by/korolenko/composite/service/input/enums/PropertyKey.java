@@ -16,7 +16,7 @@ public enum PropertyKey {
     private String keyName;
 
     /**
-     * This is the constructor.
+     * Constructor with parameter.
      *
      * @param newKeyName key name
      */
