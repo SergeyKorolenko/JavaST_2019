@@ -76,8 +76,8 @@ public class Composite implements Component {
                 case LEXEME:
                     result.append(component.collect()).append(" ");
                     break;
-                case SENTENCE:
                 case WORD:
+                case SENTENCE:
                 case SYMBOL:
                     result.append(component.collect());
                     break;
