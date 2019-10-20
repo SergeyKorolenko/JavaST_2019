@@ -1,5 +1,8 @@
 package by.korolenko.composite.service.polska;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -16,6 +19,11 @@ import java.util.regex.Pattern;
  */
 public class ReversePolishNotation {
 
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(ReversePolishNotation.class.getName());
     /**
      * Expression regex.
      */
@@ -106,7 +114,6 @@ public class ReversePolishNotation {
         while (!deque.isEmpty()) {
             result.append(deque.pop()).append(" ");
         }
-
         return result.toString().trim();
     }
 
@@ -121,6 +128,7 @@ public class ReversePolishNotation {
             Integer.parseInt(number);
             return true;
         } catch (Exception e) {
+            LOGGER.error("Not a number " + number, e);
             return false;
         }
     }

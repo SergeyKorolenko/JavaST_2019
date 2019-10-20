@@ -9,5 +9,9 @@ public enum CommandName {
     /**
      * Commands.
      */
-    PARSE_TEXT, COLLECT_TEXT
+    PARSE_TEXT, COLLECT_TEXT, SORT_BY_SENTENCE_COUNT, SORT_BY_WORD_LENGTH,
+    /**
+     * Commands.
+     */
+    SORT_LEXEME_BY_SYMBOL
 }

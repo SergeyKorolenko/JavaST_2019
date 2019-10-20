@@ -1,7 +1,7 @@
 package by.korolenko.composite.controller.command.impl;
 
 import by.korolenko.composite.controller.command.Command;
-import by.korolenko.composite.service.CompositeService;
+import by.korolenko.composite.service.SortService;
 import by.korolenko.composite.service.factory.ServiceFactory;
 
 /**
@@ -9,8 +9,7 @@ import by.korolenko.composite.service.factory.ServiceFactory;
  * @version 1.0
  * @since 08.10.2019
  */
-public class ParseText implements Command {
-
+public class SortBySymbol implements Command {
     /**
      * This is the signature of command method.
      *
@@ -20,8 +19,9 @@ public class ParseText implements Command {
     @Override
     public String execute(final String request) {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        CompositeService compositeService = serviceFactory.
-                getCompositeService();
-        return compositeService.parse();
+        SortService sortService = serviceFactory.
+                getSortService();
+        char symbol = request.charAt(0);
+        return sortService.sortLexemeBySymbol(symbol);
     }
 }

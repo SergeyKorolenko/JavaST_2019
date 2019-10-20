@@ -7,9 +7,11 @@ package by.korolenko.composite.service;
  */
 public interface CompositeService {
     /**
-     * Add.
+     * This method parses text.
+     *
+     * @return parsed text
      */
-    void parse();
+    String parse();
 
     /**
      * This method collects text.

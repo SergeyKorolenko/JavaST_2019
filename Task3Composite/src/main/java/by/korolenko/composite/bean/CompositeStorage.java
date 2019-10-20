@@ -1,5 +1,7 @@
 package by.korolenko.composite.bean;
 
+import by.korolenko.composite.bean.enums.TextPart;
+
 /**
  * @author Sergei Korolenko
  * @version 1.0
@@ -18,7 +20,7 @@ public final class CompositeStorage {
     /**
      * Composite.
      */
-    private Composite composite;
+    private Composite composite = new Composite(TextPart.PARAGRAPH);
 
     /**
      * Getter for composite.

@@ -14,8 +14,6 @@ import by.korolenko.composite.service.parser.Parser;
 import by.korolenko.composite.service.parser.SentenceParser;
 import by.korolenko.composite.service.parser.SymbolParser;
 import by.korolenko.composite.service.parser.WordParser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * @author Sergei Korolenko
@@ -25,25 +23,20 @@ import org.apache.logging.log4j.Logger;
 public class CompositeServiceImpl implements CompositeService {
 
     /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LogManager.
-            getLogger(CompositeServiceImpl.class.getName());
-
-    /**
      * Repository.
      */
     private Repository repository = new CompositeRepository();
 
     /**
      * This method parses text.
+     *
+     * @return parsed text
      */
-    public void parse() {
+    public String parse() {
         FileDataReader fileDataReader = new FileDataReader();
         PropertyReader propertyReader = new PropertyReader();
         String text = fileDataReader.readData(propertyReader.
                 readFilePath(PropertyKey.TEXT.getKeyName()));
-        LOGGER.info("Text to be parsed: " + text);
         Parser paragraphParser = new ParagraphParser();
         Parser sentenceParser = new SentenceParser();
         Parser lexemeParser = new LexemeParser();
@@ -57,6 +50,7 @@ public class CompositeServiceImpl implements CompositeService {
 
         Composite composite = paragraphParser.parse(text);
         repository.addComposite(composite);
+        return text;
     }
 
     /**
@@ -67,7 +61,6 @@ public class CompositeServiceImpl implements CompositeService {
     public String collect() {
         Composite composite = repository.getComposite();
         String result = composite.collect();
-        LOGGER.info("Collected text: " + result);
         FileDataWriter fileDataWriter = new FileDataWriter();
         PropertyReader propertyReader = new PropertyReader();
         fileDataWriter.writeData(result, propertyReader.

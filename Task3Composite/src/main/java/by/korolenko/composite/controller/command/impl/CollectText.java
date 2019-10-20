@@ -8,10 +8,11 @@ public class CollectText implements Command {
     /**
      * This is the signature of command method.
      *
+     * @param request request
      * @return response string
      */
     @Override
-    public String execute() {
+    public String execute(final String request) {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         CompositeService compositeService = serviceFactory.
                 getCompositeService();

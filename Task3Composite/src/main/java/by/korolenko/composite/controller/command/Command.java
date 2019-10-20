@@ -10,7 +10,8 @@ public interface Command {
     /**
      * This is the signature of command method.
      *
+     * @param request request
      * @return response string
      */
-    String execute();
+    String execute(String request);
 }
