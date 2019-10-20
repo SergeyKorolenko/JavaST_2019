@@ -7,32 +7,32 @@ package by.korolenko.composite.bean;
  */
 public interface Component {
     /**
-     * This method collects string.
+     * This method collects text to the string.
      *
-     * @return string
+     * @return text as a string
      */
     String collect();
 
     /**
-     * Remove method.
+     * This method removes a component.
      *
-     * @param component component
+     * @param component component to be removed
      */
     default void remove(Component component) {
     }
 
     /**
-     * Get child method.
+     * This method gets component from the index.
      *
-     * @param i index
+     * @param index index
      * @return component
      */
-    default Component getChild(int i) {
+    default Component getChild(int index) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Add method.
+     * This method adds a component.
      *
      * @param component component
      */

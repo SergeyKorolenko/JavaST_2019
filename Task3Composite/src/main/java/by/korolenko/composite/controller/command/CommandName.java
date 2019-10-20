@@ -1,0 +1,13 @@
+package by.korolenko.composite.controller.command;
+
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
+public enum CommandName {
+    /**
+     * Commands.
+     */
+    PARSE_TEXT, COLLECT_TEXT
+}

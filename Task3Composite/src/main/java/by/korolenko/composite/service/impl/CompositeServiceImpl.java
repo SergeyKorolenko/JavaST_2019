@@ -1,7 +1,6 @@
 package by.korolenko.composite.service.impl;
 
 import by.korolenko.composite.bean.Composite;
-import by.korolenko.composite.bean.enums.TextPart;
 import by.korolenko.composite.repository.Repository;
 import by.korolenko.composite.repository.impl.CompositeRepository;
 import by.korolenko.composite.service.CompositeService;
@@ -36,7 +35,6 @@ public class CompositeServiceImpl implements CompositeService {
         PropertyReader propertyReader = new PropertyReader();
         String text = fileDataReader.readData(propertyReader.
                 readFilePath(PropertyKey.TEXT.getKeyName()));
-        Composite composite = new Composite(TextPart.TEXT);
         System.out.println(text.length());
         System.out.println(text);
         Parser paragraphParser = new ParagraphParser();
@@ -50,8 +48,8 @@ public class CompositeServiceImpl implements CompositeService {
         lexemeParser.setNextParser(wordParser);
         wordParser.setNextParser(symbolParser);
 
-        composite = paragraphParser.parse(composite, text);
-        repository.add(composite);
+        Composite composite = paragraphParser.parse(text);
+        repository.addComposite(composite);
     }
 
     /**
@@ -60,7 +58,7 @@ public class CompositeServiceImpl implements CompositeService {
      * @return text
      */
     public String collect() {
-        Composite composite = repository.take();
+        Composite composite = repository.getComposite();
         String result = composite.collect();
         System.out.println(result.length());
         System.out.println(result);
@@ -69,23 +67,5 @@ public class CompositeServiceImpl implements CompositeService {
         fileDataWriter.writeData(result, propertyReader.
                 readFilePath(PropertyKey.OUTPUT.getKeyName()));
         return result;
-    }
-
-    /**
-     * Sort text.
-     *
-     * @return sorted text
-     */
-    public String sortBySentence() {
-        return null;
-    }
-
-    /**
-     * Sort method.
-     *
-     * @return sorted text
-     */
-    public String sortByWordLength() {
-        return null;
     }
 }

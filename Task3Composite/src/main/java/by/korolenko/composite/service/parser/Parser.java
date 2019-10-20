@@ -33,12 +33,9 @@ public abstract class Parser {
     }
 
     /**
-     * Parsing method.
-     *
-     * @param composite composite
-     * @param text          line
+     * Parser.
+     * @param text text
      * @return composite
      */
-    public abstract Composite parse(Composite composite,
-                                    String text);
+    public abstract Composite parse(String text);
 }

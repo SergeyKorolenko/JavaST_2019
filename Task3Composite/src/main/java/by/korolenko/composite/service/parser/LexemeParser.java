@@ -3,6 +3,9 @@ package by.korolenko.composite.service.parser;
 import by.korolenko.composite.bean.Composite;
 import by.korolenko.composite.bean.enums.TextPart;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Sergei Korolenko
  * @version 1.0
@@ -13,23 +16,20 @@ public class LexemeParser extends Parser {
     /**
      * Paragraph regex.
      */
-    private static final String LEXEME_REGEX = "[ \\r]+";
+    private static final String LEXEME_REGEX = "[^\\s]+";
 
     /**
-     * Parse method.
-     *
-     * @param composite composite
-     * @param text      line
+     * Parser.
+     * @param text text
      * @return composite
      */
     @Override
-    public Composite parse(final Composite composite,
-                           final String text) {
-        String[] stringList = text.split(LEXEME_REGEX);
-        for (String line : stringList) {
-            Composite lexeme = new Composite(TextPart.LEXEME);
-            lexeme = getNextParser().parse(lexeme, line);
-            composite.add(lexeme);
+    public Composite parse(final String text) {
+        Composite composite = new Composite(TextPart.LEXEME);
+        Pattern pattern = Pattern.compile(LEXEME_REGEX);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            composite.add(getNextParser().parse(matcher.group()));
         }
         return composite;
     }

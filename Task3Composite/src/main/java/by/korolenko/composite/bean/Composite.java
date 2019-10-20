@@ -5,27 +5,32 @@ import by.korolenko.composite.bean.enums.TextPart;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 08.10.2019
+ */
 public class Composite implements Component {
     /**
      * list of components.
      */
     private List<Component> components = new ArrayList<>();
     /**
-     * Text type.
+     * Text part.
      */
-    private TextPart type;
+    private TextPart part;
 
     /**
-     * Constructor.
+     * Constructor with parameter.
      *
-     * @param newType type
+     * @param newPart type
      */
-    public Composite(final TextPart newType) {
-        this.type = newType;
+    public Composite(final TextPart newPart) {
+        this.part = newPart;
     }
 
     /**
-     * Add method.
+     * This method adds a component.
      *
      * @param component component
      */
@@ -35,7 +40,7 @@ public class Composite implements Component {
     }
 
     /**
-     * Get method.
+     * This method gets component from the index.
      *
      * @param index index
      * @return component
@@ -46,7 +51,7 @@ public class Composite implements Component {
     }
 
     /**
-     * Remove method.
+     * This method removes a component.
      *
      * @param component component
      */
@@ -54,6 +59,7 @@ public class Composite implements Component {
     public void remove(final Component component) {
         components.remove(component);
     }
+
     /**
      * This method collects string.
      *
@@ -62,17 +68,20 @@ public class Composite implements Component {
     public String collect() {
         StringBuilder result = new StringBuilder();
         for (Component component : components) {
-            switch (type) {
-                case TEXT:
-                    result.append("    ").append(component.collect().trim()).
-                            append("\n");
+            switch (part) {
+                case PARAGRAPH:
+                    result.append("\t").append(component.collect().trim()).
+                            append('\n');
                     break;
-                case SENTENCE:
+                case LEXEME:
                     result.append(component.collect()).append(" ");
                     break;
-                case PARAGRAPH:
+                case SENTENCE:
                 case WORD:
-                case LEXEME:
+                    String word = component.collect();
+                    result.append(word);
+                    break;
+                case SYMBOL:
                     result.append(component.collect());
                     break;
                 default:
@@ -83,21 +92,38 @@ public class Composite implements Component {
     }
 
     /**
-     * Getter for components.
+     * Getter for the list of components.
      *
-     * @return components.
+     * @return the ist of components.
      */
     public List<Component> getComponents() {
         return components;
     }
 
     /**
-     * Calculates size.
+     * This method returns size of the list of components.
      *
-     * @return list size
+     * @return size of the list of components
      */
-    public int getNumberChild() {
+    public int size() {
         return components.size();
     }
 
+    /**
+     * Getter for the text part.
+     *
+     * @return type
+     */
+    public TextPart getType() {
+        return part;
+    }
+
+    /**
+     * Setter for the text part.
+     *
+     * @param newPart text part
+     */
+    public void setType(final TextPart newPart) {
+        this.part = newPart;
+    }
 }

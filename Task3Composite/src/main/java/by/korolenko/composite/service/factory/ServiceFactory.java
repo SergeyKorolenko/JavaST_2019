@@ -1,7 +1,9 @@
 package by.korolenko.composite.service.factory;
 
 import by.korolenko.composite.service.CompositeService;
+import by.korolenko.composite.service.SortService;
 import by.korolenko.composite.service.impl.CompositeServiceImpl;
+import by.korolenko.composite.service.impl.SortServiceImpl;
 
 /**
  * @author Sergei Korolenko
@@ -21,6 +23,12 @@ public final class ServiceFactory {
             new CompositeServiceImpl();
 
     /**
+     * Composite service.
+     */
+    private final SortService sortService =
+            new SortServiceImpl();
+
+    /**
      * Constructor.
      */
     private ServiceFactory() {
@@ -36,11 +44,20 @@ public final class ServiceFactory {
     }
 
     /**
-     * Getter for common tariff service.
+     * Getter for composite service.
      *
-     * @return common tariff service
+     * @return composite service
      */
     public CompositeService getCompositeService() {
         return compositeService;
+    }
+
+    /**
+     * Getter for sort service.
+     *
+     * @return sort service
+     */
+    public SortService getSortService() {
+        return sortService;
     }
 }

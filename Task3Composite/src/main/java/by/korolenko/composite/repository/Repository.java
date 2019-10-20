@@ -1,6 +1,7 @@
 package by.korolenko.composite.repository;
 
 import by.korolenko.composite.bean.Composite;
+import by.korolenko.composite.repository.specification.Specification;
 
 /**
  * @author Sergei Korolenko
@@ -13,12 +14,20 @@ public interface Repository {
      *
      * @param composite composite
      */
-    void add(Composite composite);
+    void addComposite(Composite composite);
 
     /**
      * Take method.
      *
      * @return composite
      */
-    Composite take();
+    Composite getComposite();
+
+    /**
+     * Query method.
+     *
+     * @param specification specification
+     * @return response
+     */
+    String query(Specification specification);
 }

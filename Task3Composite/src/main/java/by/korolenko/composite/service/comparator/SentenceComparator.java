@@ -1,10 +1,11 @@
 package by.korolenko.composite.service.comparator;
 
 import by.korolenko.composite.bean.Component;
+import by.korolenko.composite.bean.Composite;
 
 import java.util.Comparator;
 
-public class ParagraphSentenceComparator implements Comparator<Component> {
+public class SentenceComparator implements Comparator<Component> {
 
     /**
      * Compare method.
@@ -15,6 +16,6 @@ public class ParagraphSentenceComparator implements Comparator<Component> {
      */
     @Override
     public int compare(final Component o1, final Component o2) {
-        return 0;
+        return ((Composite) o1).size() - ((Composite) o2).size();
     }
 }

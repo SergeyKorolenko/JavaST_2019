@@ -3,6 +3,7 @@ package by.korolenko.composite.repository.impl;
 import by.korolenko.composite.bean.Composite;
 import by.korolenko.composite.bean.CompositeStorage;
 import by.korolenko.composite.repository.Repository;
+import by.korolenko.composite.repository.specification.Specification;
 
 /**
  * @author Sergei Korolenko
@@ -20,7 +21,7 @@ public class CompositeRepository implements Repository {
      *
      * @param composite composite
      */
-    public void add(final Composite composite) {
+    public void addComposite(final Composite composite) {
         storage.setComposite(composite);
     }
 
@@ -29,7 +30,18 @@ public class CompositeRepository implements Repository {
      *
      * @return composite
      */
-    public Composite take() {
+    public Composite getComposite() {
         return storage.getComposite();
+    }
+
+    /**
+     * Query.
+     *
+     * @param specification specification
+     * @return response
+     */
+    @Override
+    public String query(final Specification specification) {
+        return specification.specified(storage.getComposite());
     }
 }

@@ -19,6 +19,10 @@ public class PropertyReader {
      */
     private static final Logger LOGGER = LogManager.
             getLogger(PropertyReader.class.getName());
+    /**
+     * Property file name.
+     */
+    private static final String PROPERTY_FILE = "files.properties";
 
     /**
      * This method reads properties.
@@ -29,13 +33,12 @@ public class PropertyReader {
     public String readFilePath(final String key) {
         Properties property = new Properties();
         String fileName;
-        String propertyFile = "files.properties";
         try (InputStream fis = getClass().getClassLoader().
-                getResourceAsStream(propertyFile)) {
+                getResourceAsStream(PROPERTY_FILE)) {
             property.load(fis);
             fileName = property.getProperty(key);
         } catch (IOException e) {
-            LOGGER.error("property file error", e);
+            LOGGER.error("Property file error", e);
             fileName = "";
         }
         return fileName;

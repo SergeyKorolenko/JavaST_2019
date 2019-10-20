@@ -1,6 +1,8 @@
 package by.korolenko.composite.controller;
 
+import by.korolenko.composite.controller.command.Command;
 import by.korolenko.composite.service.CompositeService;
+import by.korolenko.composite.service.SortService;
 import by.korolenko.composite.service.factory.ServiceFactory;
 
 /**
@@ -9,7 +11,28 @@ import by.korolenko.composite.service.factory.ServiceFactory;
  * @since 08.10.2019
  */
 public final class Controller {
-    private Controller() {
+
+    /**
+     * This is command provider which contains map of commands.
+     */
+    private final CommandProvider provider = new CommandProvider();
+
+    /**
+     * This method gets command and does it.
+     *
+     * @param request request string
+     * @return response
+     */
+    public String executeRequest(final String request) {
+        String response;
+        try {
+            Command executionCommand = provider.getCommand(request.
+                    toUpperCase());
+            response = executionCommand.execute();
+        } catch (IllegalArgumentException e) {
+            response = "Illegal command";
+        }
+        return response;
     }
 
     /**
@@ -22,8 +45,10 @@ public final class Controller {
         CompositeService compositeService = serviceFactory.
                 getCompositeService();
         compositeService.add();
+        SortService sortService = serviceFactory.getSortService();
+        sortService.sortBySentenceCount();
+        //sortService.sortByWordLength();
         compositeService.collect();
-        //compositeService.sortBySentence();
-        //compositeService.sortByWordLength();
+        //sortService.sortLexemeBySymbol('a');
     }
 }

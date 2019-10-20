@@ -18,8 +18,8 @@ public class FileDataWriter {
     /**
      * Logger.
      */
-    private final Logger log = LogManager.getLogger(FileDataWriter.class.
-            getName());
+    private static final Logger LOGGER = LogManager.
+            getLogger(FileDataWriter.class.getName());
 
     /**
      * This method writes data to the output file.
@@ -32,7 +32,7 @@ public class FileDataWriter {
                 new FileWriter(new File(fileName)))) {
             bufferedWriter.write(data);
         } catch (IOException e) {
-            log.error("error of writing to file");
+            LOGGER.error("Error of writing to the file", e);
         }
     }
 }
