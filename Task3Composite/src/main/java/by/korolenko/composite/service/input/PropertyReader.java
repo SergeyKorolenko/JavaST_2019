@@ -1,5 +1,6 @@
 package by.korolenko.composite.service.input;
 
+import by.korolenko.composite.service.exception.ProblemFileException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,8 +30,9 @@ public class PropertyReader {
      *
      * @param key key
      * @return property
+     * @throws ProblemFileException exception
      */
-    public String readFilePath(final String key) {
+    public String readFilePath(final String key) throws ProblemFileException {
         Properties property = new Properties();
         String fileName;
         try (InputStream fis = getClass().getClassLoader().
@@ -39,7 +41,7 @@ public class PropertyReader {
             fileName = property.getProperty(key);
         } catch (IOException e) {
             LOGGER.error("Property file error", e);
-            fileName = "";
+            throw new ProblemFileException();
         }
         return fileName;
     }

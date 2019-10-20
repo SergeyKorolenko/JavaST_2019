@@ -2,7 +2,11 @@ package by.korolenko.composite.controller;
 
 import by.korolenko.composite.controller.command.Command;
 import by.korolenko.composite.controller.command.CommandName;
-import by.korolenko.composite.controller.command.impl.*;
+import by.korolenko.composite.controller.command.impl.CollectText;
+import by.korolenko.composite.controller.command.impl.ParseText;
+import by.korolenko.composite.controller.command.impl.SortBySentenceCount;
+import by.korolenko.composite.controller.command.impl.SortBySymbol;
+import by.korolenko.composite.controller.command.impl.SortByWordLength;
 
 import java.util.HashMap;
 import java.util.Map;
