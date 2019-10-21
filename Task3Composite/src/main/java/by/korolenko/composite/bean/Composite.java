@@ -71,7 +71,7 @@ public class Composite implements Component {
             switch (part) {
                 case PARAGRAPH:
                     result.append("\t").append(component.collect().trim()).
-                            append("\r\n");
+                            append("\n");
                     break;
                 case LEXEME:
                     result.append(component.collect()).append(" ");

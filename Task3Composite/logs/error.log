@@ -18,3 +18,5 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: 0
 	at by.korolenko.composite.controller.Controller.executeRequest(Controller.java:42) [classes/:?]
 	at by.korolenko.composite.view.Menu.start(Menu.java:78) [classes/:?]
 	at by.korolenko.composite.controller.Controller.main(Controller.java:60) [classes/:?]
+2019-10-21 11:29:56.839 [main] ERROR korolenko.composite.service.input.FileDataReader - No such file
+2019-10-21 11:30:43.974 [main] ERROR korolenko.composite.service.input.FileDataReader - No such file
