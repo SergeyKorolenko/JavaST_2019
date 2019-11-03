@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.korolenko.by/gems"
+        xmlns:tns="http://www.korolenko.by/gems"
+        elementFormDefault="qualified">
+    <element name="stone" type="tns:GemType" abstract="true"/>
+    <element name="precious" type="tns:Precious" substitutionGroup="tns:stone"/>
+    <element name="semiprecious" type="tns:Semiprecious"
+             substitutionGroup="tns:stone"/>
+    <element name="gems">
+        <complexType>
+            <sequence>
+                <element ref="tns:stone" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="GemType">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="origin">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[a-zA-Z]+"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="visual_parameters" type="tns:VisualParameters"/>
+            <element name="production_date" type="dateTime"/>
+        </sequence>
+        <attribute name="number" use="required">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="\w+"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="Precious">
+        <complexContent>
+            <extension base="tns:GemType">
+                <sequence>
+                    <element name="carats" type="double"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="Semiprecious">
+        <complexContent>
+            <extension base="tns:GemType">
+                <sequence>
+                    <element name="weight">
+                        <simpleType>
+                            <restriction base="double">
+                                <minInclusive value="0.01"/>
+                            </restriction>
+                        </simpleType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="VisualParameters">
+        <sequence>
+            <element name="transparency">
+                <simpleType>
+                    <restriction base="int">
+                        <minInclusive value="0"/>
+                        <maxInclusive value="100"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="cut_method" type="string"/>
+            <element name="faces">
+                <simpleType>
+                    <restriction base="int">
+                        <minInclusive value="4"/>
+                        <maxInclusive value="15"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+        <attribute name="color" use="optional" default="Transparent">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="Transparent"/>
+                    <enumeration value="Red"/>
+                    <enumeration value="Blue"/>
+                    <enumeration value="Orange"/>
+                    <enumeration value="Yellow"/>
+                    <enumeration value="Pink"/>
+                    <enumeration value="Gray"/>
+                    <enumeration value="Green"/>
+                    <enumeration value="Brown"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+</schema>

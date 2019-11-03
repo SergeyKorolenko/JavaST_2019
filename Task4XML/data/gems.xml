@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gems>
+    <precious number="num1">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>50</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>15</faces>
+        </visual_parameters>
+        <production_date>2019-10-26T10:00:00</production_date>
+        <carats>1</carats>
+    </precious>
+    <semiprecious number="num2">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>50</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>6</faces>
+        </visual_parameters>
+        <production_date>2019-10-29T09:04:00</production_date>
+        <weight>0.5</weight>
+    </semiprecious>
+</gems>
