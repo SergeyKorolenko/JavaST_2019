@@ -7,7 +7,7 @@ public class XMLValidatorTest {
     @Test
     public void checkXML() {
         XMLValidator validator = new XMLValidator();
-        boolean result = validator.isValidXML("data/gems.xml");
+        boolean result = validator.isValidXML("testdata/gems.xml");
         System.out.println(result);
     }
 }

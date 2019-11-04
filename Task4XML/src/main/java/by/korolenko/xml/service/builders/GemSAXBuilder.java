@@ -1,5 +1,7 @@
 package by.korolenko.xml.service.builders;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -13,6 +15,11 @@ import java.io.IOException;
  */
 public class GemSAXBuilder extends AbstractGemsBuilder {
 
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(GemSAXBuilder.class.getName());
     /**
      * Gem handler.
      */
@@ -31,7 +38,7 @@ public class GemSAXBuilder extends AbstractGemsBuilder {
             reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(gemHandler);
         } catch (SAXException e) {
-            e.printStackTrace();
+            LOGGER.error("SAXException", e);
         }
     }
 
@@ -44,9 +51,9 @@ public class GemSAXBuilder extends AbstractGemsBuilder {
         try {
             reader.parse(fileName);
         } catch (SAXException e) {
-            System.err.print("ошибка SAX парсера: " + e);
+            LOGGER.error("Error of SAX parser", e);
         } catch (IOException e) {
-            System.err.print("ошибка I/О потока: " + e);
+            LOGGER.error("Error of I/O stream", e);
         }
         gems = gemHandler.getGems();
     }

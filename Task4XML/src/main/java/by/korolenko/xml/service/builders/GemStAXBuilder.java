@@ -142,7 +142,7 @@ public class GemStAXBuilder extends AbstractGemsBuilder {
                                 gem.setProductionDate(LocalDateTime.
                                         parse(getXMLText(reader)));
                                 break;
-                            case CARATS:
+                            case WEIGHT:
                                 ((Semiprecious) gem).setWeight(Double.
                                         parseDouble(getXMLText(reader)));
                                 break;
