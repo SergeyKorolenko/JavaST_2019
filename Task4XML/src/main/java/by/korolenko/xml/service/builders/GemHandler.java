@@ -75,7 +75,12 @@ public class GemHandler extends DefaultHandler {
             currentGem = new Semiprecious();
             currentGem.setNumber(attrs.getValue(0));
         } else if ("visual_parameters".equals(localName)) {
-            currentGem.getVisualParameters().setColor(attrs.getValue(0));
+            String color = attrs.getValue(0);
+            if (color == null) {
+                currentGem.getVisualParameters().setColor("Transparent");
+            } else {
+                currentGem.getVisualParameters().setColor(color);
+            }
         } else {
             GemEnum temp = GemEnum.valueOf(localName.toUpperCase());
             if (enumSet.contains(temp)) {

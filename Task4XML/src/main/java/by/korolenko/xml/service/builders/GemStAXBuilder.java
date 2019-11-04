@@ -5,6 +5,8 @@ import by.korolenko.xml.bean.VisualParameters;
 import by.korolenko.xml.bean.GemType;
 import by.korolenko.xml.bean.Precious;
 import by.korolenko.xml.bean.Semiprecious;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -12,7 +14,6 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 /**
@@ -21,6 +22,12 @@ import java.time.LocalDateTime;
  * @since 29.10.2019
  */
 public class GemStAXBuilder extends AbstractGemsBuilder {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.
+            getLogger(GemStAXBuilder.class.getName());
     /**
      * XML input factory.
      */
@@ -60,12 +67,8 @@ public class GemStAXBuilder extends AbstractGemsBuilder {
                     }
                 }
             }
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (XMLStreamException | IOException e) {
+            LOGGER.error("File error", e);
         }
     }
 
@@ -170,8 +173,13 @@ public class GemStAXBuilder extends AbstractGemsBuilder {
     private VisualParameters getXMLVisualParameters(
             final XMLStreamReader reader) throws XMLStreamException {
         VisualParameters parameters = new VisualParameters();
-        parameters.setColor(reader.getAttributeValue(null,
-                GemEnum.COLOR.getValue()));
+        String color = reader.getAttributeValue(null,
+                GemEnum.COLOR.getValue());
+        if (color == null) {
+            parameters.setColor("Transparent");
+        } else {
+            parameters.setColor(color);
+        }
         int type;
         String name;
         while (reader.hasNext()) {
