@@ -52,7 +52,7 @@ public class GemDOMBuilder extends AbstractGemsBuilder {
      *
      * @param fileName filename
      */
-    public void buildSetGems(final String fileName) {
+    public void buildListGems(final String fileName) {
         try {
             Document doc = builder.parse(fileName);
             Element root = doc.getDocumentElement();

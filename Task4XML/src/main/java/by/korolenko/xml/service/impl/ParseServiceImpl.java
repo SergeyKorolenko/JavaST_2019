@@ -19,7 +19,7 @@ public class ParseServiceImpl implements ParseService {
     public List<GemType> parse(final String fileName, final String parserType) {
         GemsBuilderFactory factory = new GemsBuilderFactory();
         AbstractGemsBuilder builder = factory.createGemsBuilder(parserType);
-        builder.buildSetGems(fileName);
+        builder.buildListGems(fileName);
         return builder.getGems();
     }
 }

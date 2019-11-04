@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gems>
+<gems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.korolenko.by/gems"
+      xsi:schemaLocation="http://www.korolenko.by/gems gems.xsd">
     <precious number="num1">
         <name>Diamond</name>
         <origin>Africa</origin>
@@ -15,11 +17,165 @@
         <name>Sapphire</name>
         <origin>Russia</origin>
         <visual_parameters color="Red">
-            <transparency>50</transparency>
-            <cut_method>Rose</cut_method>
+            <transparency>24</transparency>
+            <cut_method>Usher</cut_method>
             <faces>6</faces>
         </visual_parameters>
         <production_date>2019-10-29T09:04:00</production_date>
         <weight>0.5</weight>
+    </semiprecious>
+    <semiprecious number="num3">
+        <name>Garnet</name>
+        <origin>Belarus</origin>
+        <visual_parameters color="Gray">
+            <transparency>20</transparency>
+            <cut_method>Table</cut_method>
+            <faces>4</faces>
+        </visual_parameters>
+        <production_date>2019-03-24T18:00:00</production_date>
+        <weight>2.5</weight>
+    </semiprecious>
+    <semiprecious number="num4">
+        <name>Demantoid</name>
+        <origin>German</origin>
+        <visual_parameters color="Green">
+            <transparency>10</transparency>
+            <cut_method>Usher</cut_method>
+            <faces>8</faces>
+        </visual_parameters>
+        <production_date>2019-06-05T09:25:00</production_date>
+        <weight>1.2</weight>
+    </semiprecious>
+    <precious number="num5">
+        <name>Amethyst</name>
+        <origin>Belgium</origin>
+        <visual_parameters color="Pink">
+            <transparency>70</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>7</faces>
+        </visual_parameters>
+        <production_date>2019-10-19T21:35:00</production_date>
+        <carats>2</carats>
+    </precious>
+    <precious number="num6">
+        <name>Beryl</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Green">
+            <transparency>100</transparency>
+            <cut_method>Step</cut_method>
+            <faces>11</faces>
+        </visual_parameters>
+        <production_date>2019-01-01T01:00:00</production_date>
+        <carats>1.5</carats>
+    </precious>
+    <precious number="num7">
+        <name>Apatite</name>
+        <origin>China</origin>
+        <visual_parameters color="Yellow">
+            <transparency>18</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>13</faces>
+        </visual_parameters>
+        <production_date>2019-12-31T23:00:00</production_date>
+        <carats>4</carats>
+    </precious>
+    <precious number="num8">
+        <name>Diamond</name>
+        <origin>Japan</origin>
+        <visual_parameters>
+            <transparency>04</transparency>
+            <cut_method>Table</cut_method>
+            <faces>5</faces>
+        </visual_parameters>
+        <production_date>2019-05-26T14:00:00</production_date>
+        <carats>2.5</carats>
+    </precious>
+    <semiprecious number="num9">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Orange">
+            <transparency>56</transparency>
+            <cut_method>Step</cut_method>
+            <faces>9</faces>
+        </visual_parameters>
+        <production_date>2019-02-14T17:31:00</production_date>
+        <weight>1.4</weight>
+    </semiprecious>
+    <precious number="num10">
+        <name>Turquoise</name>
+        <origin>Turkey</origin>
+        <visual_parameters color="Blue">
+            <transparency>80</transparency>
+            <cut_method>Wedges</cut_method>
+            <faces>15</faces>
+        </visual_parameters>
+        <production_date>2019-09-01T08:00:00</production_date>
+        <carats>3</carats>
+    </precious>
+    <semiprecious number="num11">
+        <name>Sapphire</name>
+        <origin>Spain</origin>
+        <visual_parameters color="Red">
+            <transparency>93</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>6</faces>
+        </visual_parameters>
+        <production_date>2019-08-28T09:00:00</production_date>
+        <weight>0.4</weight>
+    </semiprecious>
+    <semiprecious number="num12">
+        <name>Sapphire</name>
+        <origin>Italy</origin>
+        <visual_parameters color="Yellow">
+            <transparency>14</transparency>
+            <cut_method>Wedges</cut_method>
+            <faces>10</faces>
+        </visual_parameters>
+        <production_date>2019-11-21T09:05:00</production_date>
+        <weight>0.7</weight>
+    </semiprecious>
+    <precious number="num13">
+        <name>Jet</name>
+        <origin>France</origin>
+        <visual_parameters color="Brown">
+            <transparency>09</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>12</faces>
+        </visual_parameters>
+        <production_date>2019-03-26T10:18:00</production_date>
+        <carats>4.5</carats>
+    </precious>
+    <precious number="num14">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>78</transparency>
+            <cut_method>Step</cut_method>
+            <faces>8</faces>
+        </visual_parameters>
+        <production_date>2019-12-02T19:00:00</production_date>
+        <carats>0.5</carats>
+    </precious>
+    <precious number="num15">
+        <name>Sapphire</name>
+        <origin>USA</origin>
+        <visual_parameters color="Brown">
+            <transparency>45</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>11</faces>
+        </visual_parameters>
+        <production_date>2019-10-25T11:00:00</production_date>
+        <carats>3.5</carats>
+    </precious>
+    <semiprecious number="num16">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>36</transparency>
+            <cut_method>Step</cut_method>
+            <faces>7</faces>
+        </visual_parameters>
+        <production_date>2019-07-05T17:56:00</production_date>
+        <weight>0.9</weight>
     </semiprecious>
 </gems>

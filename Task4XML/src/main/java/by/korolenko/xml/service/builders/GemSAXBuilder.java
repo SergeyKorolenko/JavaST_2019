@@ -40,7 +40,7 @@ public class GemSAXBuilder extends AbstractGemsBuilder {
      *
      * @param fileName file name
      */
-    public void buildSetGems(final String fileName) {
+    public void buildListGems(final String fileName) {
         try {
             reader.parse(fileName);
         } catch (SAXException e) {

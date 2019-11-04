@@ -11,7 +11,7 @@ public class GemSAXBuilderTest {
 
     @Test
     public void parse() {
-        builder.buildSetGems("data/gems.xml");
+        builder.buildListGems("data/gems.xml");
         List<GemType> set = builder.getGems();
         set.forEach(System.out::println);
     }

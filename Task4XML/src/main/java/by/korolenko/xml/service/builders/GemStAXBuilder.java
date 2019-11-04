@@ -38,7 +38,7 @@ public class GemStAXBuilder extends AbstractGemsBuilder {
      *
      * @param fileName file name
      */
-    public void buildSetGems(final String fileName) {
+    public void buildListGems(final String fileName) {
         XMLStreamReader reader;
         String name;
         try (FileInputStream inputStream =

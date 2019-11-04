@@ -13,7 +13,7 @@ import java.util.List;
 public abstract class AbstractGemsBuilder {
 
     /**
-     * Set of gems.
+     * List of gems.
      */
     protected List<GemType> gems;
 
@@ -25,18 +25,18 @@ public abstract class AbstractGemsBuilder {
     }
 
     /**
-     * Getter for set of gems.
+     * Getter for list of gems.
      *
-     * @return set of gems
+     * @return list of gems
      */
     public List<GemType> getGems() {
         return gems;
     }
 
     /**
-     * Building set of gems method.
+     * Building list of gems method.
      *
      * @param fileName file name
      */
-    abstract public void buildSetGems(String fileName);
+    abstract public void buildListGems(String fileName);
 }
