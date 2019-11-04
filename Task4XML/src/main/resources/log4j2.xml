@@ -19,7 +19,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="by.korolenko.xml" level="debug"
+        <Logger name="by.korolenko.xml" level="error"
                 additivity="true">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="TxtFile"/>

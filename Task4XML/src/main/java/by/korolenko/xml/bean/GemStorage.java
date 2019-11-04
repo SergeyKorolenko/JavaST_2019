@@ -8,7 +8,15 @@ import java.util.List;
  * @version 1.0
  * @since 29.10.2019
  */
-public class Gems {
+public final class GemStorage {
+
+    /**
+     * Gem storage.
+     */
+    private static final GemStorage INSTANCE = new GemStorage();
+
+    private GemStorage() {
+    }
 
     /**
      * List of gems.
@@ -25,25 +33,20 @@ public class Gems {
     }
 
     /**
-     * Adding method.
+     * Getter for list of gems.
      *
-     * @param gemType gem type
-     * @return result
+     * @return list of gems.
      */
-    public boolean add(final GemType gemType) {
-        return gemTypeList.add(gemType);
+    public List<GemType> getGemTypeList() {
+        return new ArrayList<>(gemTypeList);
     }
 
-
     /**
-     * To string.
+     * Getter for gem storage.
      *
-     * @return string
+     * @return instance
      */
-    @Override
-    public String toString() {
-        return "Gems{"
-                + "gemTypeList=" + gemTypeList
-                + '}';
+    public static GemStorage getInstance() {
+        return GemStorage.INSTANCE;
     }
 }

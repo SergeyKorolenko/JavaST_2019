@@ -4,6 +4,8 @@ import by.korolenko.xml.bean.GemType;
 import by.korolenko.xml.bean.Precious;
 import by.korolenko.xml.bean.Semiprecious;
 import by.korolenko.xml.bean.VisualParameters;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,9 +27,11 @@ import java.util.Set;
  */
 public class GemDOMBuilder {
 
-    /*
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LogManager.
-            getLogger(GemDOMBuilder.class.getName());*/
+            getLogger(GemDOMBuilder.class.getName());
     /**
      * Set of gems.
      */
@@ -46,7 +50,7 @@ public class GemDOMBuilder {
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            //LOGGER.error("Configuration parser error.", e);
+            LOGGER.error("Configuration parser error.", e);
         }
     }
 
@@ -78,9 +82,9 @@ public class GemDOMBuilder {
                 }
             }
         } catch (IOException e) {
-            //LOGGER.error("File error or I/O error.", e);
+            LOGGER.error("File error or I/O error.", e);
         } catch (SAXException e) {
-            //LOGGER.error("Parsing failure.", e);
+            LOGGER.error("Parsing failure.", e);
         }
     }
 
