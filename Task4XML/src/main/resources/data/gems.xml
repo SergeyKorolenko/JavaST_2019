@@ -17,11 +17,165 @@
         <name>Sapphire</name>
         <origin>Russia</origin>
         <visual_parameters color="Red">
-            <transparency>50</transparency>
+            <transparency>24</transparency>
             <cut_method>Rose</cut_method>
             <faces>6</faces>
         </visual_parameters>
         <production_date>2019-10-29T09:04:00</production_date>
         <weight>0.5</weight>
+    </semiprecious>
+    <semiprecious number="num3">
+        <name>Garnet</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>20</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>4</faces>
+        </visual_parameters>
+        <production_date>2019-03-24T18:00:00</production_date>
+        <weight>2.5</weight>
+    </semiprecious>
+    <semiprecious number="num4">
+        <name>Demantoid</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Green">
+            <transparency>10</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>8</faces>
+        </visual_parameters>
+        <production_date>2019-06-05T09:25:00</production_date>
+        <weight>1.2</weight>
+    </semiprecious>
+    <precious number="num5">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>70</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>7</faces>
+        </visual_parameters>
+        <production_date>2019-10-19T21:35:00</production_date>
+        <carats>2</carats>
+    </precious>
+    <precious number="num6">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>100</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>11</faces>
+        </visual_parameters>
+        <production_date>2019-01-01T01:00:00</production_date>
+        <carats>1.5</carats>
+    </precious>
+    <precious number="num7">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>18</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>13</faces>
+        </visual_parameters>
+        <production_date>2019-12-31T23:00:00</production_date>
+        <carats>4</carats>
+    </precious>
+    <precious number="num8">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>04</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>5</faces>
+        </visual_parameters>
+        <production_date>2019-05-26T14:00:00</production_date>
+        <carats>2.5</carats>
+    </precious>
+    <semiprecious number="num9">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>56</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>9</faces>
+        </visual_parameters>
+        <production_date>2019-02-14T17:31:00</production_date>
+        <weight>1.4</weight>
+    </semiprecious>
+    <precious number="num10">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>80</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>15</faces>
+        </visual_parameters>
+        <production_date>2019-09-01T08:00:00</production_date>
+        <carats>3</carats>
+    </precious>
+    <semiprecious number="num11">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>93</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>6</faces>
+        </visual_parameters>
+        <production_date>2019-08-28T09:00:00</production_date>
+        <weight>0.4</weight>
+    </semiprecious>
+    <semiprecious number="num12">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>14</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>10</faces>
+        </visual_parameters>
+        <production_date>2019-11-21T09:05:00</production_date>
+        <weight>0.7</weight>
+    </semiprecious>
+    <precious number="num13">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>09</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>12</faces>
+        </visual_parameters>
+        <production_date>2019-03-26T10:18:00</production_date>
+        <carats>4.5</carats>
+    </precious>
+    <precious number="num14">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>78</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>8</faces>
+        </visual_parameters>
+        <production_date>2019-12-02T19:00:00</production_date>
+        <carats>0.5</carats>
+    </precious>
+    <precious number="num15">
+        <name>Diamond</name>
+        <origin>Africa</origin>
+        <visual_parameters>
+            <transparency>45</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>11</faces>
+        </visual_parameters>
+        <production_date>2019-10-25T11:00:00</production_date>
+        <carats>3.5</carats>
+    </precious>
+    <semiprecious number="num16">
+        <name>Sapphire</name>
+        <origin>Russia</origin>
+        <visual_parameters color="Red">
+            <transparency>36</transparency>
+            <cut_method>Rose</cut_method>
+            <faces>7</faces>
+        </visual_parameters>
+        <production_date>2019-07-05T17:56:00</production_date>
+        <weight>0.9</weight>
     </semiprecious>
 </gems>

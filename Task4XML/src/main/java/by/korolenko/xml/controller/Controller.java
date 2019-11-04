@@ -65,7 +65,8 @@ public class Controller extends HttpServlet {
             String commandName = request.getParameter("parser").
                     toUpperCase();
             Command command = provider.getCommand(commandName);
-            request.setAttribute("lst", command.execute(fileName));
+            request.setAttribute("lst", command.execute(fileName,
+                    commandName));
             RequestDispatcher requestDispatcher = getServletContext().
                     getRequestDispatcher("/jsp/gemlist.jsp");
             requestDispatcher.forward(request, response);

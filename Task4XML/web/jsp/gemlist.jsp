@@ -14,6 +14,7 @@
 <body>
 <table border="1">
     <tr>
+        <th>Type</th>
         <th>Number</th>
         <th>Name</th>
         <th>Origin</th>
@@ -27,6 +28,7 @@
     <jsp:useBean id="lst" scope="request" type="java.util.List"/>
     <c:forEach var="elem" items="${lst}" varStatus="status">
         <tr>
+            <th><c:out value="${ elem['class'].simpleName }"/></th>
             <th><c:out value="${ elem.number }"/></th>
             <th><c:out value="${ elem.name }"/></th>
             <th><c:out value="${ elem.origin }"/></th>
@@ -35,7 +37,8 @@
             <th><c:out value="${ elem.visualParameters.cutMethod }"/></th>
             <th><c:out value="${ elem.visualParameters.faces }"/></th>
             <th><c:out value="${ elem.productionDate }"/></th>
-            <th><c:out value="${ elem }"/></th>
+            <th><c:out value="${ elem['class'].simpleName eq 'Precious'
+            ? elem.carats : elem.weight}"/></th>
         </tr>
     </c:forEach>
 </table>

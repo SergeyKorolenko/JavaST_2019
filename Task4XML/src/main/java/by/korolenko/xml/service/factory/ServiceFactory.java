@@ -1,8 +1,7 @@
 package by.korolenko.xml.service.factory;
 
-import by.korolenko.xml.service.impl.DOMService;
-import by.korolenko.xml.service.impl.SAXService;
-import by.korolenko.xml.service.impl.StAXService;
+import by.korolenko.xml.service.ParseService;
+import by.korolenko.xml.service.impl.ParseServiceImpl;
 
 /**
  * @author Sergei Korolenko
@@ -35,25 +34,7 @@ public final class ServiceFactory {
      *
      * @return DOM service
      */
-    public DOMService getDOMService() {
-        return new DOMService();
-    }
-
-    /**
-     * Getter for SAX service.
-     *
-     * @return SAX service
-     */
-    public SAXService getSAXService() {
-        return new SAXService();
-    }
-
-    /**
-     * Getter for DOM service.
-     *
-     * @return DOM service
-     */
-    public StAXService getStAXService() {
-        return new StAXService();
+    public ParseService getService() {
+        return new ParseServiceImpl();
     }
 }

@@ -15,19 +15,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * @author Sergei Korolenko
  * @version 1.0
  * @since 29.10.2019
  */
-public class GemStAXBuilder {
-    /**
-     * Set of gems.
-     */
-    private Set<GemType> gems = new HashSet<>();
+public class GemStAXBuilder extends AbstractGemsBuilder {
     /**
      * XML input factory.
      */
@@ -38,15 +31,6 @@ public class GemStAXBuilder {
      */
     public GemStAXBuilder() {
         factory = XMLInputFactory.newInstance();
-    }
-
-    /**
-     * Getter for set of gems.
-     *
-     * @return set of gems
-     */
-    public Set<GemType> getGems() {
-        return gems;
     }
 
     /**

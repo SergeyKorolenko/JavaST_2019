@@ -2,8 +2,8 @@ package by.korolenko.xml.controller.command.impl;
 
 import by.korolenko.xml.bean.GemType;
 import by.korolenko.xml.controller.command.Command;
+import by.korolenko.xml.service.ParseService;
 import by.korolenko.xml.service.factory.ServiceFactory;
-import by.korolenko.xml.service.impl.SAXService;
 
 import java.util.List;
 
@@ -16,13 +16,15 @@ public class SAXCommand implements Command {
     /**
      * Executing method.
      *
-     * @param request request
+     * @param fileName request
+     * @param parserType parser type
      * @return response
      */
     @Override
-    public List<GemType> execute(final String request) {
+    public List<GemType> execute(final String fileName,
+                                 final String parserType) {
         ServiceFactory factory = ServiceFactory.getInstance();
-        SAXService service = factory.getSAXService();
-        return service.parse(request);
+        ParseService parseService = factory.getService();
+        return parseService.parse(fileName, parserType);
     }
 }

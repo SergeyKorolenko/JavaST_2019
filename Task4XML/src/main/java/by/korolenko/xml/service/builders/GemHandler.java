@@ -8,9 +8,9 @@ import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Sergei Korolenko
@@ -20,9 +20,9 @@ import java.util.Set;
 public class GemHandler extends DefaultHandler {
 
     /**
-     * Set of gems.
+     * List of gems.
      */
-    private Set<GemType> gems;
+    private List<GemType> gems;
 
     /**
      * Current enum.
@@ -43,7 +43,7 @@ public class GemHandler extends DefaultHandler {
      * Constructor.
      */
     public GemHandler() {
-        gems = new HashSet<>();
+        gems = new ArrayList<>();
         enumSet = EnumSet.range(GemEnum.NUMBER, GemEnum.WEIGHT);
     }
 
@@ -52,7 +52,7 @@ public class GemHandler extends DefaultHandler {
      *
      * @return gems
      */
-    public Set<GemType> getGems() {
+    public List<GemType> getGems() {
         return gems;
     }
 

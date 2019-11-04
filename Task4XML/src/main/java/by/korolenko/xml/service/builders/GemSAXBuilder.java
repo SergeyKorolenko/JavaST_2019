@@ -1,23 +1,17 @@
 package by.korolenko.xml.service.builders;
 
-import by.korolenko.xml.bean.GemType;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 import java.io.IOException;
-import java.util.Set;
 
 /**
  * @author Sergei Korolenko
  * @version 1.0
  * @since 29.10.2019
  */
-public class GemSAXBuilder {
-    /**
-     * Gem type set.
-     */
-    private Set<GemType> gemTypeSet;
+public class GemSAXBuilder extends AbstractGemsBuilder {
 
     /**
      * Gem handler.
@@ -42,15 +36,6 @@ public class GemSAXBuilder {
     }
 
     /**
-     * Getter for gem site set.
-     *
-     * @return gem type set
-     */
-    public Set<GemType> getGems() {
-        return gemTypeSet;
-    }
-
-    /**
      * Builder.
      *
      * @param fileName file name
@@ -63,6 +48,6 @@ public class GemSAXBuilder {
         } catch (IOException e) {
             System.err.print("ошибка I/О потока: " + e);
         }
-        gemTypeSet = gemHandler.getGems();
+        gems = gemHandler.getGems();
     }
 }

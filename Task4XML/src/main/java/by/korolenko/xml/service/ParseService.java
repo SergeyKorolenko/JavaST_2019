@@ -14,7 +14,8 @@ public interface ParseService {
      * Parsing method.
      *
      * @param fileName file name
+     * @param parserType parser type
      * @return list of gems
      */
-    List<GemType> parse(String fileName);
+    List<GemType> parse(String fileName, String parserType);
 }

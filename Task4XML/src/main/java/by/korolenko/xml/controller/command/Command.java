@@ -13,8 +13,9 @@ public interface Command {
     /**
      * This is the signature of command method.
      *
-     * @param request request
+     * @param fileName file name
+     * @param parserType parser type
      * @return response string
      */
-    List<GemType> execute(String request);
+    List<GemType> execute(String fileName, String parserType);
 }

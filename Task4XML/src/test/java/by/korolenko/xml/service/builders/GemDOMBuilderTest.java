@@ -3,7 +3,7 @@ package by.korolenko.xml.service.builders;
 import by.korolenko.xml.bean.GemType;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import java.util.List;
 
 public class GemDOMBuilderTest {
 
@@ -12,7 +12,7 @@ public class GemDOMBuilderTest {
     @Test
     public void parse() {
         builder.buildSetGems("data/gems.xml");
-        Set<GemType> set = builder.getGems();
+        List<GemType> set = builder.getGems();
         set.forEach(System.out::println);
     }
 }

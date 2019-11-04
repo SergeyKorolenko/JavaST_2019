@@ -17,25 +17,19 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author Sergei Korolenko
  * @version 1.0
  * @since 29.10.2019
  */
-public class GemDOMBuilder {
+public class GemDOMBuilder extends AbstractGemsBuilder {
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = LogManager.
             getLogger(GemDOMBuilder.class.getName());
-    /**
-     * Set of gems.
-     */
-    private Set<GemType> gems;
     /**
      * Builder.
      */
@@ -45,22 +39,12 @@ public class GemDOMBuilder {
      * Constructor.
      */
     public GemDOMBuilder() {
-        this.gems = new HashSet<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
             LOGGER.error("Configuration parser error.", e);
         }
-    }
-
-    /**
-     * Getter for set of gems.
-     *
-     * @return set of gems
-     */
-    public Set<GemType> getGems() {
-        return gems;
     }
 
     /**
