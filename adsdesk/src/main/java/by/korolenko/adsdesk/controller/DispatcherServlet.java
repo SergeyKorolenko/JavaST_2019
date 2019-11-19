@@ -1,10 +1,13 @@
 package by.korolenko.adsdesk.controller;
 
+import by.korolenko.adsdesk.bean.Category;
+import by.korolenko.adsdesk.bean.enums.EntityType;
+import by.korolenko.adsdesk.dao.factory.WrapperConnectionFactoryImpl;
 import by.korolenko.adsdesk.dao.pool.ConnectionPool;
 import by.korolenko.adsdesk.service.CategoryService;
-import by.korolenko.adsdesk.service.impl.CategoryServiceImpl;
+import by.korolenko.adsdesk.service.ServiceFactory;
+import by.korolenko.adsdesk.service.factory.ServiceFactoryImpl;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Sergei Korolenko
@@ -44,11 +48,11 @@ public final class DispatcherServlet extends HttpServlet {
     private void process(final HttpServletRequest req,
                          final HttpServletResponse resp)
             throws ServletException, IOException {
-        /*CategoryService categoryService = new CategoryServiceImpl();
-        req.setAttribute("lst", categoryService.findAll());
-        RequestDispatcher requestDispatcher = getServletContext().
-                getRequestDispatcher("WEB-INF/jsp/category/list.jsp");
-        requestDispatcher.forward(req, resp);*/
+        ServiceFactory factory = new ServiceFactoryImpl(new WrapperConnectionFactoryImpl());
+        CategoryService categoryService = factory.createService(EntityType.CATEGORY);
+        List<Category> list = categoryService.findAll();
+        req.setAttribute("lst", list);
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/category/list.jsp").forward(req, resp);
     }
 
     @Override

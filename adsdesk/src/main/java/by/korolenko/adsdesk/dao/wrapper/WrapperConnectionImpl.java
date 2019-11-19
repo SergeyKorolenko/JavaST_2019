@@ -16,7 +16,7 @@ public class WrapperConnectionImpl implements WrapperConnection {
     }
 
     @Override
-    public AbstractDao createDao(EntityType entityType) {
+    public <T extends AbstractDao> T createDao(EntityType entityType) {
 
         AbstractDao dao = null;
         switch (entityType) {
@@ -46,6 +46,6 @@ public class WrapperConnectionImpl implements WrapperConnection {
                 break;
         }
         dao.setConnection(connection);
-        return dao;
+        return (T) dao;
     }
 }

@@ -2,6 +2,7 @@ package by.korolenko.adsdesk.dao.pool;
 
 class DbDataConnection {
 
+    private String driver = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/ads_desk?useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private String user = "root";
     private String password = "root";
@@ -40,5 +41,13 @@ class DbDataConnection {
 
     public void setPoolSize(int poolSize) {
         this.poolSize = poolSize;
+    }
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
     }
 }

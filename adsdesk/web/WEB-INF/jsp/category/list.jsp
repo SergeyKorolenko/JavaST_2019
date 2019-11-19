@@ -16,13 +16,13 @@
     <tr>
         <th>id</th>
         <th>name</th>
-        <th>subcategory name</th>
+        <th>parent id</th>
     </tr>
     <jsp:useBean id="lst" scope="request" type="java.util.List"/>
-    <c:forEach var="elem" items="${lst}" varStatus="status">
+    <c:forEach var="elem" items="${lst}">
         <tr>
             <th><c:out value="${ elem.id }"/></th>
-            <th><c:out value="${ elem.name }"/></th>
+            <th><c:out value="${ elem.categoryName }"/></th>
             <th><c:out value="${ elem.parent.id }"/></th>
         </tr>
     </c:forEach>

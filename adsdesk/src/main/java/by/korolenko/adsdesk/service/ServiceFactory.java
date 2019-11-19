@@ -4,7 +4,7 @@ import by.korolenko.adsdesk.bean.enums.EntityType;
 
 public interface ServiceFactory {
 
-    AbstractService createService(EntityType entityType);
+    <T extends AbstractService> T createService(EntityType entityType);
 
     void close();
 }

@@ -4,5 +4,5 @@ import by.korolenko.adsdesk.bean.enums.EntityType;
 
 public interface WrapperConnection {
 
-    AbstractDao createDao(EntityType entityType);
+    <T extends AbstractDao> T createDao(EntityType entityType);
 }

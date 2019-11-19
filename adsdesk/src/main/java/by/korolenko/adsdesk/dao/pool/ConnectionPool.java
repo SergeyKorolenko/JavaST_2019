@@ -25,10 +25,11 @@ public final class ConnectionPool {
 
     private void init() {
         try {
+            Class.forName(dataConnection.getDriver());
             for (int i = 0; i < dataConnection.getPoolSize(); i++) {
                 freeConnection.put(new ProxyConnection(createConnection()));
             }
-        } catch (InterruptedException | SQLException e) {
+        } catch (ClassNotFoundException | InterruptedException | SQLException e) {
         }
     }
 

@@ -4,7 +4,6 @@ import by.korolenko.adsdesk.bean.Category;
 import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.CategoryDao;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
 
-    private final static String SQL_FIND_CATEGORY_LIST = "SELECT `id`, `name` FROM `category;`";
+    private final static String SQL_FIND_CATEGORY_LIST = "SELECT `id`, `name`, `parent_id` FROM `category`";
 
     @Override
     public List<Category> findAll() throws SQLException {
@@ -25,6 +24,12 @@ public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
             Category category = new Category();
             category.setId(resultSet.getInt("id"));
             category.setCategoryName(resultSet.getString("name"));
+            Category parent = new Category();
+            String parentId = resultSet.getString("parent_id");
+            if (parentId != null) {
+                parent.setId(Integer.parseInt(parentId));
+            }
+            category.setParent(parent);
             categories.add(category);
         }
         resultSet.close();
@@ -47,5 +52,15 @@ public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
 
     @Override
     public void update(Category entity) throws SQLException {
+    }
+
+    @Override
+    public Category findCategoryByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Category> findSubcategoryByCategoryId(Integer id) {
+        return null;
     }
 }

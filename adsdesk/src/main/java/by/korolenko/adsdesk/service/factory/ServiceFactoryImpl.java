@@ -16,7 +16,7 @@ public class ServiceFactoryImpl implements ServiceFactory {
     }
 
     @Override
-    public AbstractService createService(EntityType entityType) {
+    public <T extends AbstractService> T createService(EntityType entityType) {
         AbstractService service = null;
         WrapperConnection wrapperConnection =
                 wrapperConnectionFactory.createWrapperConnection();
@@ -47,7 +47,7 @@ public class ServiceFactoryImpl implements ServiceFactory {
                 break;
         }
         service.setWrapperConnection(wrapperConnection);
-        return service;
+        return (T) service;
     }
 
     @Override
