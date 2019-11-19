@@ -3,37 +3,57 @@ package by.korolenko.adsdesk.dao.mysqlimpl;
 import by.korolenko.adsdesk.bean.Country;
 import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.CountryDao;
+import by.korolenko.adsdesk.dao.exception.DaoException;
 
-import java.sql.SQLException;
-import java.util.List;
-
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ * @since 14.11.2019
+ */
 public class CountryDaoMySqlImpl extends AbstractDao implements CountryDao {
-    @Override
-    public List<Country> findAll() throws SQLException {
-        return null;
-    }
 
+    /**
+     * This method returns an entity by id.
+     *
+     * @param id id
+     * @return entity
+     * @throws DaoException exception
+     */
     @Override
-    public Country findEntityById(Integer id) throws SQLException {
+    public Country findEntityById(Integer id) throws DaoException {
         return null;
-    }
-
-    @Override
-    public void delete(Integer id) throws SQLException {
     }
 
     /**
-     * This method adds an entity to database.
+     * This method deletes an entity by id.
      *
-     * @param entity entity
-     * @throws SQLException exception
+     * @param id id
+     * @throws DaoException exception
      */
     @Override
-    public void create(Country entity) throws SQLException {
+    public void delete(Integer id) throws DaoException {
 
     }
 
+    /**
+     * This method adds an entity to the database.
+     *
+     * @param entity entity
+     * @throws DaoException exception
+     */
     @Override
-    public void update(Country entity) throws SQLException {
+    public void create(Country entity) throws DaoException {
+
+    }
+
+    /**
+     * This method updates an entity.
+     *
+     * @param entity entity
+     * @throws DaoException exception
+     */
+    @Override
+    public void update(Country entity) throws DaoException {
+
     }
 }

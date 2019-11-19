@@ -1,9 +1,7 @@
 package by.korolenko.adsdesk.dao;
 
 import by.korolenko.adsdesk.bean.Entity;
-
-import java.sql.SQLException;
-import java.util.List;
+import by.korolenko.adsdesk.dao.exception.DaoException;
 
 /**
  * @param <T> type of entity
@@ -12,44 +10,37 @@ import java.util.List;
  * @since 14.11.2019
  */
 public interface Dao<T extends Entity> {
-    /**
-     * This method returns all entities from database.
-     *
-     * @return list of entities
-     * @throws SQLException exception
-     */
-    List<T> findAll() throws SQLException;
 
     /**
      * This method returns an entity by id.
      *
      * @param id id
-     * @return return
-     * @throws SQLException exception
+     * @return entity
+     * @throws DaoException exception
      */
-    T findEntityById(Integer id) throws SQLException;
+    T findEntityById(Integer id) throws DaoException;
 
     /**
      * This method deletes an entity by id.
      *
      * @param id id
-     * @throws SQLException exception
+     * @throws DaoException exception
      */
-    void delete(Integer id) throws SQLException;
+    void delete(Integer id) throws DaoException;
 
     /**
-     * This method adds an entity to database.
+     * This method adds an entity to the database.
      *
      * @param entity entity
-     * @throws SQLException exception
+     * @throws DaoException exception
      */
-    void create(T entity) throws SQLException;
+    void create(T entity) throws DaoException;
 
     /**
      * This method updates an entity.
      *
      * @param entity entity
-     * @throws SQLException exception
+     * @throws DaoException exception
      */
-    void update(T entity) throws SQLException;
+    void update(T entity) throws DaoException;
 }

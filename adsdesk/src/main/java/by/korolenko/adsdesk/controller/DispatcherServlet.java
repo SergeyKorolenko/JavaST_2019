@@ -50,7 +50,7 @@ public final class DispatcherServlet extends HttpServlet {
             throws ServletException, IOException {
         ServiceFactory factory = new ServiceFactoryImpl(new WrapperConnectionFactoryImpl());
         CategoryService categoryService = factory.createService(EntityType.CATEGORY);
-        List<Category> list = categoryService.findAll();
+        List<Category> list = categoryService.readAll();
         req.setAttribute("lst", list);
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/category/list.jsp").forward(req, resp);
     }

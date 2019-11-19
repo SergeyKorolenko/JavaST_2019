@@ -1,12 +1,14 @@
 package by.korolenko.adsdesk.dao;
 
 import by.korolenko.adsdesk.bean.Category;
-
+import by.korolenko.adsdesk.dao.exception.DaoException;
 import java.util.List;
 
 public interface CategoryDao extends Dao<Category> {
 
-    Category findCategoryByName(String name);
+    List<Category> readAll() throws DaoException;
 
-    List<Category> findSubcategoryByCategoryId(Integer id);
+    Category findCategoryByName(String name) throws DaoException;
+
+    List<Category> findSubcategoryByCategoryId(Integer id) throws DaoException;
 }

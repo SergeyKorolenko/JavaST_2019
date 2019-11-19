@@ -13,7 +13,7 @@ public class Category extends Entity {
     private String categoryName;
 
     /**
-     * Subcategory id.
+     * Parent category.
      */
     private Category parent;
 
@@ -41,10 +41,19 @@ public class Category extends Entity {
         this.categoryName = newCategoryName;
     }
 
+    /**
+     * Getter for parent category.
+     *
+     * @return parent category
+     */
     public Category getParent() {
         return parent;
     }
 
+    /**
+     * Setter for parent category.
+     * @param parent parent category
+     */
     public void setParent(Category parent) {
         this.parent = parent;
     }
