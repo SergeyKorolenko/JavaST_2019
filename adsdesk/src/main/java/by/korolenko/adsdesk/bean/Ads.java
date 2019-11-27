@@ -1,5 +1,7 @@
 package by.korolenko.adsdesk.bean;
 
+import by.korolenko.adsdesk.bean.enums.State;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +20,6 @@ public class Ads extends Entity {
     private User user;
     private Category category;
     private Locality locality;
-
-    private List<Comment> commentList = new ArrayList<>();
-    private List<Image> imageList = new ArrayList<>();
 
     public Ads() {
     }
@@ -89,11 +88,71 @@ public class Ads extends Entity {
         this.locality = locality;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    @Override
+    public String toString() {
+        return "Ads [heading=" + heading + ", text=" + text + ", price=" + price + ", status=" + status
+                + ", bargain=" + bargain + ", user=" + user + ", category=" + category + ", locality=" + locality
+                + ", toString()=" + super.toString() + "]";
     }
 
-    public List<Image> getImageList() {
-        return imageList;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((bargain == null) ? 0 : bargain.hashCode());
+        result = prime * result + ((category == null) ? 0 : category.hashCode());
+        result = prime * result + ((heading == null) ? 0 : heading.hashCode());
+        result = prime * result + ((locality == null) ? 0 : locality.hashCode());
+        result = prime * result + ((price == null) ? 0 : price.hashCode());
+        result = prime * result + ((status == null) ? 0 : status.hashCode());
+        result = prime * result + ((text == null) ? 0 : text.hashCode());
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ads other = (Ads) obj;
+        if (bargain != other.bargain)
+            return false;
+        if (category == null) {
+            if (other.category != null)
+                return false;
+        } else if (!category.equals(other.category))
+            return false;
+        if (heading == null) {
+            if (other.heading != null)
+                return false;
+        } else if (!heading.equals(other.heading))
+            return false;
+        if (locality == null) {
+            if (other.locality != null)
+                return false;
+        } else if (!locality.equals(other.locality))
+            return false;
+        if (price == null) {
+            if (other.price != null)
+                return false;
+        } else if (!price.equals(other.price))
+            return false;
+        if (status != other.status)
+            return false;
+        if (text == null) {
+            if (other.text != null)
+                return false;
+        } else if (!text.equals(other.text))
+            return false;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
+            return false;
+        return true;
     }
 }

@@ -18,41 +18,47 @@ import java.util.List;
  */
 public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
 
-    private final static String SQL_FIND_CATEGORY_LIST =
+    private final static String SQL_READ_LIST =
             "SELECT `id`, `name`, `parent_id` FROM `category`";
+    private final static String SQL_FIND_BY_NAME =
+            "SELECT `id`, `name`, `parent_id` FROM `category` WHERE `name` = ?";
+    private final static String SQL_FIND_SUBCATEGORY_BY_CATEGORY_ID =
+            "";
 
     @Override
     public List<Category> readAll() throws DaoException {
-        List<Category> categories = new ArrayList<>();
         try (Statement statement = connection.createStatement();
              ResultSet resultSet =
-                     statement.executeQuery(SQL_FIND_CATEGORY_LIST)) {
+                     statement.executeQuery(SQL_READ_LIST)) {
+            List<Category> categories = new ArrayList<>();
             while (resultSet.next()) {
                 Category category = new Category();
                 category.setId(resultSet.getInt("id"));
                 category.setCategoryName(resultSet.
                         getString("name"));
-                Category parent = new Category();
                 String parentId = resultSet.getString("parent_id");
                 if (parentId != null) {
+                    Category parent = new Category();
                     parent.setId(Integer.parseInt(parentId));
+                    category.setParent(parent);
                 }
-                category.setParent(parent);
                 categories.add(category);
             }
+            return categories;
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-        return categories;
     }
 
     @Override
-    public Category findCategoryByName(String name) throws DaoException {
+    public Category findByName(String name) throws DaoException {
+        Category category = new Category();
         return null;
     }
 
     @Override
-    public List<Category> findSubcategoryByCategoryId(Integer id) throws DaoException {
+    public List<Category> findSubcategoryByCategoryId(Integer id)
+            throws DaoException {
         return null;
     }
 
@@ -65,7 +71,7 @@ public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
      * @throws DaoException exception
      */
     @Override
-    public Category findEntityById(Integer id) throws DaoException {
+    public Category findById(Integer id) throws DaoException {
         return null;
     }
 

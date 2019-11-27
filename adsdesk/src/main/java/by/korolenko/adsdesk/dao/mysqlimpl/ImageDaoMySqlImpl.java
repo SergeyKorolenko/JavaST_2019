@@ -20,7 +20,7 @@ public class ImageDaoMySqlImpl extends AbstractDao implements ImageDao {
      * @throws DaoException exception
      */
     @Override
-    public Image findEntityById(Integer id) throws DaoException {
+    public Image findById(Integer id) throws DaoException {
         return null;
     }
 

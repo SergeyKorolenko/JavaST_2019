@@ -11,6 +11,6 @@
     <title>Start page</title>
 </head>
 <body>
-<jsp:forward page="/WEB-INF/jsp/start/main.jsp"/>
+<jsp:forward page="/WEB-INF/jsp/login.jsp"/>
 </body>
 </html>

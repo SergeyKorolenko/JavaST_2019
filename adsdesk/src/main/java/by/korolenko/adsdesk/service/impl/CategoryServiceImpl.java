@@ -6,8 +6,8 @@ import by.korolenko.adsdesk.dao.CategoryDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 import by.korolenko.adsdesk.service.AbstractService;
 import by.korolenko.adsdesk.service.CategoryService;
+import by.korolenko.adsdesk.service.exception.ServiceException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -17,13 +17,13 @@ import java.util.List;
  */
 public class CategoryServiceImpl extends AbstractService implements CategoryService {
     @Override
-    public List<Category> readAll() {
-        CategoryDao categoryDao = wrapperConnection.createDao(EntityType.CATEGORY);
+    public List<Category> readAll() throws ServiceException {
+        CategoryDao categoryDao = transaction.createDao(EntityType.CATEGORY);
         List<Category> categories = null;
         try {
             categories = categoryDao.readAll();
         } catch (DaoException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         }
         return categories;
     }

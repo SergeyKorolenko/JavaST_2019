@@ -1,9 +1,15 @@
 package by.korolenko.adsdesk.dao.mysqlimpl;
 
 import by.korolenko.adsdesk.bean.User;
+import by.korolenko.adsdesk.bean.enums.Role;
 import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.UserDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * @author Sergei Korolenko
@@ -11,6 +17,10 @@ import by.korolenko.adsdesk.dao.exception.DaoException;
  * @since 14.11.2019
  */
 public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
+
+    private static final String SQL_FIND_BY_LOGIN_ADN_PASSWORD =
+            "SELECT `id`, `role` FROM `ads_desk`.`user`" +
+                    "WHERE `login` = ? AND `password` = ?";
 
     /**
      * This method returns an entity by id.
@@ -20,7 +30,7 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
      * @throws DaoException exception
      */
     @Override
-    public User findEntityById(Integer id) throws DaoException {
+    public User findById(Integer id) throws DaoException {
         return null;
     }
 
@@ -55,5 +65,29 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
     @Override
     public void update(User entity) throws DaoException {
 
+    }
+
+    @Override
+    public User findByLoginAndPassword(String login, String password)
+            throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_FIND_BY_LOGIN_ADN_PASSWORD)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                User user = null;
+                while (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("id"));
+                    user.setLogin(login);
+                    user.setPassword(password);
+                    user.setRole(Role.getById(resultSet.
+                            getInt("role")));
+                }
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 }

@@ -18,7 +18,7 @@ public interface Dao<T extends Entity> {
      * @return entity
      * @throws DaoException exception
      */
-    T findEntityById(Integer id) throws DaoException;
+    T findById(Integer id) throws DaoException;
 
     /**
      * This method deletes an entity by id.

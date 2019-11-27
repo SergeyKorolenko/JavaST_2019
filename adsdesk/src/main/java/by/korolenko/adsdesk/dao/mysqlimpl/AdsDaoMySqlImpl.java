@@ -20,7 +20,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
      * @throws DaoException exception
      */
     @Override
-    public Ads findEntityById(Integer id) throws DaoException {
+    public Ads findById(Integer id) throws DaoException {
         return null;
     }
 

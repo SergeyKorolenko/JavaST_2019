@@ -1,8 +1,8 @@
 package by.korolenko.adsdesk.service.factory;
 
 import by.korolenko.adsdesk.bean.enums.EntityType;
-import by.korolenko.adsdesk.dao.WrapperConnection;
-import by.korolenko.adsdesk.dao.WrapperConnectionFactory;
+import by.korolenko.adsdesk.dao.Transaction;
+import by.korolenko.adsdesk.dao.TransactionFactory;
 import by.korolenko.adsdesk.service.AbstractService;
 import by.korolenko.adsdesk.service.ServiceFactory;
 import by.korolenko.adsdesk.service.impl.*;
@@ -14,17 +14,17 @@ import by.korolenko.adsdesk.service.impl.*;
  */
 public class ServiceFactoryImpl implements ServiceFactory {
 
-    private WrapperConnectionFactory wrapperConnectionFactory;
+    private TransactionFactory transactionFactory;
 
-    public ServiceFactoryImpl(WrapperConnectionFactory wrapperConnectionFactory) {
-        this.wrapperConnectionFactory = wrapperConnectionFactory;
+    public ServiceFactoryImpl(TransactionFactory transactionFactory) {
+        this.transactionFactory = transactionFactory;
     }
 
     @Override
     public <T extends AbstractService> T createService(EntityType entityType) {
         AbstractService service = null;
-        WrapperConnection wrapperConnection =
-                wrapperConnectionFactory.createWrapperConnection();
+        Transaction transaction =
+                transactionFactory.createWrapperConnection();
         switch (entityType) {
             case LOCALITY:
                 service = new LocalityServiceImpl();
@@ -51,12 +51,12 @@ public class ServiceFactoryImpl implements ServiceFactory {
                 service = new AdsServiceImpl();
                 break;
         }
-        service.setWrapperConnection(wrapperConnection);
+        service.setTransaction(transaction);
         return (T) service;
     }
 
     @Override
     public void close() {
-        wrapperConnectionFactory.close();
+        transactionFactory.close();
     }
 }

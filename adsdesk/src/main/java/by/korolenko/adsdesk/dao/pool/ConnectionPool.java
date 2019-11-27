@@ -30,6 +30,7 @@ public final class ConnectionPool {
                 freeConnection.put(new ProxyConnection(createConnection()));
             }
         } catch (ClassNotFoundException | InterruptedException | SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -85,7 +86,7 @@ public final class ConnectionPool {
                 freeConnection.take().reallyClose();
             }
         } catch (InterruptedException | SQLException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }

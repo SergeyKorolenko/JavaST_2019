@@ -20,7 +20,7 @@ public class CountryDaoMySqlImpl extends AbstractDao implements CountryDao {
      * @throws DaoException exception
      */
     @Override
-    public Country findEntityById(Integer id) throws DaoException {
+    public Country findById(Integer id) throws DaoException {
         return null;
     }
 

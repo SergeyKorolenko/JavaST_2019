@@ -20,7 +20,7 @@ public class LocalityDaoMySqlImpl extends AbstractDao implements LocalityDao {
      * @throws DaoException exception
      */
     @Override
-    public Locality findEntityById(Integer id) throws DaoException {
+    public Locality findById(Integer id) throws DaoException {
         return null;
     }
 

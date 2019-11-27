@@ -2,10 +2,10 @@ package by.korolenko.adsdesk.dao.pool;
 
 class DbDataConnection {
 
-    private String driver = "com.mysql.jdbc.Driver";
+    private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/ads_desk?useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private String user = "root";
-    private String password = "root";
+    private String user = "adsdesk_user";
+    private String password = "adsdesk_password";
     private int poolSize = 100;
 
     DbDataConnection() {

@@ -20,7 +20,7 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
      * @throws DaoException exception
      */
     @Override
-    public Comment findEntityById(Integer id) throws DaoException {
+    public Comment findById(Integer id) throws DaoException {
         return null;
     }
 

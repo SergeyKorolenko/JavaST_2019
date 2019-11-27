@@ -20,7 +20,7 @@ public class RegionDaoMySqlImpl extends AbstractDao implements RegionDao {
      * @throws DaoException exception
      */
     @Override
-    public Region findEntityById(Integer id) throws DaoException {
+    public Region findById(Integer id) throws DaoException {
         return null;
     }
 
