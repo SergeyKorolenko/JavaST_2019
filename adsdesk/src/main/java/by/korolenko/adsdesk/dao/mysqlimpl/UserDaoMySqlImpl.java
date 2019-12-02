@@ -1,7 +1,9 @@
 package by.korolenko.adsdesk.dao.mysqlimpl;
 
+import by.korolenko.adsdesk.bean.Locality;
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.Role;
+import by.korolenko.adsdesk.bean.enums.State;
 import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.UserDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
@@ -22,6 +24,10 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
             "SELECT `id`, `role` FROM `ads_desk`.`user`" +
                     "WHERE `login` = ? AND `password` = ?";
 
+    private static final String SQL_FIND_BY_ID = "SELECT id, login, password," +
+            "role, name, surname, patronymic, phone, register_date, status," +
+            "email, avatar_url, locality_id FROM ads_desk.user WHERE id = ?";
+
     /**
      * This method returns an entity by id.
      *
@@ -31,7 +37,33 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
      */
     @Override
     public User findById(Integer id) throws DaoException {
-        return null;
+        try (PreparedStatement statement =
+                     connection.prepareStatement(SQL_FIND_BY_ID)) {
+            statement.setString(1, id.toString());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                User user = new User();
+                while (resultSet.next()) {
+                    user.setId(id);
+                    user.setLogin(resultSet.getString("login"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setRole(Role.getById(resultSet.getInt("role")));
+                    user.setName(resultSet.getString("name"));
+                    user.setSurname(resultSet.getString("surname"));
+                    user.setPatronymic(resultSet.getString("patronymic"));
+                    user.setPhone(resultSet.getLong("phone"));
+                    user.setRegisterDate(resultSet.getDate("register_date"));
+                    user.setStatus(State.getById(resultSet.getInt("status")));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setAvatarUrl(resultSet.getString("avatar_url"));
+                    Locality locality = new Locality();
+                    locality.setId(resultSet.getInt("locality_id"));
+                    user.setLocality(locality);
+                }
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     /**

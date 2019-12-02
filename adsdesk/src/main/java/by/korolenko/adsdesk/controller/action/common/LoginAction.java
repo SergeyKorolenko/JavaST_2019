@@ -1,13 +1,19 @@
 package by.korolenko.adsdesk.controller.action.common;
 
+import by.korolenko.adsdesk.bean.Ads;
+import by.korolenko.adsdesk.bean.Category;
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.service.AdsService;
+import by.korolenko.adsdesk.service.CategoryService;
 import by.korolenko.adsdesk.service.UserService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class LoginAction extends Action {
     @Override
@@ -15,11 +21,24 @@ public class LoginAction extends Action {
         UserService userService = factory.createService(EntityType.USER);
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        try {
-            User user = userService.findByLoginAndPassword(login, password);
-        } catch (ServiceException e) {
-            return "/WEB-INF/jsp/error.jsp";
+        if (login != null && password != null) {
+            try {
+                User user = userService.findByLoginAndPassword(login, password);
+                if (user != null) {
+                    HttpSession session = req.getSession(false);
+                    session.setAttribute("authorizedUser", user);
+                    CategoryService categoryService = factory.createService(EntityType.CATEGORY);
+                    List<Category> categories = categoryService.readAll();
+                    AdsService adsService = factory.createService(EntityType.ADS);
+                    List<Ads> adsList = adsService.readAll();
+                    req.setAttribute("adsList", adsList);
+                    req.setAttribute("categoryList", categories);
+                    return "/main/main.jsp";
+                }
+            } catch (ServiceException e) {
+                return "/error.jsp";
+            }
         }
-        return "/WEB-INF/jsp/main/main.jsp";
+        return "/login.jsp";
     }
 }

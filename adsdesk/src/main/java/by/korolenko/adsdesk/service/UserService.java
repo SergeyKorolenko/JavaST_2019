@@ -9,6 +9,9 @@ import by.korolenko.adsdesk.service.exception.ServiceException;
  * @since 14.11.2019
  */
 public interface UserService {
+
+    User findById(Integer id) throws ServiceException;
+
     User findByLoginAndPassword(String login, String password)
             throws ServiceException;
 }

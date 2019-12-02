@@ -2,8 +2,7 @@ package by.korolenko.adsdesk.bean;
 
 import by.korolenko.adsdesk.bean.enums.State;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  * @author Sergei Korolenko
@@ -17,6 +16,7 @@ public class Ads extends Entity {
     private Double price;
     private State status;
     private State bargain;
+    private Date registerDate;
     private User user;
     private Category category;
     private Locality locality;
@@ -88,11 +88,19 @@ public class Ads extends Entity {
         this.locality = locality;
     }
 
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
     @Override
     public String toString() {
         return "Ads [heading=" + heading + ", text=" + text + ", price=" + price + ", status=" + status
-                + ", bargain=" + bargain + ", user=" + user + ", category=" + category + ", locality=" + locality
-                + ", toString()=" + super.toString() + "]";
+                + ", bargain=" + bargain + ", registerDate=" + registerDate + ", user=" + user + ", category="
+                + category + ", locality=" + locality + ", toString()=" + super.toString() + "]";
     }
 
     @Override
@@ -104,6 +112,7 @@ public class Ads extends Entity {
         result = prime * result + ((heading == null) ? 0 : heading.hashCode());
         result = prime * result + ((locality == null) ? 0 : locality.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
+        result = prime * result + ((registerDate == null) ? 0 : registerDate.hashCode());
         result = prime * result + ((status == null) ? 0 : status.hashCode());
         result = prime * result + ((text == null) ? 0 : text.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
@@ -141,6 +150,11 @@ public class Ads extends Entity {
                 return false;
         } else if (!price.equals(other.price))
             return false;
+        if (registerDate == null) {
+            if (other.registerDate != null)
+                return false;
+        } else if (!registerDate.equals(other.registerDate))
+            return false;
         if (status != other.status)
             return false;
         if (text == null) {
@@ -155,4 +169,5 @@ public class Ads extends Entity {
             return false;
         return true;
     }
+
 }

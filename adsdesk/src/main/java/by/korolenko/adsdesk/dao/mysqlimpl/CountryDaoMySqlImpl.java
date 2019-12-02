@@ -5,12 +5,19 @@ import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.CountryDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * @author Sergei Korolenko
  * @version 1.0
  * @since 14.11.2019
  */
 public class CountryDaoMySqlImpl extends AbstractDao implements CountryDao {
+
+    private static final String SQL_FIND_BY_ID = "SELECT id, name " +
+            "FROM ads_desk.country WHERE id = ?";
 
     /**
      * This method returns an entity by id.
@@ -21,7 +28,20 @@ public class CountryDaoMySqlImpl extends AbstractDao implements CountryDao {
      */
     @Override
     public Country findById(Integer id) throws DaoException {
-        return null;
+        try (PreparedStatement statement =
+                     connection.prepareStatement(SQL_FIND_BY_ID)) {
+            statement.setString(1, id.toString());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                Country country = new Country();
+                while (resultSet.next()) {
+                    country.setId(id);
+                    country.setCountryName(resultSet.getString("name"));
+                }
+                return country;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     /**

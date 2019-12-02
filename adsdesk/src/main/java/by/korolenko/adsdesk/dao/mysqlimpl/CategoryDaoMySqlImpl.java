@@ -5,6 +5,7 @@ import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.CategoryDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,9 +28,10 @@ public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
 
     @Override
     public List<Category> readAll() throws DaoException {
-        try (Statement statement = connection.createStatement();
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_READ_LIST);
              ResultSet resultSet =
-                     statement.executeQuery(SQL_READ_LIST)) {
+                     statement.executeQuery()) {
             List<Category> categories = new ArrayList<>();
             while (resultSet.next()) {
                 Category category = new Category();
@@ -52,7 +54,6 @@ public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
 
     @Override
     public Category findByName(String name) throws DaoException {
-        Category category = new Category();
         return null;
     }
 

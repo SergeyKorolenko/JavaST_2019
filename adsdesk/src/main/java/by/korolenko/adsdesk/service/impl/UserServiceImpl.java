@@ -15,12 +15,21 @@ import by.korolenko.adsdesk.service.exception.ServiceException;
  */
 public class UserServiceImpl extends AbstractService implements UserService {
     @Override
+    public User findById(Integer id) throws ServiceException {
+        UserDao userDao = transaction.createDao(EntityType.USER);
+        try {
+            return userDao.findById(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public User findByLoginAndPassword(String login, String password)
             throws ServiceException {
         UserDao userDao = transaction.createDao(EntityType.USER);
         try {
-            User user = userDao.findByLoginAndPassword(login, password);
-            return user;
+            return userDao.findByLoginAndPassword(login, password);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

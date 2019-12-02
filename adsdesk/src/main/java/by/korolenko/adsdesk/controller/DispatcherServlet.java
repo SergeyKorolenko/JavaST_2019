@@ -23,6 +23,8 @@ import java.io.IOException;
 @WebServlet("/controller")
 public final class DispatcherServlet extends HttpServlet {
 
+    private static final String COMMON_RELATIVE_PATH = "/WEB-INF/jsp";
+
     @Override
     public void init() throws ServletException {
         ConnectionPool.getInstance();
@@ -46,17 +48,12 @@ public final class DispatcherServlet extends HttpServlet {
                          final HttpServletResponse response)
             throws ServletException, IOException {
         Action action = (Action) request.getAttribute("action");
-        if (action != null) {
-            ActionManager actionManager = ActionManagerFactory.
-                    getManager(getFactory());
-            String page = actionManager.execute(action, request, response);
-            actionManager.close();
-            getServletContext().getRequestDispatcher(page).
-                    forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").
-                    forward(request, response);
-        }
+        ActionManager actionManager = ActionManagerFactory.
+                getManager(getFactory());
+        String pagePart = actionManager.execute(action, request, response);
+        actionManager.close();
+        getServletContext().getRequestDispatcher(COMMON_RELATIVE_PATH + pagePart).
+                forward(request, response);
     }
 
     private ServiceFactory getFactory() {

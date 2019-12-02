@@ -1,10 +1,8 @@
 package by.korolenko.adsdesk.controller.filter;
 
 import by.korolenko.adsdesk.controller.action.Action;
-import by.korolenko.adsdesk.controller.action.common.CategoryListAction;
-import by.korolenko.adsdesk.controller.action.common.LoginAction;
-import by.korolenko.adsdesk.controller.action.common.LogoutAction;
-import by.korolenko.adsdesk.controller.action.common.MainAction;
+import by.korolenko.adsdesk.controller.action.common.*;
+import by.korolenko.adsdesk.controller.action.user.UserProfileAction;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +16,21 @@ public class ActionFromUriFilter implements Filter {
                 return new MainAction();
             case "/login":
                 return new LoginAction();
+            case "/registration":
+                return new RegisterAction();
             case "/logout":
                 return new LogoutAction();
             case "/read/category":
                 return new CategoryListAction();
+            case "/search/ads/category":
+                return new SearchAdsByCategoryAction();
+            case "/ads/detail":
+                return new AdsDetailAction();
+            case "/user/profile":
+                return new UserProfileAction();
+            default:
+                return null;
         }
-        return null;
     }
 
     @Override

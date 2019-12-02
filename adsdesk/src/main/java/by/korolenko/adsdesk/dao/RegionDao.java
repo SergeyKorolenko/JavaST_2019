@@ -8,4 +8,5 @@ import by.korolenko.adsdesk.bean.Region;
  * @since 14.11.2019
  */
 public interface RegionDao extends Dao<Region> {
+
 }

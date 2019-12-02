@@ -1,6 +1,9 @@
 package by.korolenko.adsdesk.dao;
 
 import by.korolenko.adsdesk.bean.Image;
+import by.korolenko.adsdesk.dao.exception.DaoException;
+
+import java.util.List;
 
 /**
  * @author Sergei Korolenko
@@ -8,4 +11,6 @@ import by.korolenko.adsdesk.bean.Image;
  * @since 14.11.2019
  */
 public interface ImageDao extends Dao<Image> {
+
+    List<Image> findByAdsId(Integer adsId) throws DaoException;
 }
