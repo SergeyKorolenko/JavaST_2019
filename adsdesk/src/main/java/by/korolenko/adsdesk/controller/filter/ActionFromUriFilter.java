@@ -13,6 +13,7 @@ public class ActionFromUriFilter implements Filter {
     private Action createActionByUri(String uri) {
         switch (uri) {
             case "/":
+            case "/main":
                 return new MainAction();
             case "/login":
                 return new LoginAction();
@@ -20,8 +21,6 @@ public class ActionFromUriFilter implements Filter {
                 return new RegisterAction();
             case "/logout":
                 return new LogoutAction();
-            case "/read/category":
-                return new CategoryListAction();
             case "/search/ads/category":
                 return new SearchAdsByCategoryAction();
             case "/ads/detail":

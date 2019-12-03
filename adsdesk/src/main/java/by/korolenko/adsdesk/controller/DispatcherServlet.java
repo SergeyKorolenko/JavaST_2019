@@ -52,8 +52,13 @@ public final class DispatcherServlet extends HttpServlet {
                 getManager(getFactory());
         String pagePart = actionManager.execute(action, request, response);
         actionManager.close();
-        getServletContext().getRequestDispatcher(COMMON_RELATIVE_PATH + pagePart).
-                forward(request, response);
+        if (action.isRedirect()) {
+            String redirectUri = request.getContextPath() + pagePart;
+            response.sendRedirect(redirectUri);
+        } else {
+            getServletContext().getRequestDispatcher(COMMON_RELATIVE_PATH + pagePart).
+                    forward(request, response);
+        }
     }
 
     private ServiceFactory getFactory() {

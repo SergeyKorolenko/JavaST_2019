@@ -51,8 +51,7 @@
                 </div>
             </form>
             <div class="text-center">
-                <c:url value="/registration.forward" var="registrationUrl"/>
-                <a class="d-block small mt-3" href="${registrationUrl}">Register
+                <a class="d-block small mt-3" href="#">Register
                     an
                     Account</a>
             </div>

@@ -27,13 +27,8 @@ public class LoginAction extends Action {
                 if (user != null) {
                     HttpSession session = req.getSession(false);
                     session.setAttribute("authorizedUser", user);
-                    CategoryService categoryService = factory.createService(EntityType.CATEGORY);
-                    List<Category> categories = categoryService.readAll();
-                    AdsService adsService = factory.createService(EntityType.ADS);
-                    List<Ads> adsList = adsService.readAll();
-                    req.setAttribute("adsList", adsList);
-                    req.setAttribute("categoryList", categories);
-                    return "/main/main.jsp";
+                    setRedirect(true);
+                    return "/main.html";
                 }
             } catch (ServiceException e) {
                 return "/error.jsp";

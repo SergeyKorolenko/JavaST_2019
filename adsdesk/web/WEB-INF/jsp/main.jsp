@@ -22,14 +22,15 @@
     <!-- Page level plugin CSS-->
     <link href="<c:url value="/data/datatables/dataTables.bootstrap4.css"/>"
           rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css"
+          rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="<c:url value="/css/sb-admin.css"/>" rel="stylesheet">
 </head>
 <body id="page-top">
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-    <a class="navbar-brand mr-1" href="index.html">Ads desk</a>
+    <c:url value="/main.html" var="mainUrl"/>
+    <a class="navbar-brand mr-1" href="${mainUrl}">Ads desk</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0"
             id="sidebarToggle" href="#">
@@ -51,6 +52,18 @@
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com"
+               id="dropdown09" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><span
+                    class="flag-icon flag-icon-us"> </span> English</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                <a class="dropdown-item" href="#by"><span
+                        class="flag-icon flag-icon-by"> </span> Belarusian</a>
+                <a class="dropdown-item" href="#ru"><span
+                        class="flag-icon flag-icon-ru"> </span> Russian</a>
+            </div>
+        </li>
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
                role="button" data-toggle="dropdown" aria-haspopup="true"

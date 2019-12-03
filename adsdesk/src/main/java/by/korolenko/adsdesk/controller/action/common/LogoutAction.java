@@ -11,6 +11,7 @@ public class LogoutAction extends Action {
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
         session.invalidate();
-        return "/login.jsp";
+        setRedirect(true);
+        return "/login.html";
     }
 }
