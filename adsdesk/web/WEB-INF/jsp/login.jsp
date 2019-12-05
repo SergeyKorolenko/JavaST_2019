@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +28,7 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header text-center">Login</div>
         <div class="card-body">
-            <c:url value="/login.html" var="loginUrl"/>
-            <form action="${loginUrl}" method="post">
+            <form action="<c:url value="/login.html"/>" method="post">
                 <div class="form-group">
                     <div class="form-label-group">
                         <input id="inputEmail" class="form-control"
@@ -47,13 +46,17 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Log in
+                    </button>
                 </div>
             </form>
             <div class="text-center">
-                <a class="d-block small mt-3" href="#">Register
-                    an
+                <a class="d-block small mt-3"
+                   href="<c:url value="/page/register.html"/>">Register an
                     Account</a>
+                <a class="d-block small mt-3"
+                   href="<c:url value="/main.html"/>">Return to the main
+                    page</a>
             </div>
         </div>
     </div>

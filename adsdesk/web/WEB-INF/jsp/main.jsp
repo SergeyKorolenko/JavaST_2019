@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,101 +29,8 @@
     <link href="<c:url value="/css/sb-admin.css"/>" rel="stylesheet">
 </head>
 <body id="page-top">
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-    <c:url value="/main.html" var="mainUrl"/>
-    <a class="navbar-brand mr-1" href="${mainUrl}">Ads desk</a>
 
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0"
-            id="sidebarToggle" href="#">
-        <em class="fas fa-bars"></em>
-    </button>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..."
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <em class="fas fa-search"></em>
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com"
-               id="dropdown09" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false"><span
-                    class="flag-icon flag-icon-us"> </span> English</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown09">
-                <a class="dropdown-item" href="#by"><span
-                        class="flag-icon flag-icon-by"> </span> Belarusian</a>
-                <a class="dropdown-item" href="#ru"><span
-                        class="flag-icon flag-icon-ru"> </span> Russian</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-                <em class="fas fa-bell fa-fw"></em>
-                <span class="badge badge-danger">9+</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-                <em class="fas fa-envelope fa-fw"></em>
-                <span class="badge badge-danger">7</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="messagesDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-                <em class="fas fa-user-circle fa-fw"></em>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="userDropdown">
-                <c:url value="/user/profile.html" var="profileUrl"/>
-                <jsp:useBean id="authorizedUser" scope="session"
-                             class="by.korolenko.adsdesk.bean.User"/>
-                <a class="dropdown-item"
-                   href="${profileUrl}?id=${authorizedUser.id}">
-                    <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em>Profile
-                </a>
-                <c:url value="/user/comment.html" var="commentUrl"/>
-                <a class="dropdown-item" href="${commentUrl}">Comments</a>
-                <c:url value="/user/ads/add.html" var="adsAddUrl"/>
-                <a class="dropdown-item" href="${adsAddUrl}">Add ads</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal"
-                   data-target="#logoutModal">
-                    <em class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></em>Logout
-                </a>
-            </div>
-        </li>
-    </ul>
-
-</nav>
+<c:import url="fragment/navbar.jsp"/>
 
 <div id="wrapper">
 
@@ -133,17 +41,14 @@
                role="button" data-toggle="dropdown" aria-haspopup="true"
                aria-expanded="false">
                 <em class="fas fa-fw fa-folder"></em>
-                <span>Category</span>
+                <span>Categories</span>
             </a>
             <jsp:useBean id="categoryList" scope="request"
                          type="java.util.List"/>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                <c:forEach var="elem" items="${categoryList}"
-                           varStatus="status">
-                    <c:url value="/search/ads/category.html"
-                           var="searchAdsByCategoryUrl"/>
+                <c:forEach var="elem" items="${categoryList}">
                     <a class="dropdown-item"
-                       href="${searchAdsByCategoryUrl}?id=${elem.id}">${elem.categoryName}</a>
+                       href="<c:url value="/search/ads/category.html"/>?id=${elem.id}">${elem.categoryName}</a>
                 </c:forEach>
             </div>
     </ul>
@@ -166,20 +71,18 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                <img src="#" alt="..." class="img-thumbnail">
+                                <img src="#" alt="" class="img-thumbnail">
                                     ${elem.text}
                             </div>
                             <div class="card-footer py-3 d-flex flex-row align-items-center justify-content-between">
                                 <span>${elem.registerDate}</span>
-                                <c:url value="/ads/detail.html"
-                                       var="adsDetailUrl"/>
-                                <form action="${adsDetailUrl}" method="post">
+                                <form action="<c:url value="/ads/detail.html"/>"
+                                      method="post">
                                     <div class="text-center">
                                         <button type="submit"
                                                 class="btn btn-primary"
                                                 value="${elem.id}"
-                                                name="adsDetail">View
-                                            details
+                                                name="adsDetail">View details
                                         </button>
                                     </div>
                                 </form>
@@ -189,6 +92,40 @@
                 </div>
             </c:forEach>
 
+
+            <nav aria-label="Navigation for ads">
+                <ul class="pagination">
+                    <c:if test="${requestScope.currentPage != 1}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="<c:url value="/main.html"/>?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${requestScope.currentPage-1}">Previous</a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach begin="1" end="${requestScope.noOfPages}"
+                               var="i">
+                        <c:choose>
+                            <c:when test="${requestScope.currentPage eq i}">
+                                <li class="page-item active"><a
+                                        class="page-link">
+                                        ${i} <span
+                                        class="sr-only">(current)</span></a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><a class="page-link"
+                                                         href="<c:url value="/main.html"/>?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${i}">${i}</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:if test="${requestScope.currentPage lt requestScope.noOfPages}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="<c:url value="/main.html"/>?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${requestScope.currentPage+1}">Next</a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
         </div>
         <!-- /.container-fluid -->
 
@@ -232,8 +169,8 @@
                 <button class="btn btn-secondary" type="button"
                         data-dismiss="modal">Cancel
                 </button>
-                <c:url value="/logout.html" var="logoutUrl"/>
-                <a class="btn btn-primary" href="${logoutUrl}">Logout</a>
+                <a class="btn btn-primary" href="<c:url value="/logout.html"/>">Log
+                    out</a>
             </div>
         </div>
     </div>
@@ -248,5 +185,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<c:url value="/js/sb-admin.min.js"/>"></script>
+
 </body>
 </html>

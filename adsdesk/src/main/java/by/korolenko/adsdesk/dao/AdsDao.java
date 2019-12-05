@@ -15,4 +15,8 @@ public interface AdsDao extends Dao<Ads> {
     List<Ads> readAll() throws DaoException;
 
     List<Ads> findByCategory(Integer categoryId) throws DaoException;
+
+    int countAdsNumber() throws DaoException;
+
+    List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws DaoException;
 }

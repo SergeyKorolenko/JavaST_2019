@@ -20,37 +20,55 @@
 <body class="bg-dark">
 <div class="container">
     <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register an Account</div>
+        <div class="card-header text-center">Register an Account</div>
         <div class="card-body">
-            <form>
+            <c:url value="/register.html" var="registerUrl"/>
+            <form action="${registerUrl}" method="post">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="firstName"
+                                <input type="text" id="name"
                                        class="form-control"
                                        placeholder="First name"
                                        required="required"
                                        autofocus="autofocus">
-                                <label for="firstName">First name</label>
+                                <label for="name">Name</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="lastName"
+                                <input type="text" id="login"
                                        class="form-control"
                                        placeholder="Last name"
                                        required="required">
-                                <label for="lastName">Last name</label>
+                                <label for="login">Login</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="email" id="inputEmail" class="form-control"
-                               placeholder="Email address" required="required">
-                        <label for="inputEmail">Email address</label>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="inputEmail"
+                                       class="form-control"
+                                       placeholder="First name"
+                                       required="required"
+                                       autofocus="autofocus">
+                                <label for="inputEmail">Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="phone"
+                                       class="form-control input-medium bfh-phone"
+                                       placeholder="Last name"
+                                       data-format="+375 (dd) ddd-dd-dd"
+                                       required="required">
+                                <label for="phone">Phone</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,11 +94,17 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary btn-block"
-                   href="login.html">Register</a>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Register
+                    </button>
+                </div>
             </form>
             <div class="text-center">
-                <a class="d-block small mt-3" href="login.jsp">Login Page</a>
+                <a class="d-block small mt-3"
+                   href="<c:url value="/page/login.html"/>">Login Page</a>
+                <a class="d-block small mt-3"
+                   href="<c:url value="/main.html"/>">Return to the main
+                    page</a>
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@ public class ActionFromUriFilter implements Filter {
                 return new MainAction();
             case "/login":
                 return new LoginAction();
-            case "/registration":
+            case "/register":
                 return new RegisterAction();
             case "/logout":
                 return new LogoutAction();
@@ -27,6 +27,10 @@ public class ActionFromUriFilter implements Filter {
                 return new AdsDetailAction();
             case "/user/profile":
                 return new UserProfileAction();
+            case "/page/login":
+                return new LoginPageAction();
+            case "/page/register":
+                return new RegisterPageAction();
             default:
                 return null;
         }

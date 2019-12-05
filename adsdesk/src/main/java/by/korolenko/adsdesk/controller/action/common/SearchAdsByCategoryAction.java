@@ -23,7 +23,7 @@ public class SearchAdsByCategoryAction extends Action {
             CategoryService categoryService = factory.createService(EntityType.CATEGORY);
             List<Category> categories = categoryService.readAll();
             req.setAttribute("categoryList", categories);
-            return "/main/main.jsp";
+            return "/main.jsp";
         } catch (ServiceException | NumberFormatException e) {
             return "/error.jsp";
         }

@@ -19,8 +19,27 @@ public class MainAction extends Action {
             CategoryService categoryService = factory.createService(EntityType.CATEGORY);
             List<Category> categories = categoryService.readAll();
             AdsService adsService = factory.createService(EntityType.ADS);
-            List<Ads> adsList = adsService.readAll();
+            String current = req.getParameter("currentPage");
+            String recordsPage = req.getParameter("recordsPerPage");
+            int currentPage;
+            int recordsPerPage;
+            if (current == null && recordsPage == null) {
+                currentPage = 1;
+                recordsPerPage = 5;
+            } else {
+                currentPage = Integer.parseInt(current);
+                recordsPerPage = Integer.parseInt(recordsPage);
+            }
+            List<Ads> adsList = adsService.findAdsByPage(currentPage, recordsPerPage);
+            int adsNumber = adsService.countAdsNumber();
+            int nOfPages = adsNumber / recordsPerPage;
+            if (nOfPages % recordsPerPage > 0) {
+                nOfPages++;
+            }
             req.setAttribute("adsList", adsList);
+            req.setAttribute("noOfPages", nOfPages);
+            req.setAttribute("currentPage", currentPage);
+            req.setAttribute("recordsPerPage", recordsPerPage);
             req.setAttribute("categoryList", categories);
             return "/main.jsp";
         } catch (ServiceException e) {

@@ -21,8 +21,8 @@ import java.sql.Statement;
 public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
 
     private static final String SQL_FIND_BY_LOGIN_ADN_PASSWORD =
-            "SELECT `id`, `role` FROM `ads_desk`.`user`" +
-                    "WHERE `login` = ? AND `password` = ?";
+            "SELECT id, role, name FROM ads_desk.user " +
+                    "WHERE login = ? AND password = ?";
 
     private static final String SQL_FIND_BY_ID = "SELECT id, login, password," +
             "role, name, surname, patronymic, phone, register_date, status," +
@@ -115,6 +115,7 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
                     user.setPassword(password);
                     user.setRole(Role.getById(resultSet.
                             getInt("role")));
+                    user.setName(resultSet.getString("name"));
                 }
                 return user;
             }

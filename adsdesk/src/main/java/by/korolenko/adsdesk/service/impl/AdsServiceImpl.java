@@ -45,4 +45,24 @@ public class AdsServiceImpl extends AbstractService implements AdsService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public int countAdsNumber() throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.countAdsNumber();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.findAdsByPage(currentPage, recordsPerPage);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

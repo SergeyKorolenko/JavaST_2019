@@ -34,6 +34,12 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             "heading, text, price, state, bargain, register_date, locality_id," +
             "category_id, user_id FROM ads_desk.ads WHERE id = ?";
 
+    private static final String SQL_FIND_BY_PAGE = "SELECT id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads_desk.ads LIMIT ?, ?";
+
+    private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads_desk.ads";
+
     /**
      * This method returns an entity by id.
      *
@@ -155,6 +161,56 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
                     ads.setRegisterDate(resultSet.getDate("register_date"));
                     Category category = new Category();
                     category.setId(categoryId);
+                    ads.setCategory(category);
+                    Locality locality = new Locality();
+                    locality.setId(resultSet.getInt("locality_id"));
+                    ads.setLocality(locality);
+                    User user = new User();
+                    user.setId(resultSet.getInt("user_id"));
+                    ads.setUser(user);
+                    adsList.add(ads);
+                }
+                return adsList;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public int countAdsNumber() throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_ADS_NUMBER);
+             ResultSet resultSet = statement.executeQuery()) {
+            int number = 0;
+            while (resultSet.next()) {
+                number = resultSet.getInt("count");
+            }
+            return number;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_FIND_BY_PAGE);) {
+            int start = currentPage * recordsPerPage - recordsPerPage;
+            statement.setInt(1, start);
+            statement.setInt(2, recordsPerPage);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                List<Ads> adsList = new ArrayList<>();
+                while (resultSet.next()) {
+                    Ads ads = new Ads();
+                    ads.setId(resultSet.getInt("id"));
+                    ads.setHeading(resultSet.getString("heading"));
+                    ads.setText(resultSet.getString("text"));
+                    ads.setPrice(resultSet.getDouble("price"));
+                    ads.setStatus(State.getById(resultSet.getInt("state")));
+                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                    ads.setRegisterDate(resultSet.getDate("register_date"));
+                    Category category = new Category();
+                    category.setId(resultSet.getInt("category_id"));
                     ads.setCategory(category);
                     Locality locality = new Locality();
                     locality.setId(resultSet.getInt("locality_id"));

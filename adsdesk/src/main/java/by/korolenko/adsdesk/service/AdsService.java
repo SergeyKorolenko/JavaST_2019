@@ -17,4 +17,8 @@ public interface AdsService {
     List<Ads> findByCategory(Integer categoryId) throws ServiceException;
 
     Ads findById(Integer id) throws ServiceException;
+
+    int countAdsNumber() throws ServiceException;
+
+    List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws ServiceException;
 }

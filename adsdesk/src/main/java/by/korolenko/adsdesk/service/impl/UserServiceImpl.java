@@ -34,4 +34,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public void register(User user) {
+
+    }
 }

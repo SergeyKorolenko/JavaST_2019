@@ -14,4 +14,6 @@ public interface UserService {
 
     User findByLoginAndPassword(String login, String password)
             throws ServiceException;
+
+    void register(User user);
 }
