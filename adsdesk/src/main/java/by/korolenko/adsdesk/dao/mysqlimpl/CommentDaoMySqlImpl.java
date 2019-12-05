@@ -99,8 +99,8 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
     @Override
     public List<Comment> findByAdsId(Integer adsId) throws DaoException {
         try (PreparedStatement statement =
-                     connection.prepareStatement(SQL_FIND_BY_USER_ID)) {
-            statement.setString(1, adsId.toString());
+                     connection.prepareStatement(SQL_FIND_BY_ADS_ID)) {
+            statement.setInt(1, adsId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 List<Comment> comments = new ArrayList<>();
                 while (resultSet.next()) {

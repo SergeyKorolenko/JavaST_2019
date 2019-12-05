@@ -23,7 +23,7 @@ public class AdsDetailAction extends Action {
             List<Comment> comments = commentService.findByAdsId(ads.getId());
             req.setAttribute("ads", ads);
             req.setAttribute("comments", comments);
-            return "/ads/detail.jsp";
+            return "/detail.jsp";
         } catch (ServiceException | NumberFormatException e) {
             return "/error.jsp";
         }

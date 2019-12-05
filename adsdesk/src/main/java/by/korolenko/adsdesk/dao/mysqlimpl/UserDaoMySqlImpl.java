@@ -39,7 +39,7 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
     public User findById(Integer id) throws DaoException {
         try (PreparedStatement statement =
                      connection.prepareStatement(SQL_FIND_BY_ID)) {
-            statement.setString(1, id.toString());
+            statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 User user = new User();
                 while (resultSet.next()) {

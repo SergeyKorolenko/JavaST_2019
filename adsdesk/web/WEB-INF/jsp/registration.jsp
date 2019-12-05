@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Сергей
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Registration page</title>
@@ -22,8 +22,7 @@
     <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Register an Account</div>
         <div class="card-body">
-            <c:url value="/register.html" var="registerUrl"/>
-            <form action="${registerUrl}" method="post">
+            <form action="<c:url value="/register.html"/>" method="post">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
@@ -32,7 +31,8 @@
                                        class="form-control"
                                        placeholder="First name"
                                        required="required"
-                                       autofocus="autofocus">
+                                       autofocus="autofocus"
+                                       name="name">
                                 <label for="name">Name</label>
                             </div>
                         </div>
@@ -41,7 +41,8 @@
                                 <input type="text" id="login"
                                        class="form-control"
                                        placeholder="Last name"
-                                       required="required">
+                                       required="required"
+                                       name="login">
                                 <label for="login">Login</label>
                             </div>
                         </div>
@@ -55,7 +56,8 @@
                                        class="form-control"
                                        placeholder="First name"
                                        required="required"
-                                       autofocus="autofocus">
+                                       autofocus="autofocus"
+                                       name="inputEmail">
                                 <label for="inputEmail">Email</label>
                             </div>
                         </div>
@@ -65,7 +67,8 @@
                                        class="form-control input-medium bfh-phone"
                                        placeholder="Last name"
                                        data-format="+375 (dd) ddd-dd-dd"
-                                       required="required">
+                                       required="required"
+                                       name="phone">
                                 <label for="phone">Phone</label>
                             </div>
                         </div>
@@ -78,7 +81,8 @@
                                 <input type="password" id="inputPassword"
                                        class="form-control"
                                        placeholder="Password"
-                                       required="required">
+                                       required="required"
+                                       name="inputPassword">
                                 <label for="inputPassword">Password</label>
                             </div>
                         </div>
@@ -87,7 +91,8 @@
                                 <input type="password" id="confirmPassword"
                                        class="form-control"
                                        placeholder="Confirm password"
-                                       required="required">
+                                       required="required"
+                                       name="confirmPassword">
                                 <label for="confirmPassword">Confirm
                                     password</label>
                             </div>

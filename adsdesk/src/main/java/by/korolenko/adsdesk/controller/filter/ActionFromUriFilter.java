@@ -3,6 +3,8 @@ package by.korolenko.adsdesk.controller.filter;
 import by.korolenko.adsdesk.controller.action.Action;
 import by.korolenko.adsdesk.controller.action.common.*;
 import by.korolenko.adsdesk.controller.action.user.UserProfileAction;
+import by.korolenko.adsdesk.controller.action.user.UserSaveAction;
+import by.korolenko.adsdesk.controller.action.user.UserUpdateAction;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,12 @@ public class ActionFromUriFilter implements Filter {
                 return new LoginPageAction();
             case "/page/register":
                 return new RegisterPageAction();
+            case "/ads/filter":
+                return new AdsFilterAction();
+            case "/user/update":
+                return new UserUpdateAction();
+            case "/user/save":
+                return new UserSaveAction();
             default:
                 return null;
         }

@@ -30,7 +30,7 @@
 </head>
 <body id="page-top">
 
-<c:import url="fragment/navbar.jsp"/>
+<c:import url="navbar.jsp"/>
 
 <div id="wrapper">
 
@@ -51,6 +51,7 @@
                        href="<c:url value="/search/ads/category.html"/>?id=${elem.id}">${elem.categoryName}</a>
                 </c:forEach>
             </div>
+        </li>
     </ul>
 
     <div id="content-wrapper">
@@ -130,13 +131,7 @@
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © Sergei Korolenko 2019</span>
-                </div>
-            </div>
-        </footer>
+        <c:import url="footer.jsp"/>
 
     </div>
     <!-- /.content-wrapper -->

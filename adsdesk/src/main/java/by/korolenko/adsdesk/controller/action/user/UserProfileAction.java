@@ -17,7 +17,7 @@ public class UserProfileAction extends Action {
         try {
             User user = userService.findById(Integer.parseInt(id));
             req.setAttribute("user", user);
-            return "/user/profile.jsp";
+            return "/profile.jsp";
         } catch (ServiceException | NumberFormatException e) {
             return "/error.jsp";
         }
