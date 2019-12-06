@@ -52,7 +52,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail"
+                                <input type="email" id="inputEmail"
                                        class="form-control"
                                        placeholder="First name"
                                        required="required"

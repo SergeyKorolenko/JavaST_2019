@@ -17,6 +17,16 @@ import java.util.List;
  */
 public class AdsServiceImpl extends AbstractService implements AdsService {
     @Override
+    public void delete(Integer adsId) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            adsDao.delete(adsId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public List<Ads> readAll() throws ServiceException {
         AdsDao adsDao = transaction.createDao(EntityType.ADS);
         try {
@@ -61,6 +71,26 @@ public class AdsServiceImpl extends AbstractService implements AdsService {
         AdsDao adsDao = transaction.createDao(EntityType.ADS);
         try {
             return adsDao.findAdsByPage(currentPage, recordsPerPage);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findByUserId(Integer userId) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.findByUserId(userId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findByIncludingString(String substring) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.findByIncludingString(substring);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

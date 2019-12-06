@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface AdsService {
 
+    void delete(Integer adsId) throws ServiceException;
+
     List<Ads> readAll() throws ServiceException;
 
     List<Ads> findByCategory(Integer categoryId) throws ServiceException;
@@ -21,4 +23,8 @@ public interface AdsService {
     int countAdsNumber() throws ServiceException;
 
     List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws ServiceException;
+
+    List<Ads> findByUserId(Integer userId) throws ServiceException;
+
+    List<Ads> findByIncludingString(String substring) throws ServiceException;
 }

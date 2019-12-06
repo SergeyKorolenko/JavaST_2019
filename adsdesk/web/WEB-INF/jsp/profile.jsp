@@ -12,44 +12,273 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Profile page</title>
-
-    <link href="<c:url value="/data/fontawesome-free/css/all.min.css"/>"
-          rel="stylesheet" type="text/css">
-
-    <!-- Page level plugin CSS-->
-    <link href="<c:url value="/data/datatables/dataTables.bootstrap4.css"/>"
-          rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css"
-          rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="<c:url value="/css/sb-admin.css"/>" rel="stylesheet">
+    <c:import url="link.jsp"/>
 </head>
 <body id="page-top">
 
 <c:import url="navbar.jsp"/>
 
-<div id="wrapper">
+<jsp:useBean id="user" scope="request"
+             class="by.korolenko.adsdesk.bean.User"/>
 
-    <div id="content-wrapper">
+<!--Main layout-->
+<main class="mt-5 pt-5">
+    <div class="container">
 
-        <div class="container-fluid">
+        <!--Section: Post-->
+        <section class="mt-4">
 
-            <jsp:useBean id="user" scope="request"
-                         class="by.korolenko.adsdesk.bean.User"/>
-            ${user}
-        </div>
-        <!-- /.container-fluid -->
+            <!--Grid row-->
+            <div class="row">
 
-        <!-- Sticky Footer -->
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+
+                    <!--Card-->
+                    <div class="card">
+
+                        <!--Card image-->
+                        <div class="view overlay">
+                            <img src="<c:url value="/img/profile.png"/>"
+                                 class="card-img-top"
+                                 alt="">
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title">${user.surname} ${user.name} ${user.patronymic}</h4>
+                            <!--Text-->
+                            <p class="card-text">Phone: ${user.phone}</p>
+                            <p class="card-text">Email: ${user.email}</p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+
+                    <!--Card : Dynamic content wrapper-->
+                    <div class="card mb-4 text-center wow fadeIn">
+
+                        <div class="card-header">Edit profile</div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <!-- Default form login -->
+                            <form action="<c:url value="/user/edit/profile.html"/>"
+                                  method="post">
+
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input id="name" class="form-control"
+                                               placeholder="Name"
+                                               required="required"
+                                               autofocus="autofocus" name="name"
+                                               value="${user.name}">
+                                        <label for="name">name</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input id="surname"
+                                               class="form-control"
+                                               placeholder="Surname"
+                                               name="surname"
+                                               value="${user.surname}">
+                                        <label for="surname">Surname</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input id="patronymic"
+                                               class="form-control"
+                                               placeholder="Password"
+                                               name="patronymic"
+                                               value="${user.patronymic}">
+                                        <label for="patronymic">Patronymic</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input id="phone" required="required"
+                                               class="form-control"
+                                               placeholder="Phone"
+                                               name="phone"
+                                               value="${user.phone}">
+                                        <label for="phone">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="email" id="email"
+                                               required="required"
+                                               class="form-control"
+                                               placeholder="Email"
+                                               name="email"
+                                               value="${user.email}">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-info btn-md"
+                                            type="submit">Update profile
+                                    </button>
+                                </div>
+
+                            </form>
+                            <!-- Default form login -->
+
+                        </div>
+
+                    </div>
+                    <!--/.Card : Dynamic content wrapper-->
+
+                    <!--Card : Dynamic content wrapper-->
+                    <div class="card mb-4 text-center wow fadeIn">
+
+                        <div class="card-header">Change password</div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <!-- Default form login -->
+                            <form action="<c:url value="/user/change/password.html"/>"
+                                  method="post">
+
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="password" id="oldPassword"
+                                               class="form-control"
+                                               placeholder="Old password"
+                                               required="required"
+                                               autofocus="autofocus"
+                                               name="oldPassword">
+                                        <label for="oldPassword">Old
+                                            password</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="password" id="newPassword"
+                                               class="form-control"
+                                               placeholder="New password"
+                                               required="required"
+                                               name="newPassword">
+                                        <label for="newPassword">New
+                                            password</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="password"
+                                               id="confNewPassword"
+                                               class="form-control"
+                                               placeholder="Password"
+                                               required="required"
+                                               name="confNewPassword">
+                                        <label for="confNewPassword">Confirm new
+                                            password</label>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-info btn-md"
+                                            type="submit">Change password
+                                    </button>
+                                </div>
+
+                            </form>
+                            <!-- Default form login -->
+
+                        </div>
+
+                    </div>
+                    <!--/.Card : Dynamic content wrapper-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+            <!--Grid row-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-12 mb-12">
+
+                    <jsp:useBean id="userAdsList" scope="request"
+                                 type="java.util.List"/>
+                    <c:forEach var="elem" items="${userAdsList}">
+                        <!--Card-->
+                        <div class="card mb-4 wow fadeIn">
+
+                            <div class="card-header font-weight-bold">
+                                <span>${elem.heading}</span>
+                                <span>${elem.price}</span>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+
+                                <div class="media d-block d-md-flex mt-3">
+                                    <img class="d-flex mb-3 mx-auto z-depth-1"
+                                         src="<c:url value="/img/cat.jpg"/>"
+                                         alt="Generic placeholder image"
+                                         style="width: 100px;">
+                                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                            ${elem.text}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
+                                <span>${elem.registerDate}</span>
+                                <form action="<c:url value="/ads/detail.html"/>"
+                                      method="post">
+                                    <button type="submit"
+                                            class="btn btn-primary"
+                                            value="${elem.id}"
+                                            name="adsDetail">View details
+                                    </button>
+                                </form>
+                                <form action="<c:url value="/ads/delete.html"/>"
+                                      method="post">
+                                    <input type="hidden" name="adsId"
+                                           value="${elem.id}">
+                                    <button type="submit"
+                                            class="btn btn-red"
+                                            value="${elem.id}"
+                                            name="adsDetail">Delete
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </c:forEach>
+
+                </div>
+                <!--Grid column-->
+
+
+            </div>
+            <!--Grid row-->
+        </section>
+        <!--Section: Post-->
 
     </div>
-    <!-- /.content-wrapper -->
-
-</div>
+</main>
+<!--Main layout-->
 
 <c:import url="footer.jsp"/>
 <!-- /#wrapper -->
@@ -86,15 +315,6 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="<c:url value="/data/jquery/jquery.min.js"/>"></script>
-<script src="<c:url value="/data/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="<c:url value="/data/jquery-easing/jquery.easing.min.js"/>"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="<c:url value="/js/sb-admin.min.js"/>"></script>
-
+<c:import url="script.jsp"/>
 </body>
 </html>

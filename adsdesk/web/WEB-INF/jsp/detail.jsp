@@ -12,144 +12,163 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Detail page</title>
-
-    <link href="<c:url value="/data/fontawesome-free/css/all.min.css"/>"
-          rel="stylesheet" type="text/css">
-
-    <!-- Page level plugin CSS-->
-    <link href="<c:url value="/data/datatables/dataTables.bootstrap4.css"/>"
-          rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css"
-          rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="<c:url value="/css/sb-admin.css"/>" rel="stylesheet">
-    <link href="<c:url value="/css/mystyle.css"/>" rel="stylesheet">
-
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossorigin="anonymous">
-
+    <c:import url="link.jsp"/>
 </head>
 <body id="page-top">
 
 <c:import url="navbar.jsp"/>
 
-<div id="wrapper">
+<main class="mt-5 pt-5">
+    <div class="container">
 
-    <div id="content-wrapper">
+        <!--Section: Post-->
+        <section class="mt-4">
 
-        <div class="container-fluid">
-            <jsp:useBean id="ads" scope="request"
-                         class="by.korolenko.adsdesk.bean.Ads"/>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">${ads.heading}</h5>
-                    <p class="card-text">${ads.text}</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${ads.price}</li>
-                    <li class="list-group-item">${ads.registerDate}</li>
-                    <li class="list-group-item">${ads.bargain}</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
+            <!--Grid row-->
+            <div class="row">
 
-            <div class="container">
-                <jsp:useBean id="comments" scope="request"
-                             type="java.util.List"/>
-                <c:forEach var="elem" items="${comments}"
-                           varStatus="status">
-                    <div class="card">
+                <!--Grid column-->
+                <div class="col-md-3 mb-4">
+
+                    <!--Card : Dynamic content wrapper-->
+                    <div class="card mb-4 text-center wow fadeIn">
+
+                        <div class="card-header">Categories</div>
+                        <jsp:useBean id="categoryList" scope="request"
+                                     type="java.util.List"/>
+                        <!--Card content-->
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg"
-                                         class="img img-rounded img-fluid"/>
-                                    <p class="text-secondary text-center">${elem.addedDate}</p>
-                                </div>
-                                <div class="col-md-10">
-                                    <p>
-                                        <a class="float-left"
-                                           href="#"><strong>${elem.user.id}</strong></a>
-                                    </p>
-                                    <div class="clearfix"></div>
-                                    <p>${elem.comment}</p>
-                                    <c:if test="${sessionScope.authorizedUser.id == elem.user.id}">
-                                        <p>
-                                            <a class="float-right btn text-white btn-success">
-                                                <em class="fa fa-edit"></em>
-                                                Edit</a>
-                                        </p>
-                                    </c:if>
-                                </div>
-                            </div>
+
+                            <c:forEach var="elem" items="${categoryList}">
+                                <a class="dropdown-item"
+                                   href="<c:url value="/search/ads/category.html"/>?id=${elem.id}">${elem.categoryName}</a>
+                            </c:forEach>
                         </div>
+
                     </div>
-                </c:forEach>
+
+                    <!--Card : Dynamic content wrapper-->
+                    <div class="card mb-4 text-center wow fadeIn">
+
+                        <div class="card-header">Subcategories</div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <!-- Default form login -->
+                            <form>
+
+
+                            </form>
+                            <!-- Default form login -->
+
+                        </div>
+
+                    </div>
+                    <!--/.Card : Dynamic content wrapper-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-9 mb-4">
+                    <jsp:useBean id="adsList" scope="request"
+                                 type="java.util.List"/>
+                    <c:forEach var="elem" items="${adsList}" varStatus="status">
+                        <!--Card-->
+                        <div class="card mb-4 wow fadeIn">
+
+                            <div class="card-header font-weight-bold">
+                                <span>${elem.heading}</span>
+                                <span>${elem.price}</span>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+
+                                <div class="media d-block d-md-flex mt-3">
+                                    <img class="d-flex mb-3 mx-auto z-depth-1"
+                                         src="<c:url value="/img/cat.jpg"/>"
+                                         alt="Generic placeholder image"
+                                         style="width: 100px;">
+                                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                            ${elem.text}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
+                                <span>${elem.registerDate}</span>
+                                <form action="<c:url value="/ads/detail.html"/>"
+                                      method="post">
+                                    <button type="submit"
+                                            class="btn btn-primary"
+                                            value="${elem.id}"
+                                            name="adsDetail">View details
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </c:forEach>
+                    <!--/.Pagination-->
+                    <nav aria-label="Navigation for ads"
+                         class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <c:if test="${requestScope.currentPage != 1}">
+                                <li class="page-item"><a class="page-link"
+                                                         href="<c:url value="/main.html"/>?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${requestScope.currentPage-1}">Previous</a>
+                                </li>
+                            </c:if>
+
+                            <c:forEach begin="1" end="${requestScope.noOfPages}"
+                                       var="i">
+                                <c:choose>
+                                    <c:when test="${requestScope.currentPage eq i}">
+                                        <li class="page-item active"><a
+                                                class="page-link">
+                                                ${i} <span
+                                                class="sr-only">(current)</span></a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="page-item"><a
+                                                class="page-link"
+                                                href="<c:url value="/main.html"/>?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${i}">${i}</a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+
+                            <c:if test="${requestScope.currentPage lt requestScope.noOfPages}">
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="<c:url value="/main.html"/>?recordsPerPage=${requestScope.recordsPerPage}&currentPage=${requestScope.currentPage+1}">Next
+                                    </a>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </nav>
+                </div>
+                <!--Grid column-->
+
             </div>
+            <!--Grid row-->
 
-        </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
+        </section>
+        <!--Section: Post-->
 
     </div>
-    <!-- /.content-wrapper -->
+</main>
+<!--Main layout-->
 
-</div>
-
-<!-- /#wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <em class="fas fa-angle-up"></em>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to
-                    Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to
-                end your current session.
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancel
-                </button>
-                <a class="btn btn-primary" href="<c:url value="/logout.html"/>">Log
-                    out</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<c:import url="footer.jsp"/>
-<!-- Bootstrap core JavaScript-->
-<script src="<c:url value="/data/jquery/jquery.min.js"/>"></script>
-<script src="<c:url value="/data/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="<c:url value="/data/jquery-easing/jquery.easing.min.js"/>"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="<c:url value="/js/sb-admin.min.js"/>"></script>
+<c:import url="script.jsp"/>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ public class UserUpdateAction extends Action {
                 UserService userService = factory.createService(EntityType.USER);
                 User userInfo = userService.findById(user.getId());
                 req.setAttribute("user", userInfo);
-                return "/userUpdate.jsp";
+                return "/main.jsp";
             }
         } catch (ServiceException e) {
             return "/error.jsp";

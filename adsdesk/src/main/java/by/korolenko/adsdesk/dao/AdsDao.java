@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface AdsDao extends Dao<Ads> {
 
+    void delete(Integer adsId) throws DaoException;
+
     List<Ads> readAll() throws DaoException;
 
     List<Ads> findByCategory(Integer categoryId) throws DaoException;
@@ -19,4 +21,8 @@ public interface AdsDao extends Dao<Ads> {
     int countAdsNumber() throws DaoException;
 
     List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws DaoException;
+
+    List<Ads> findByUserId(Integer userId) throws DaoException;
+
+    List<Ads> findByIncludingString(String substring) throws DaoException;
 }

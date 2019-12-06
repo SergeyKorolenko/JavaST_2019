@@ -7,11 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<footer class="sticky-footer">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright © Sergei Korolenko 2019</span>
-        </div>
+<footer class="page-footer text-center font-small mdb-color darken-2 mt-4">
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+        <span>Copyright © Sergei Korolenko 2019</span>
     </div>
+    <!--/.Copyright-->
+
 </footer>
 

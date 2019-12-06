@@ -40,6 +40,17 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads_desk.ads";
 
+
+    private static final String SQL_FIND_ADS_BY_USER_ID = "SELECT id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads_desk.ads WHERE user_id = ?";
+
+    private static final String SQL_DELETE_BY_ID = "DELETE FROM ads_desk.ads WHERE id = ?";
+
+    private static final String SQL_FIND_ADS_BY_SUBSTRING = "SELECT id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads_desk.ads WHERE text LIKE ?";
+
     /**
      * This method returns an entity by id.
      *
@@ -87,7 +98,13 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
      */
     @Override
     public void delete(Integer id) throws DaoException {
-
+        try (PreparedStatement statement =
+                     connection.prepareStatement(SQL_DELETE_BY_ID)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     /**
@@ -198,6 +215,74 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             int start = currentPage * recordsPerPage - recordsPerPage;
             statement.setInt(1, start);
             statement.setInt(2, recordsPerPage);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                List<Ads> adsList = new ArrayList<>();
+                while (resultSet.next()) {
+                    Ads ads = new Ads();
+                    ads.setId(resultSet.getInt("id"));
+                    ads.setHeading(resultSet.getString("heading"));
+                    ads.setText(resultSet.getString("text"));
+                    ads.setPrice(resultSet.getDouble("price"));
+                    ads.setStatus(State.getById(resultSet.getInt("state")));
+                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                    ads.setRegisterDate(resultSet.getDate("register_date"));
+                    Category category = new Category();
+                    category.setId(resultSet.getInt("category_id"));
+                    ads.setCategory(category);
+                    Locality locality = new Locality();
+                    locality.setId(resultSet.getInt("locality_id"));
+                    ads.setLocality(locality);
+                    User user = new User();
+                    user.setId(resultSet.getInt("user_id"));
+                    ads.setUser(user);
+                    adsList.add(ads);
+                }
+                return adsList;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findByUserId(Integer userId) throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_FIND_ADS_BY_USER_ID)) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                List<Ads> adsList = new ArrayList<>();
+                while (resultSet.next()) {
+                    Ads ads = new Ads();
+                    ads.setId(resultSet.getInt("id"));
+                    ads.setHeading(resultSet.getString("heading"));
+                    ads.setText(resultSet.getString("text"));
+                    ads.setPrice(resultSet.getDouble("price"));
+                    ads.setStatus(State.getById(resultSet.getInt("state")));
+                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                    ads.setRegisterDate(resultSet.getDate("register_date"));
+                    Category category = new Category();
+                    category.setId(Integer.parseInt(resultSet.getString("category_id")));
+                    ads.setCategory(category);
+                    Locality locality = new Locality();
+                    locality.setId(resultSet.getInt("locality_id"));
+                    ads.setLocality(locality);
+                    User user = new User();
+                    user.setId(userId);
+                    ads.setUser(user);
+                    adsList.add(ads);
+                }
+                return adsList;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findByIncludingString(String substring) throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_FIND_ADS_BY_SUBSTRING)) {
+            statement.setString(1, "%" + substring + "%");
             try (ResultSet resultSet = statement.executeQuery()) {
                 List<Ads> adsList = new ArrayList<>();
                 while (resultSet.next()) {
