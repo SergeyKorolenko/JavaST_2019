@@ -15,4 +15,6 @@ public interface CommentDao extends Dao<Comment> {
     List<Comment> findByAdsId(Integer adsId) throws DaoException;
 
     List<Comment> findByUserId(Integer userId) throws DaoException;
+
+    int countOfComment(Integer adsId) throws DaoException;
 }

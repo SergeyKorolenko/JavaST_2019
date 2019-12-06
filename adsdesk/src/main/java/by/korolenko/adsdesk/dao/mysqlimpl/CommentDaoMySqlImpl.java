@@ -7,6 +7,7 @@ import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.CommentDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +31,10 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
     private static final String SQL_FIND_BY_USER_ID = "SELECT id, comment," +
             "added_datetime, ads_id, user_id FROM ads_desk.comment " +
             "WHERE user_id = ?";
+
+    private static final String SQL_ADD = "INSERT ads_desk.comment (comment, added_datetime, ads_id, user_id) VALUES (?, ?, ?, ?)";
+
+    private static final String SQL_COMMENT_OF_ADS = "SELECT COUNT(id) AS count FROM ads_desk.comment WHERE ads_id = ?";
 
     /**
      * This method returns an entity by id.
@@ -82,7 +87,15 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
      */
     @Override
     public void create(Comment entity) throws DaoException {
-
+        try (PreparedStatement statement = connection.prepareStatement(SQL_ADD)) {
+            statement.setString(1, entity.getComment());
+            statement.setDate(2, new Date(entity.getAddedDate().getTime()));
+            statement.setInt(3, entity.getAds().getId());
+            statement.setInt(4, entity.getUser().getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     /**
@@ -144,6 +157,22 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
                     comments.add(comment);
                 }
                 return comments;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public int countOfComment(Integer adsId) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_COMMENT_OF_ADS)) {
+            statement.setInt(1, adsId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                int number = 0;
+                while (resultSet.next()) {
+                    number = resultSet.getInt("count");
+                }
+                return number;
             }
         } catch (SQLException e) {
             throw new DaoException(e);

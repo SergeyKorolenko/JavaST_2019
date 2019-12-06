@@ -13,4 +13,9 @@ import java.util.List;
 public interface CommentService {
 
     List<Comment> findByAdsId(Integer adsId) throws ServiceException;
+
+    void add(Comment comment) throws ServiceException;
+
+    int countOfComment(Integer adsId) throws ServiceException;
+
 }

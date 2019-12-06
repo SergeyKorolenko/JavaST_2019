@@ -82,10 +82,6 @@
                                        href="<c:url value="/user/comment.html"/>">
                                         <em class="fas fa-comment-alt fa-sm fa-fw mr-2 text-gray-400"></em>Comments</a>
                                     <a class="dropdown-item"
-                                       href="<c:url value="/user/update.html"/>">
-                                        <em class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></em>Edit
-                                        profile</a>
-                                    <a class="dropdown-item"
                                        href="<c:url value="/user/ads/add.html"/>">
                                         <em class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></em>Add
                                         ads</a>

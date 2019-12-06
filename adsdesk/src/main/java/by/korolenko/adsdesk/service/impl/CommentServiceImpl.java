@@ -25,4 +25,24 @@ public class CommentServiceImpl extends AbstractService implements CommentServic
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public void add(Comment comment) throws ServiceException {
+        CommentDao commentDao = transaction.createDao(EntityType.COMMENT);
+        try {
+            commentDao.create(comment);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public int countOfComment(Integer adsId) throws ServiceException {
+        CommentDao commentDao = transaction.createDao(EntityType.COMMENT);
+        try {
+            return commentDao.countOfComment(adsId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

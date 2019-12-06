@@ -2,10 +2,7 @@ package by.korolenko.adsdesk.controller.filter;
 
 import by.korolenko.adsdesk.controller.action.Action;
 import by.korolenko.adsdesk.controller.action.common.*;
-import by.korolenko.adsdesk.controller.action.user.AdsDeleteAction;
-import by.korolenko.adsdesk.controller.action.user.UserProfileAction;
-import by.korolenko.adsdesk.controller.action.user.UserSaveAction;
-import by.korolenko.adsdesk.controller.action.user.UserUpdateAction;
+import by.korolenko.adsdesk.controller.action.user.*;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +41,8 @@ public class ActionFromUriFilter implements Filter {
                 return new AdsDeleteAction();
             case "/search/substring":
                 return new SearchAdsBySubstringAction();
+            case "/add/comment":
+                return new AddCommentAction();
             default:
                 return null;
         }

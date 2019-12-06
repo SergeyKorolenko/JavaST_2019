@@ -40,7 +40,6 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads_desk.ads";
 
-
     private static final String SQL_FIND_ADS_BY_USER_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
             "category_id, user_id FROM ads_desk.ads WHERE user_id = ?";
@@ -311,4 +310,5 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             throw new DaoException(e);
         }
     }
+
 }
