@@ -13,11 +13,7 @@ public enum Role {
     /**
      * User.
      */
-    USER("user"),
-    /**
-     * Guest.
-     */
-    GUEST("guest");
+    USER("user");
 
     /**
      * Role name.

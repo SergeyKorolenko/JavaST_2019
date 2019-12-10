@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.common;
+package by.korolenko.adsdesk.controller.action.impl;
 
 import by.korolenko.adsdesk.bean.Ads;
 import by.korolenko.adsdesk.bean.Category;
@@ -21,7 +21,7 @@ public class SearchAdsBySubstringAction extends Action {
             List<Ads> adsList = adsService.findByIncludingString(substring);
             req.setAttribute("adsList", adsList);
             CategoryService categoryService = factory.createService(EntityType.CATEGORY);
-            List<Category> categories = categoryService.readAll();
+            List<Category> categories = categoryService.readCategory();
             req.setAttribute("categoryList", categories);
             return "/main.jsp";
         } catch (ServiceException | NumberFormatException e) {

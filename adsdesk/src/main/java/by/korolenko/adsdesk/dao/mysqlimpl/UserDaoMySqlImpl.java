@@ -8,10 +8,7 @@ import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.UserDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * @author Sergei Korolenko
@@ -27,6 +24,8 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
     private static final String SQL_FIND_BY_ID = "SELECT id, login, password," +
             "role, name, surname, patronymic, phone, register_date, status," +
             "email, avatar_url, locality_id FROM ads_desk.user WHERE id = ?";
+
+    private static final String SQL_REGISTER = "INSERT INTO ads_desk.user (login, password, role, name, phone, register_date, status, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     /**
      * This method returns an entity by id.
@@ -119,6 +118,23 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
                 }
                 return user;
             }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void register(User user) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_REGISTER)) {
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
+            statement.setInt(3, user.getRole().getId());
+            statement.setString(4, user.getName());
+            statement.setLong(5, user.getPhone());
+            statement.setDate(6, new Date(user.getRegisterDate().getTime()));
+            statement.setInt(7, user.getStatus().getId());
+            statement.setString(8, user.getEmail());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
         }

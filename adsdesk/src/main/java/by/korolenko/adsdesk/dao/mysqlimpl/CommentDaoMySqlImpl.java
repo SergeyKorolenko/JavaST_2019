@@ -69,17 +69,6 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
     }
 
     /**
-     * This method deletes an entity by id.
-     *
-     * @param id id
-     * @throws DaoException exception
-     */
-    @Override
-    public void delete(Integer id) throws DaoException {
-
-    }
-
-    /**
      * This method adds an entity to the database.
      *
      * @param entity entity
@@ -96,17 +85,6 @@ public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-    }
-
-    /**
-     * This method updates an entity.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void update(Comment entity) throws DaoException {
-
     }
 
     @Override

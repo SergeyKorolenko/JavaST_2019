@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.common;
+package by.korolenko.adsdesk.controller.action.impl;
 
 import by.korolenko.adsdesk.controller.action.Action;
 

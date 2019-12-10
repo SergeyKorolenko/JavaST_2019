@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.user;
+package by.korolenko.adsdesk.controller.action.impl;
 
 import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.controller.action.Action;
@@ -11,14 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 public class AdsDeleteAction extends Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        AdsService adsService = factory.createService(EntityType.ADS);
         String adsId = req.getParameter("adsId");
-        try {
-            adsService.delete(Integer.parseInt(adsId));
-            setRedirect(true);
-            return "/main.jsp";
-        } catch (ServiceException e) {
-            return "/error.jsp";
+        if (adsId != null) {
+            try {
+                AdsService adsService = factory.createService(EntityType.ADS);
+                adsService.delete(Integer.parseInt(adsId));
+                setRedirect(true);
+                return "/main.html";
+            } catch (ServiceException | NumberFormatException e) {
+                return "/error.jsp";
+            }
         }
+        return "/error.jsp";
     }
 }

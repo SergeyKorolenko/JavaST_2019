@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CookieLocaleFilter implements Filter {
+public class SessionLocaleFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -14,16 +14,16 @@ public class CookieLocaleFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if (servletRequest instanceof HttpServletRequest &&
-                servletResponse instanceof HttpServletResponse) {
+
+        if (servletRequest instanceof HttpServletRequest) {
             HttpServletRequest req = (HttpServletRequest) servletRequest;
-            HttpServletResponse res = (HttpServletResponse) servletResponse;
-            if (req.getParameter("cookieLocale") != null) {
-                Cookie cookie = new Cookie("lang", req.getParameter("cookieLocale"));
-                res.addCookie(cookie);
+
+            if (req.getParameter("locale") != null) {
+                req.getSession().setAttribute("lang", req.getParameter("locale"));
             }
             filterChain.doFilter(servletRequest, servletResponse);
         }
+
     }
 
     @Override

@@ -17,14 +17,27 @@ import java.util.List;
  */
 public class CategoryServiceImpl extends AbstractService implements CategoryService {
     @Override
-    public List<Category> readAll() throws ServiceException {
+    public List<Category> readCategory() throws ServiceException {
         CategoryDao categoryDao = transaction.createDao(EntityType.CATEGORY);
-        List<Category> categories = null;
         try {
-            categories = categoryDao.readAll();
+            return categoryDao.readCategory();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
-        return categories;
+    }
+
+    @Override
+    public List<Category> readSubcategoryByCategoryId(Integer categoryId) throws ServiceException {
+        CategoryDao categoryDao = transaction.createDao(EntityType.CATEGORY);
+        try {
+            return categoryDao.readSubcategoryByCategoryId(categoryId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Category> readSubcategory() throws ServiceException {
+        return null;
     }
 }

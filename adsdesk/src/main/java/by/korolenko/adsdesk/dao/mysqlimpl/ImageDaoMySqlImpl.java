@@ -53,39 +53,6 @@ public class ImageDaoMySqlImpl extends AbstractDao implements ImageDao {
         }
     }
 
-    /**
-     * This method deletes an entity by id.
-     *
-     * @param id id
-     * @throws DaoException exception
-     */
-    @Override
-    public void delete(Integer id) throws DaoException {
-
-    }
-
-    /**
-     * This method adds an entity to the database.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void create(Image entity) throws DaoException {
-
-    }
-
-    /**
-     * This method updates an entity.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void update(Image entity) throws DaoException {
-
-    }
-
     @Override
     public List<Image> findByAdsId(Integer adsId) throws DaoException {
         try (PreparedStatement statement =

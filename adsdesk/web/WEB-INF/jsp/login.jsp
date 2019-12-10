@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="locale.text"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +30,8 @@
 <body class="bg-dark">
 <div class="container">
     <div class="card card-login mx-auto mt-5">
-        <div class="card-header text-center">Login</div>
+        <div class="card-header text-center"><fmt:message
+                key="label.login"/></div>
         <div class="card-body">
             <form action="<c:url value="/login.html"/>" method="post">
                 <div class="form-group">
@@ -34,7 +39,8 @@
                         <input id="inputEmail" class="form-control"
                                placeholder="Email address" required="required"
                                autofocus="autofocus" name="login">
-                        <label for="inputEmail">Login</label>
+                        <label for="inputEmail"><fmt:message
+                                key="label.logIn"/></label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -42,11 +48,13 @@
                         <input type="password" id="inputPassword"
                                class="form-control" placeholder="Password"
                                required="required" name="password">
-                        <label for="inputPassword">Password</label>
+                        <label for="inputPassword"><fmt:message
+                                key="label.password"/></label>
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Log in
+                    <button type="submit" class="btn btn-primary"><fmt:message
+                            key="label.login"/>
                     </button>
                 </div>
             </form>

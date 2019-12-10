@@ -32,9 +32,6 @@ public class ServiceFactoryImpl implements ServiceFactory {
             case CATEGORY:
                 service = new CategoryServiceImpl();
                 break;
-            case COUNTRY:
-                service = new CountryServiceImpl();
-                break;
             case COMMENT:
                 service = new CommentServiceImpl();
                 break;
@@ -51,7 +48,9 @@ public class ServiceFactoryImpl implements ServiceFactory {
                 service = new AdsServiceImpl();
                 break;
         }
-        service.setTransaction(transaction);
+        if (service != null) {
+            service.setTransaction(transaction);
+        }
         return (T) service;
     }
 

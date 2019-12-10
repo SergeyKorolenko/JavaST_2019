@@ -18,7 +18,9 @@ public interface Dao<T extends Entity> {
      * @return entity
      * @throws DaoException exception
      */
-    T findById(Integer id) throws DaoException;
+    default T findById(Integer id) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * This method deletes an entity by id.
@@ -26,7 +28,9 @@ public interface Dao<T extends Entity> {
      * @param id id
      * @throws DaoException exception
      */
-    void delete(Integer id) throws DaoException;
+    default void delete(Integer id) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * This method adds an entity to the database.
@@ -34,7 +38,9 @@ public interface Dao<T extends Entity> {
      * @param entity entity
      * @throws DaoException exception
      */
-    void create(T entity) throws DaoException;
+    default void create(T entity) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * This method updates an entity.
@@ -42,5 +48,7 @@ public interface Dao<T extends Entity> {
      * @param entity entity
      * @throws DaoException exception
      */
-    void update(T entity) throws DaoException;
+    default void update(T entity) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${param.lang}"/>
+<fmt:setBundle basename="locale.text"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,27 +58,26 @@
                         </div>
 
                     </div>
+                    <c:if test="${requestScope.subcategoryList != null && not empty requestScope.subcategoryList}">
+                        <!--Card : Dynamic content wrapper-->
+                        <div class="card mb-4 text-center wow fadeIn">
 
-                    <!--Card : Dynamic content wrapper-->
-                    <div class="card mb-4 text-center wow fadeIn">
+                            <div class="card-header">Subcategories</div>
+                            <jsp:useBean id="subcategoryList" scope="request"
+                                         type="java.util.List"/>
+                            <!--Card content-->
+                            <div class="card-body">
 
-                        <div class="card-header">Subcategories</div>
+                                <c:forEach var="el" items="${subcategoryList}">
+                                    <a class="dropdown-item"
+                                       href="<c:url value="/search/ads/subcategory.html"/>?id=${el.id}">${el.categoryName}</a>
+                                </c:forEach>
 
-                        <!--Card content-->
-                        <div class="card-body">
-
-                            <!-- Default form login -->
-                            <form>
-
-
-                            </form>
-                            <!-- Default form login -->
+                            </div>
 
                         </div>
-
-                    </div>
-                    <!--/.Card : Dynamic content wrapper-->
-
+                        <!--/.Card : Dynamic content wrapper-->
+                    </c:if>
                     <!--Card : Dynamic content wrapper-->
                     <div class="card mb-4 text-center wow fadeIn">
 
@@ -127,14 +130,9 @@
 
                             <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
                                 <span>${elem.registerDate}</span>
-                                <form action="<c:url value="/ads/detail.html"/>"
-                                      method="post">
-                                    <button type="submit"
-                                            class="btn btn-primary"
-                                            value="${elem.id}"
-                                            name="adsDetail">View details
-                                    </button>
-                                </form>
+                                <a class="btn btn-primary"
+                                   href="<c:url value="/ads/detail.html"/>?adsId=${elem.id}">View
+                                    details</a>
                             </div>
 
                         </div>
@@ -199,33 +197,6 @@
 <!--Footer-->
 <c:import url="footer.jsp"/>
 <!--/.Footer-->
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to
-                    Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to
-                end your current session.
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancel
-                </button>
-                <a class="btn btn-primary" href="<c:url value="/logout.html"/>">Log
-                    out</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <c:import url="script.jsp"/>
 </body>

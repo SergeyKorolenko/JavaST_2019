@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="locale.text"/>
 <!--Main Navigation-->
 <header>
 
@@ -17,7 +21,8 @@
             <!-- Brand -->
             <a class="navbar-brand waves-effect"
                href="<c:url value="/main.html"/>">
-                <strong class="blue-text">Ads desk</strong>
+                <strong class="blue-text"><fmt:message
+                        key="label.logo"/></strong>
             </a>
 
             <!-- Collapse -->
@@ -43,24 +48,31 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                 </ul>
-
                 <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
+                <ul class="navbar-nav d-none d-md-flex">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#"
-                           id="dropdown09"
+                           id="language"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"><span
-                                class="flag-icon flag-icon-us"> </span> English</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown09">
-                            <a class="dropdown-item" href="#"><span
+                                class="flag-icon flag-icon-gb"> </span> English</a>
+                        <div class="dropdown-menu" onchange="submit()"
+                             role="menu" aria-labelledby="language">
+                            <a class="dropdown-item" role="menuitem"
+                               href="?locale=en"><span
+                                    class="flag-icon flag-icon-gb"> </span>
+                                English</a>
+                            <a class="dropdown-item" role="menuitem"
+                               href="?locale=ru"><span
                                     class="flag-icon flag-icon-ru"> </span>
                                 Russian</a>
-                            <a class="dropdown-item" href="#"><span
+                            <a class="dropdown-item" role="menuitem"
+                               href="?locale=be"><span
                                     class="flag-icon flag-icon-by"> </span>
                                 Belarusian</a>
                         </div>
                     </li>
+
                     <c:choose>
                         <c:when test="${!empty sessionScope.authorizedUser}">
                             <li class="nav-item dropdown no-arrow">
@@ -79,10 +91,7 @@
                                         <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em>Profile
                                     </a>
                                     <a class="dropdown-item"
-                                       href="<c:url value="/user/comment.html"/>">
-                                        <em class="fas fa-comment-alt fa-sm fa-fw mr-2 text-gray-400"></em>Comments</a>
-                                    <a class="dropdown-item"
-                                       href="<c:url value="/user/ads/add.html"/>">
+                                       href="<c:url value="/page/ads/add.html"/>">
                                         <em class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></em>Add
                                         ads</a>
                                     <div class="dropdown-divider"></div>
@@ -99,14 +108,15 @@
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="<c:url value="/page/login.html"/>">
-                                    <em class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></em>Log
-                                    in
+                                    <em class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></em><fmt:message
+                                        key="label.login"/>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="<c:url value="/page/register.html"/>">
-                                    <em class="text-gray-400"></em>Register
+                                    <em class="text-gray-400"></em><fmt:message
+                                        key="label.register"/>
                                 </a>
                             </li>
                         </c:otherwise>
@@ -120,3 +130,30 @@
     <!-- Navbar -->
 
 </header>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to
+                    Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to
+                end your current session.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button"
+                        data-dismiss="modal">Cancel
+                </button>
+                <a class="btn btn-primary" href="<c:url value="/logout.html"/>">Log
+                    out</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -222,7 +222,7 @@ public class ProxyConnection implements Connection {
         ConnectionPool.getInstance().returnConnection(this);
     }
 
-    public void reallyClose() throws SQLException {
+    public void realClose() throws SQLException {
         connection.close();
     }
 

@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface CategoryDao extends Dao<Category> {
 
-    List<Category> readAll() throws DaoException;
+    List<Category> readCategory() throws DaoException;
 
-    Category findByName(String name) throws DaoException;
+    List<Category> readSubcategoryByCategoryId(Integer categoryId) throws DaoException;
 
-    List<Category> findSubcategoryByCategoryId(Integer id) throws DaoException;
+    List<Category> readSubcategory() throws DaoException;
 }

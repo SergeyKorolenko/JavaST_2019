@@ -53,39 +53,6 @@ public class LocalityDaoMySqlImpl extends AbstractDao implements LocalityDao {
         }
     }
 
-    /**
-     * This method deletes an entity by id.
-     *
-     * @param id id
-     * @throws DaoException exception
-     */
-    @Override
-    public void delete(Integer id) throws DaoException {
-
-    }
-
-    /**
-     * This method adds an entity to the database.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void create(Locality entity) throws DaoException {
-
-    }
-
-    /**
-     * This method updates an entity.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void update(Locality entity) throws DaoException {
-
-    }
-
     @Override
     public List<Locality> readAll() throws DaoException {
         try (PreparedStatement statement =

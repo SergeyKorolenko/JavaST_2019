@@ -95,4 +95,14 @@ public class AdsServiceImpl extends AbstractService implements AdsService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public void create(Ads ads) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            adsDao.create(ads);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

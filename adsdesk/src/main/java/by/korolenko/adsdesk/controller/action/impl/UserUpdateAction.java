@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.user;
+package by.korolenko.adsdesk.controller.action.impl;
 
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;

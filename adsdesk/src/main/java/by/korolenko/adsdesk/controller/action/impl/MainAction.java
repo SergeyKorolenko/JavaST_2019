@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.common;
+package by.korolenko.adsdesk.controller.action.impl;
 
 import by.korolenko.adsdesk.bean.Ads;
 import by.korolenko.adsdesk.bean.Category;
@@ -17,7 +17,7 @@ public class MainAction extends Action {
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         try {
             CategoryService categoryService = factory.createService(EntityType.CATEGORY);
-            List<Category> categories = categoryService.readAll();
+            List<Category> categories = categoryService.readCategory();
             AdsService adsService = factory.createService(EntityType.ADS);
             String current = req.getParameter("currentPage");
             String recordsPage = req.getParameter("recordsPerPage");

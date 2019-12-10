@@ -162,8 +162,7 @@ public class Ads extends Entity {
                 return false;
         } else if (!text.equals(other.text))
             return false;
-        if (user == null) {
-            if (other.user != null)
+        if (user == null && other.user != null) {
                 return false;
         } else if (!user.equals(other.user))
             return false;

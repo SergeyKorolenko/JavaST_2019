@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.common;
+package by.korolenko.adsdesk.controller.action.impl;
 
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpSession;
 public class LoginAction extends Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        UserService userService = factory.createService(EntityType.USER);
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         if (login != null && password != null) {
             try {
+                UserService userService = factory.createService(EntityType.USER);
                 User user = userService.findByLoginAndPassword(login, password);
                 if (user != null) {
                     HttpSession session = req.getSession(false);

@@ -50,6 +50,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             "heading, text, price, state, bargain, register_date, locality_id," +
             "category_id, user_id FROM ads_desk.ads WHERE text LIKE ?";
 
+
     /**
      * This method returns an entity by id.
      *
@@ -104,27 +105,6 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-    }
-
-    /**
-     * This method adds an entity to the database.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void create(Ads entity) throws DaoException {
-
-    }
-
-    /**
-     * This method updates an entity.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void update(Ads entity) throws DaoException {
     }
 
     @Override
@@ -310,5 +290,6 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             throw new DaoException(e);
         }
     }
+
 
 }

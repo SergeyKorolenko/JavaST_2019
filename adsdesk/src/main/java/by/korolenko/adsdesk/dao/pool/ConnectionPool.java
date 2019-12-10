@@ -1,8 +1,10 @@
 package by.korolenko.adsdesk.dao.pool;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -83,10 +85,23 @@ public final class ConnectionPool {
     public void closePool() {
         try {
             for (int i = 0; i < freeConnection.size(); i++) {
-                freeConnection.take().reallyClose();
+                freeConnection.take().realClose();
             }
+            deregisterDriver();
         } catch (InterruptedException | SQLException e) {
             Thread.currentThread().interrupt();
+        }
+    }
+
+    private void deregisterDriver() {
+        Enumeration<Driver> driverEnumeration = DriverManager.getDrivers();
+        while (driverEnumeration.hasMoreElements()) {
+            Driver driver = driverEnumeration.nextElement();
+            try {
+                DriverManager.deregisterDriver(driver);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

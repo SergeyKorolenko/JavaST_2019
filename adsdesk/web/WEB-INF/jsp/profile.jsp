@@ -243,7 +243,7 @@
 
                             <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
                                 <span>${elem.registerDate}</span>
-                                <form action="<c:url value="/ads/detail.html"/>"
+                                <form action="<c:url value="/ads/detail.html"/>?adsId=${elem.id}"
                                       method="post">
                                     <button type="submit"
                                             class="btn btn-primary"

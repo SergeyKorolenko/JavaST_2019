@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `ads_desk`.`comment`
     CONSTRAINT `fk_comment_ads`
         FOREIGN KEY (`ads_id`)
             REFERENCES `ads_desk`.`ads` (`id`)
-            ON DELETE NO ACTION
+            ON DELETE CASCADE
             ON UPDATE CASCADE,
     CONSTRAINT `fk_comment_user`
         FOREIGN KEY (`user_id`)
@@ -181,9 +181,13 @@ VALUES (9, '1-ная квартира', 1),
 INSERT INTO `user`
 (`id`, `login`, `password`, `role`, `name`, `phone`, `register_date`, `status`,
  `email`)
-VALUES (1, 'admin', 'admin', 0, 'Sergei', 375291111111, '2019-11-24 13:01:42',
+VALUES (1, 'admin',
+        '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0,
+        'Sergei', 375291111111, '2019-11-24 13:01:42',
         0, 'admin@gmail.com'),
-       (2, 'user', 'user', 1, 'Sergei', 375291513645, '2019-11-24 13:03:43', 0,
+       (2, 'user',
+        '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 1,
+        'Sergei', 375291513645, '2019-11-24 13:03:43', 0,
         'user@gmail.com');
 
 

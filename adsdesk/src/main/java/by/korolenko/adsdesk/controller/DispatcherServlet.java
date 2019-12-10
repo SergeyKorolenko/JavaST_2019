@@ -9,7 +9,7 @@ import by.korolenko.adsdesk.service.ServiceFactory;
 import by.korolenko.adsdesk.service.factory.ServiceFactoryImpl;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +20,7 @@ import java.io.IOException;
  * @version 1.0
  * @since 14.11.2019
  */
-@WebServlet("/controller")
+@MultipartConfig
 public final class DispatcherServlet extends HttpServlet {
 
     private static final String COMMON_RELATIVE_PATH = "/WEB-INF/jsp";
@@ -52,7 +52,7 @@ public final class DispatcherServlet extends HttpServlet {
                 getManager(getFactory());
         String pagePart = actionManager.execute(action, request, response);
         actionManager.close();
-        if (action.isRedirect()) {
+        if (action.isRedirect() && pagePart != null) {
             String redirectUri = request.getContextPath() + pagePart;
             response.sendRedirect(redirectUri);
         } else {

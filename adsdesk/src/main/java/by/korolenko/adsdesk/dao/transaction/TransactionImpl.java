@@ -31,9 +31,6 @@ public class TransactionImpl implements Transaction {
             case CATEGORY:
                 dao = new CategoryDaoMySqlImpl();
                 break;
-            case COUNTRY:
-                dao = new CountryDaoMySqlImpl();
-                break;
             case COMMENT:
                 dao = new CommentDaoMySqlImpl();
                 break;
@@ -50,7 +47,9 @@ public class TransactionImpl implements Transaction {
                 dao = new AdsDaoMySqlImpl();
                 break;
         }
-        dao.setConnection(connection);
+        if (dao != null) {
+            dao.setConnection(connection);
+        }
         return (T) dao;
     }
 }

@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="locale.text"/>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Registration page</title>
@@ -52,18 +57,18 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail"
+                                <input type="email" id="email"
                                        class="form-control"
                                        placeholder="First name"
                                        required="required"
                                        autofocus="autofocus"
                                        name="inputEmail">
-                                <label for="inputEmail">Email</label>
+                                <label for="email">Email</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="phone"
+                                <input type="tel" id="phone"
                                        class="form-control input-medium bfh-phone"
                                        placeholder="Last name"
                                        data-format="+375 (dd) ddd-dd-dd"

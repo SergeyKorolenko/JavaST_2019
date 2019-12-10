@@ -10,5 +10,5 @@ public enum EntityType {
     /**
      * Entity types.
      */
-    ADS, CATEGORY, COMMENT, COUNTRY, IMAGE, LOCALITY, REGION, USER;
+    ADS, CATEGORY, COMMENT, IMAGE, LOCALITY, REGION, USER;
 }

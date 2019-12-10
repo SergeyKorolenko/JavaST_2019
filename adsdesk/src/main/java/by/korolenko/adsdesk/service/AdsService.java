@@ -27,4 +27,6 @@ public interface AdsService {
     List<Ads> findByUserId(Integer userId) throws ServiceException;
 
     List<Ads> findByIncludingString(String substring) throws ServiceException;
+
+    void create(Ads ads) throws ServiceException;
 }
