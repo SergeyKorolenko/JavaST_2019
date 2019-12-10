@@ -9,6 +9,7 @@ import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.AdsDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,6 +52,8 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             "category_id, user_id FROM ads_desk.ads WHERE text LIKE ?";
 
 
+    private static final String SQL_CREATE = "INSERT INTO ads_desk.ads (heading, text, price, state, bargain, register_date, locality_id, category_id, user_id) VALUES " +
+            "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     /**
      * This method returns an entity by id.
      *
@@ -291,5 +294,27 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         }
     }
 
-
+    /**
+     * This method adds an entity to the database.
+     *
+     * @param entity entity
+     * @throws DaoException exception
+     */
+    @Override
+    public void create(Ads entity) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_CREATE)) {
+            statement.setString(1, entity.getHeading());
+            statement.setString(2, entity.getText());
+            statement.setDouble(3, entity.getPrice());
+            statement.setInt(4, State.ACTIVE.getId());
+            statement.setInt(5, entity.getBargain().getId());
+            statement.setDate(6, new Date(new java.util.Date().getTime()));
+            statement.setInt(7, entity.getLocality().getId());
+            statement.setInt(8, entity.getCategory().getId());
+            statement.setInt(9, entity.getUser().getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
 }

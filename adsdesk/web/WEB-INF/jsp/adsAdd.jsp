@@ -25,6 +25,7 @@
 <!--Main Navigation-->
 <c:import url="navbar.jsp"/>
 <!--Main Navigation-->
+
 <!--Main layout-->
 <main class="mt-5 pt-5">
     <div class="container">
@@ -55,6 +56,8 @@
                             <!-- Default form login -->
                             <form action="<c:url value="/ads/add.html"/>"
                                   method="post">
+                                <input type="hidden" name="userId"
+                                       value="${sessionScope.authorizedUser.id}">
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col-md-12">
@@ -70,6 +73,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col-md-12">
@@ -100,7 +104,39 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox"
+                                               class="form-check-input"
+                                               name="bargain" value="0">Bargain
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <jsp:useBean id="localities" scope="request"
+                                                 type="java.util.List"/>
+                                    <label for="localitySelect">Locality</label>
+                                    <select class="form-control"
+                                            id="localitySelect"
+                                            name="localitySelect">
+                                        <c:forEach var="elem"
+                                                   items="${localities}">
+                                            <option value="${elem.id}">${elem.localityName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <jsp:useBean id="categories" scope="request"
+                                                 type="java.util.List"/>
+                                    <label for="categorySelect">Category</label>
+                                    <select class="form-control"
+                                            id="categorySelect"
+                                            name="categorySelect">
+                                        <c:forEach var="elem"
+                                                   items="${categories}">
+                                            <option value="${elem.id}">${elem.categoryName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
                                 <div class="text-center">
                                     <button type="submit"
                                             class="btn btn-primary">Add ads

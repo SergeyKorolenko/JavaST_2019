@@ -36,7 +36,7 @@
             <div class="row">
 
                 <!--Grid column-->
-                <div class="col-md-6 mb-4">
+                <div class="col-md-3 mb-4">
 
                     <!--Card-->
                     <div class="card">
@@ -62,6 +62,8 @@
 
                 </div>
                 <!--Grid column-->
+
+                <div class="col-md-3 mb-4"></div>
 
                 <!--Grid column-->
                 <div class="col-md-6 mb-4">
@@ -211,13 +213,11 @@
             <!--Grid row-->
             <!--Grid row-->
             <div class="row">
-
-                <!--Grid column-->
-                <div class="col-md-12 mb-12">
-
-                    <jsp:useBean id="userAdsList" scope="request"
-                                 type="java.util.List"/>
-                    <c:forEach var="elem" items="${userAdsList}">
+                <jsp:useBean id="userAdsList" scope="request"
+                             type="java.util.List"/>
+                <c:forEach var="elem" items="${userAdsList}">
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4">
                         <!--Card-->
                         <div class="card mb-4 wow fadeIn">
 
@@ -265,11 +265,11 @@
 
                         </div>
                         <!--/.Card-->
-                    </c:forEach>
 
-                </div>
-                <!--Grid column-->
 
+                    </div>
+                    <!--Grid column-->
+                </c:forEach>
 
             </div>
             <!--Grid row-->

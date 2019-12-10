@@ -24,7 +24,7 @@ public class CategoryDaoMySqlImpl extends AbstractDao implements CategoryDao {
     private static final String SQL_FIND_SUBCATEGORY_BY_CATEGORY_ID =
             "SELECT id, name, parent_id FROM category WHERE parent_id = ?";
     private static final String SQL_FIND_SUBCATEGORY =
-            "SELECT id, name FROM category WHERE parent_id NOT NULL";
+            "SELECT id, name FROM category WHERE parent_id IS NOT NULL";
 
     @Override
     public List<Category> readCategory() throws DaoException {

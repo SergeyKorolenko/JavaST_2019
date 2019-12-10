@@ -38,6 +38,11 @@ public class CategoryServiceImpl extends AbstractService implements CategoryServ
 
     @Override
     public List<Category> readSubcategory() throws ServiceException {
-        return null;
+        CategoryDao categoryDao = transaction.createDao(EntityType.CATEGORY);
+        try {
+            return categoryDao.readSubcategory();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 }
