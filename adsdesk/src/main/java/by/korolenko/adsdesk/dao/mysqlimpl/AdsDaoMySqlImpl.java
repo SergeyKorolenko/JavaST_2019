@@ -25,21 +25,33 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     private static final String SQL_READ_ALL_ADS = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads";
+            "category_id, user_id FROM ads_desk.ads WHERE state = 0";
+
+    private static final String SQL_SORT_BY_DATE = "SELECT id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads_desk.ads WHERE state = 0 ORDER BY register_date";
+
+    private static final String SQL_SORT_BY_INCREASE_PRICE = "SELECT id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads_desk.ads WHERE state = 0 ORDER BY price";
+
+    private static final String SQL_SORT_BY_DECREASE_PRICE = "SELECT id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads_desk.ads WHERE state = 0 ORDER BY price DESC";
 
     private static final String SQL_FIND_ADS_BY_CATEGORY_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE category_id = ?";
+            "category_id, user_id FROM ads_desk.ads WHERE category_id = ? AND state = 0";
 
     private static final String SQL_FIND_BY_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE id = ?";
+            "category_id, user_id FROM ads_desk.ads WHERE id = ? AND state = 0";
 
     private static final String SQL_FIND_BY_PAGE = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads LIMIT ?, ?";
+            "category_id, user_id FROM ads_desk.ads WHERE state = 0 LIMIT ?, ?";
 
-    private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads_desk.ads";
+    private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads_desk.ads WHERE state = 0";
 
     private static final String SQL_FIND_ADS_BY_USER_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
@@ -49,8 +61,11 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     private static final String SQL_FIND_ADS_BY_SUBSTRING = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE text LIKE ?";
+            "category_id, user_id FROM ads_desk.ads WHERE text LIKE ? AND state = 0";
 
+    private static final String SQL_ACTIVATE = "UPDATE ads_desk.ads SET state = 0 WHERE id = ?";
+
+    private static final String SQL_DEACTIVATE = "UPDATE ads_desk.ads SET state = 1 WHERE id = ?";
 
     private static final String SQL_CREATE = "INSERT INTO ads_desk.ads (heading, text, price, state, bargain, register_date, locality_id, category_id, user_id) VALUES " +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -289,6 +304,127 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
                 }
                 return adsList;
             }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> findBySubcategory(Integer subcategoryId) throws DaoException {
+        return null;
+    }
+
+    @Override
+    public List<Ads> sortByDate() throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_SORT_BY_DATE); ResultSet resultSet =
+                     statement.executeQuery()) {
+            List<Ads> adsList = new ArrayList<>();
+            while (resultSet.next()) {
+                Ads ads = new Ads();
+                ads.setId(resultSet.getInt("id"));
+                ads.setHeading(resultSet.getString("heading"));
+                ads.setText(resultSet.getString("text"));
+                ads.setPrice(resultSet.getDouble("price"));
+                ads.setStatus(State.getById(resultSet.getInt("state")));
+                ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                ads.setRegisterDate(resultSet.getDate("register_date"));
+                Category category = new Category();
+                category.setId(resultSet.getInt("category_id"));
+                ads.setCategory(category);
+                Locality locality = new Locality();
+                locality.setId(resultSet.getInt("locality_id"));
+                ads.setLocality(locality);
+                User user = new User();
+                user.setId(resultSet.getInt("user_id"));
+                ads.setUser(user);
+                adsList.add(ads);
+            }
+            return adsList;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> sortByDecreasePrice() throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_SORT_BY_DECREASE_PRICE); ResultSet resultSet =
+                     statement.executeQuery()) {
+            List<Ads> adsList = new ArrayList<>();
+            while (resultSet.next()) {
+                Ads ads = new Ads();
+                ads.setId(resultSet.getInt("id"));
+                ads.setHeading(resultSet.getString("heading"));
+                ads.setText(resultSet.getString("text"));
+                ads.setPrice(resultSet.getDouble("price"));
+                ads.setStatus(State.getById(resultSet.getInt("state")));
+                ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                ads.setRegisterDate(resultSet.getDate("register_date"));
+                Category category = new Category();
+                category.setId(resultSet.getInt("category_id"));
+                ads.setCategory(category);
+                Locality locality = new Locality();
+                locality.setId(resultSet.getInt("locality_id"));
+                ads.setLocality(locality);
+                User user = new User();
+                user.setId(resultSet.getInt("user_id"));
+                ads.setUser(user);
+                adsList.add(ads);
+            }
+            return adsList;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> sortByIncreasePrice() throws DaoException {
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_SORT_BY_INCREASE_PRICE); ResultSet resultSet =
+                     statement.executeQuery()) {
+            List<Ads> adsList = new ArrayList<>();
+            while (resultSet.next()) {
+                Ads ads = new Ads();
+                ads.setId(resultSet.getInt("id"));
+                ads.setHeading(resultSet.getString("heading"));
+                ads.setText(resultSet.getString("text"));
+                ads.setPrice(resultSet.getDouble("price"));
+                ads.setStatus(State.getById(resultSet.getInt("state")));
+                ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                ads.setRegisterDate(resultSet.getDate("register_date"));
+                Category category = new Category();
+                category.setId(resultSet.getInt("category_id"));
+                ads.setCategory(category);
+                Locality locality = new Locality();
+                locality.setId(resultSet.getInt("locality_id"));
+                ads.setLocality(locality);
+                User user = new User();
+                user.setId(resultSet.getInt("user_id"));
+                ads.setUser(user);
+                adsList.add(ads);
+            }
+            return adsList;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void activate(Integer adsId) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_ACTIVATE)) {
+            statement.setInt(1, adsId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void deactivate(Integer adsId) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_DEACTIVATE)) {
+            statement.setInt(1, adsId);
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
         }

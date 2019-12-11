@@ -39,10 +39,12 @@
                 <form class="form-inline my-2 my-lg-0"
                       action="<c:url value="/search/substring.html"/>">
                     <input class="form-control mr-sm-2" type="search"
-                           placeholder="Search" aria-label="Search"
+                           placeholder="<fmt:message
+                            key="label.search"/>" aria-label="Search"
                            name="search">
                     <button class="btn btn-outline-success my-2 my-sm-0"
-                            type="submit">Search
+                            type="submit"><fmt:message
+                            key="label.search"/>
                     </button>
                 </form>
                 <!-- Left -->
@@ -59,15 +61,15 @@
                         <div class="dropdown-menu" onchange="submit()"
                              role="menu" aria-labelledby="language">
                             <a class="dropdown-item" role="menuitem"
-                               href="?locale=en"><span
+                               href="${pageContext.request.contextPath}?locale=en"><span
                                     class="flag-icon flag-icon-gb"> </span>
                                 English</a>
                             <a class="dropdown-item" role="menuitem"
-                               href="?locale=ru"><span
+                               href="${pageContext.request.contextPath}?locale=ru"><span
                                     class="flag-icon flag-icon-ru"> </span>
                                 Russian</a>
                             <a class="dropdown-item" role="menuitem"
-                               href="?locale=be"><span
+                               href="${pageContext.request.contextPath}?locale=be"><span
                                     class="flag-icon flag-icon-by"> </span>
                                 Belarusian</a>
                         </div>
@@ -81,19 +83,21 @@
                                    role="button" data-toggle="dropdown"
                                    aria-haspopup="true"
                                    aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello, ${sessionScope.authorizedUser.name}</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><fmt:message
+                                            key="label.velcom"/> ${sessionScope.authorizedUser.name}</span>
                                     <em class="fas fa-user-circle fa-fw"></em>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right"
                                      aria-labelledby="userDropdown">
                                     <a class="dropdown-item"
                                        href="<c:url value="/user/profile.html"/>?id=${sessionScope.authorizedUser.id}">
-                                        <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em>Profile
+                                        <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em><fmt:message
+                                            key="label.profile"/>
                                     </a>
                                     <a class="dropdown-item"
                                        href="<c:url value="/page/ads/add.html"/>">
-                                        <em class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></em>Add
-                                        ads</a>
+                                        <em class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></em><fmt:message
+                                            key="label.addAds"/></a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#"
                                        data-toggle="modal"

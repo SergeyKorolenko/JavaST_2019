@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${param.lang}"/>
+<fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="locale.text"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,8 @@
                     <!--Card : Dynamic content wrapper-->
                     <div class="card mb-4 text-center wow fadeIn">
 
-                        <div class="card-header">Categories</div>
+                        <div class="card-header"><fmt:message
+                                key="label.categories"/></div>
                         <jsp:useBean id="categoryList" scope="request"
                                      type="java.util.List"/>
                         <!--Card content-->
@@ -62,7 +63,8 @@
                         <!--Card : Dynamic content wrapper-->
                         <div class="card mb-4 text-center wow fadeIn">
 
-                            <div class="card-header">Subcategories</div>
+                            <div class="card-header"><fmt:message
+                                    key="label.subcategories"/></div>
                             <jsp:useBean id="subcategoryList" scope="request"
                                          type="java.util.List"/>
                             <!--Card content-->
@@ -70,7 +72,7 @@
 
                                 <c:forEach var="el" items="${subcategoryList}">
                                     <a class="dropdown-item"
-                                       href="<c:url value="/search/ads/subcategory.html"/>?id=${el.id}">${el.categoryName}</a>
+                                       href="<c:url value="/search/ads/subcategory.html"/>?id=${el.parent.id}">${el.categoryName}</a>
                                 </c:forEach>
 
                             </div>
@@ -81,17 +83,58 @@
                     <!--Card : Dynamic content wrapper-->
                     <div class="card mb-4 text-center wow fadeIn">
 
-                        <div class="card-header">Filters</div>
+                        <div class="card-header"><fmt:message
+                                key="label.filters"/></div>
 
                         <!--Card content-->
                         <div class="card-body">
 
                             <!-- Default form login -->
-                            <form>
+                            <form action="<c:url value="/ads/filter.html"/>"
+                                  method="post">
 
 
                             </form>
                             <!-- Default form login -->
+
+                        </div>
+
+                    </div>
+                    <!--/.Card : Dynamic content wrapper-->
+                    <!--Card : Dynamic content wrapper-->
+                    <div class="card mb-4 text-center wow fadeIn">
+
+                        <div class="card-header"><fmt:message
+                                key="label.sort"/></div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <form action="<c:url value="/ads/sort.html"/>"
+                                  method="post">
+                                <div class="form-group">
+                                    <label for="sort"><fmt:message
+                                            key="label.sortBy"/></label>
+                                    <select class="form-control"
+                                            id="sort"
+                                            name="sort">
+                                        <option value="date"><fmt:message
+                                                key="label.sortByDate"/></option>
+                                        <option value="increase"><fmt:message
+                                                key="label.sortByIncreasePrice"/></option>
+                                        <option value="decrease"><fmt:message
+                                                key="label.sortByReductionPrice"/></option>
+                                    </select>
+                                    <div class="text-center">
+                                        <button type="submit"
+                                                class="btn btn-primary">
+                                            <fmt:message
+                                                    key="label.button.sort"/>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
 
                         </div>
 
@@ -118,7 +161,7 @@
 
                                 <div class="media d-block d-md-flex mt-3">
                                     <img class="d-flex mb-3 mx-auto z-depth-1"
-                                         src="<c:url value="/img/cat.jpg"/>"
+                                         src="<c:url value="/img/profile.png"/>"
                                          alt="Generic placeholder image"
                                          style="width: 100px;">
                                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
@@ -131,8 +174,8 @@
                             <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
                                 <span>${elem.registerDate}</span>
                                 <a class="btn btn-primary"
-                                   href="<c:url value="/ads/detail.html"/>?adsId=${elem.id}">View
-                                    details</a>
+                                   href="<c:url value="/ads/detail.html"/>?adsId=${elem.id}"><fmt:message
+                                        key="label.button.detail"/></a>
                             </div>
 
                         </div>

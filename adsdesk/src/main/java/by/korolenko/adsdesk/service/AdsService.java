@@ -16,6 +16,8 @@ public interface AdsService {
 
     List<Ads> readAll() throws ServiceException;
 
+    List<Ads> findBySubcategory(Integer subcategoryId) throws ServiceException;
+
     List<Ads> findByCategory(Integer categoryId) throws ServiceException;
 
     Ads findById(Integer id) throws ServiceException;
@@ -29,4 +31,14 @@ public interface AdsService {
     List<Ads> findByIncludingString(String substring) throws ServiceException;
 
     void create(Ads ads) throws ServiceException;
+
+    List<Ads> sortByDate() throws ServiceException;
+
+    List<Ads> sortByDecreasePrice() throws ServiceException;
+
+    List<Ads> sortByIncreasePrice() throws ServiceException;
+
+    void activate(Integer adsId) throws ServiceException;
+
+    void deactivate(Integer adsId) throws ServiceException;
 }

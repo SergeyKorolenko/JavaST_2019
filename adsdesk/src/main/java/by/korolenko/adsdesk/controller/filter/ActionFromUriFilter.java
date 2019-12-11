@@ -22,8 +22,12 @@ public class ActionFromUriFilter implements Filter {
                 return new LogoutAction();
             case "/search/ads/category":
                 return new SearchAdsByCategoryAction();
+            case "/search/ads/subcategory":
+                return new SearchAdsBySubcategoryAction();
             case "/ads/detail":
                 return new AdsDetailAction();
+            case "/ads/sort":
+                return new AdsSortAction();
             case "/user/profile":
                 return new UserProfileAction();
             case "/page/login":
@@ -46,6 +50,10 @@ public class ActionFromUriFilter implements Filter {
                 return new AddAdsPageAction();
             case "/ads/add":
                 return new AddAdsAction();
+            case "/ads/activate":
+                return new AdsActivateAction();
+            case "/ads/deactivate":
+                return new AdsDeactivateAction();
             default:
                 return new MainAction();
         }

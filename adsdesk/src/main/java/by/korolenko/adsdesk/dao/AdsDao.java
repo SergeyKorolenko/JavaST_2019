@@ -25,4 +25,16 @@ public interface AdsDao extends Dao<Ads> {
     List<Ads> findByUserId(Integer userId) throws DaoException;
 
     List<Ads> findByIncludingString(String substring) throws DaoException;
+
+    List<Ads> findBySubcategory(Integer subcategoryId) throws DaoException;
+
+    List<Ads> sortByDate() throws DaoException;
+
+    List<Ads> sortByDecreasePrice() throws DaoException;
+
+    List<Ads> sortByIncreasePrice() throws DaoException;
+
+    void activate(Integer adsId) throws DaoException;
+
+    void deactivate(Integer adsId) throws DaoException;
 }

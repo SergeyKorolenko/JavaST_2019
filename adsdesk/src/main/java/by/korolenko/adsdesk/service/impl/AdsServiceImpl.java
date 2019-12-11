@@ -37,6 +37,16 @@ public class AdsServiceImpl extends AbstractService implements AdsService {
     }
 
     @Override
+    public List<Ads> findBySubcategory(Integer subcategoryId) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.findBySubcategory(subcategoryId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public List<Ads> findByCategory(Integer categoryId) throws ServiceException {
         AdsDao adsDao = transaction.createDao(EntityType.ADS);
         try {
@@ -101,6 +111,56 @@ public class AdsServiceImpl extends AbstractService implements AdsService {
         AdsDao adsDao = transaction.createDao(EntityType.ADS);
         try {
             adsDao.create(ads);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> sortByDate() throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.sortByDate();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> sortByDecreasePrice() throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.sortByDecreasePrice();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Ads> sortByIncreasePrice() throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            return adsDao.sortByIncreasePrice();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void activate(Integer adsId) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            adsDao.activate(adsId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void deactivate(Integer adsId) throws ServiceException {
+        AdsDao adsDao = transaction.createDao(EntityType.ADS);
+        try {
+            adsDao.deactivate(adsId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

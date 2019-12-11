@@ -217,7 +217,7 @@
                              type="java.util.List"/>
                 <c:forEach var="elem" items="${userAdsList}">
                     <!--Grid column-->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-12 mb-4">
                         <!--Card-->
                         <div class="card mb-4 wow fadeIn">
 
@@ -231,7 +231,7 @@
 
                                 <div class="media d-block d-md-flex mt-3">
                                     <img class="d-flex mb-3 mx-auto z-depth-1"
-                                         src="<c:url value="/img/cat.jpg"/>"
+                                         src="<c:url value="/img/profile.png"/>"
                                          alt="Generic placeholder image"
                                          style="width: 100px;">
                                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
@@ -251,6 +251,30 @@
                                             name="adsDetail">View details
                                     </button>
                                 </form>
+                                <c:if test="${elem.status == 'INACTIVE'}">
+                                    <form action="<c:url value="/ads/activate.html"/>"
+                                          method="post">
+                                        <input type="hidden" name="adsId"
+                                               value="${elem.id}">
+                                        <button type="submit"
+                                                class="btn btn-orange"
+                                                value="${elem.id}"
+                                                name="activate">Activate
+                                        </button>
+                                    </form>
+                                </c:if>
+                                <c:if test="${elem.status == 'ACTIVE'}">
+                                    <form action="<c:url value="/ads/deactivate.html"/>"
+                                          method="post">
+                                        <input type="hidden" name="adsId"
+                                               value="${elem.id}">
+                                        <button type="submit"
+                                                class="btn btn-orange"
+                                                value="${elem.id}"
+                                                name="deactivate">Deactivate
+                                        </button>
+                                    </form>
+                                </c:if>
                                 <form action="<c:url value="/ads/delete.html"/>"
                                       method="post">
                                     <input type="hidden" name="adsId"
@@ -287,33 +311,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <em class="fas fa-angle-up"></em>
 </a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to
-                    Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to
-                end your current session.
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancel
-                </button>
-                <a class="btn btn-primary" href="<c:url value="/logout.html"/>">Log
-                    out</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <c:import url="script.jsp"/>
 </body>
