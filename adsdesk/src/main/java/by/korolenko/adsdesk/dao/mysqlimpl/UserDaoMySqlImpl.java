@@ -27,6 +27,7 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
 
     private static final String SQL_REGISTER = "INSERT INTO ads_desk.user (login, password, role, name, phone, register_date, status, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+    private static final String SQL_CHANGE_PASSWORD = "UPDATE ads_desk.user SET password = ? WHERE password = ?";
     /**
      * This method returns an entity by id.
      *
@@ -134,6 +135,17 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
             statement.setDate(6, new Date(user.getRegisterDate().getTime()));
             statement.setInt(7, user.getStatus().getId());
             statement.setString(8, user.getEmail());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void changePassword(String oldPassword, String newPassword) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_CHANGE_PASSWORD)) {
+            statement.setString(1, newPassword);
+            statement.setString(2, oldPassword);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);

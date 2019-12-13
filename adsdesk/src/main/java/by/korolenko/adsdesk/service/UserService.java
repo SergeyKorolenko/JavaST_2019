@@ -6,7 +6,6 @@ import by.korolenko.adsdesk.service.exception.ServiceException;
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public interface UserService {
 
@@ -16,4 +15,6 @@ public interface UserService {
             throws ServiceException;
 
     void register(User user) throws ServiceException;
+
+    void changePassword(String oldPassword, String newPassword) throws ServiceException;
 }

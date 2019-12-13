@@ -192,6 +192,11 @@
                                             password</label>
                                     </div>
                                 </div>
+                                <span class="text-danger">
+                                     <div>
+                                         ${requestScope.message}
+                                     </div>
+                                </span>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-info btn-md"
                                             type="submit">Change password

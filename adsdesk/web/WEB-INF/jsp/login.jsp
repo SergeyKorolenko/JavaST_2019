@@ -52,6 +52,11 @@
                                 key="label.password"/></label>
                     </div>
                 </div>
+                <span class="text-danger">
+                    <div>
+                        ${requestScope.message}
+                    </div>
+                </span>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><fmt:message
                             key="label.login"/>

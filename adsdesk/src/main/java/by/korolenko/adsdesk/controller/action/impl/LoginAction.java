@@ -29,6 +29,7 @@ public class LoginAction extends Action {
                 return "/error.jsp";
             }
         }
+        req.setAttribute("message", "incorrect login or password");
         return "/login.jsp";
     }
 }

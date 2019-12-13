@@ -35,7 +35,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             throws ServiceException {
         UserDao userDao = transaction.createDao(EntityType.USER);
         try {
-            String sha256hex = DigestUtils.sha256Hex(password);
+            String sha256hex = createHash(password);
             return userDao.findByLoginAndPassword(login, sha256hex);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -51,9 +51,23 @@ public class UserServiceImpl extends AbstractService implements UserService {
             user.setStatus(State.ACTIVE);
             user.setRegisterDate(new Date());
             userDao.register(user);
-            user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
+            user.setPassword(createHash(user.getPassword()));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void changePassword(String oldPassword, String newPassword) throws ServiceException {
+        UserDao userDao = transaction.createDao(EntityType.USER);
+        try {
+            userDao.changePassword(createHash(oldPassword), createHash(newPassword));
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    private String createHash(String password) {
+        return DigestUtils.sha256Hex(password);
     }
 }

@@ -36,8 +36,10 @@ public class RegisterAction extends Action {
                 setRedirect(true);
                 return "/login.html";
             }
+            req.setAttribute("message", "password and confirm password are different");
             return "/registration.jsp";
         }
-        return "/error.jsp";
+        req.setAttribute("message", "not all data");
+        return "/registration.jsp";
     }
 }

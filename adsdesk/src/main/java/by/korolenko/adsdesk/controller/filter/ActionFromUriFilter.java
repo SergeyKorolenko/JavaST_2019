@@ -30,6 +30,8 @@ public class ActionFromUriFilter implements Filter {
                 return new AdsSortAction();
             case "/user/profile":
                 return new UserProfileAction();
+            case "/user/change/password":
+                return new ChangePasswordAction();
             case "/page/login":
                 return new LoginPageAction();
             case "/page/register":
@@ -55,7 +57,7 @@ public class ActionFromUriFilter implements Filter {
             case "/ads/deactivate":
                 return new AdsDeactivateAction();
             default:
-                return new MainAction();
+                return null;
         }
     }
 
@@ -82,7 +84,8 @@ public class ActionFromUriFilter implements Filter {
             }
             Action action = createActionByUri(actionName);
             if (action != null) {
-                action.setName(actionName);
+                action.setActionName(actionName);
+                action.setUri(uri);
                 httpRequest.setAttribute("action", action);
                 filterChain.doFilter(request, response);
             } else {

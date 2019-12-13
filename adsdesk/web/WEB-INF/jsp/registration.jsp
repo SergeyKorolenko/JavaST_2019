@@ -104,6 +104,11 @@
                         </div>
                     </div>
                 </div>
+                <span class="text-danger">
+                    <div>
+                        ${requestScope.message}
+                    </div>
+                </span>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Register
                     </button>

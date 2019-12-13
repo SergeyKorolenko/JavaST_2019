@@ -13,7 +13,8 @@ public abstract class Action {
 
     private Set<Role> allowRoles = new HashSet<>();
     private User authorizedUser;
-    private String name;
+    private String actionName;
+    private String uri;
     private boolean isRedirect;
 
     public boolean isRedirect() {
@@ -38,12 +39,20 @@ public abstract class Action {
         this.authorizedUser = authorizedUser;
     }
 
-    public String getName() {
-        return name;
+    public String getActionName() {
+        return actionName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActionName(String actionName) {
+        this.actionName = actionName;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public void setFactory(ServiceFactory factory) {
