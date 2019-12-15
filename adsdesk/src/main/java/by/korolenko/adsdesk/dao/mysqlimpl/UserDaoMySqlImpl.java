@@ -20,7 +20,7 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
             "SELECT id, role, name FROM user " +
                     "WHERE login = ? AND password = ?";
 
-    private static final String SQL_FIND_BY_ID = "SELECT id, login, password," +
+    private static final String SQL_FIND_BY_ID = "SELECT id, login," +
             "role, name, surname, patronymic, phone, register_date, status," +
             "email, avatar_url, locality_id FROM user WHERE id = ?";
 
@@ -47,7 +47,6 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
                 while (resultSet.next()) {
                     user.setId(id);
                     user.setLogin(resultSet.getString("login"));
-                    user.setPassword(resultSet.getString("password"));
                     user.setRole(Role.getById(resultSet.getInt("role")));
                     user.setName(resultSet.getString("name"));
                     user.setSurname(resultSet.getString("surname"));

@@ -22,7 +22,7 @@ public class UserServiceImplTest {
 
     private UserService userService;
 
-    private int countUser = 2;
+    private int countUser = 5;
 
     @BeforeTest
     public static void init() {
@@ -38,15 +38,6 @@ public class UserServiceImplTest {
     @DataProvider(name = "userForRegister")
     public Object[] createUserForRegister() {
         return new Object[]{
-                new User("test1", "0aA@password1", Role.USER,
-                        "Sergei", 375291897586L, new Date(),
-                        State.ACTIVE, "user1@gmail.com"),
-                new User("test2", "0aA@password2", Role.USER,
-                        "Andrey", 375291855586L, new Date(),
-                        State.ACTIVE, "user2@gmail.com"),
-                new User("test3", "0aA@password3", Role.USER,
-                        "Alex", 375291897586L, new Date(),
-                        State.ACTIVE, "user3@gmail.com"),
                 new User("test4", "0aA@password4", Role.USER,
                         "Igor", 375291897586L, new Date(),
                         State.ACTIVE, "user4@gmail.com"),
@@ -87,12 +78,17 @@ public class UserServiceImplTest {
         };
     }
 
-    @Test(dataProvider = "dataForLogin")
+    @Test(dataProvider = "dataForLogin", dependsOnMethods = "registerTest")
     public void findByLoginAndPasswordTest(String[] array, User expected) throws ServiceException {
         User actual = userService.findByLoginAndPassword(array[0], array[1]);
         assertEquals(actual.getLogin(), expected.getLogin());
         assertEquals(actual.getName(), expected.getName());
         assertEquals(actual.getRole(), expected.getRole());
+    }
+
+    @Test(dataProvider = "userForRegister", expectedExceptions = ServiceException.class, dependsOnMethods = "findByLoginAndPasswordTest")
+    public void registerWrongTest(User user) throws ServiceException {
+        userService.register(user);
     }
 
     @AfterMethod

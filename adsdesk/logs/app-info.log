@@ -10,3 +10,13 @@
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test3' for key 'login'
 [DEBUG] 2019-12-15 20:58:05.342 [main] UserServiceImpl -
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test4' for key 'login'
+[DEBUG] 2019-12-15 23:57:13.125 [main] UserServiceImpl -
+                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test4' for key 'login'
+[DEBUG] 2019-12-15 23:57:13.420 [main] UserServiceImpl -
+                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test5' for key 'login'
+[DEBUG] 2019-12-15 23:57:13.477 [main] UserServiceImpl -
+                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test6' for key 'login'
+[DEBUG] 2019-12-15 23:57:13.612 [main] UserServiceImpl -
+                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test7' for key 'login'
+[DEBUG] 2019-12-15 23:57:13.690 [main] UserServiceImpl -
+                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test8' for key 'login'

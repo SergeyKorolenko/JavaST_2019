@@ -48,8 +48,19 @@ VALUES (1, 'admin',
        (2, 'user',
         '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 1,
         'Sergei', 375291513645, '2019-11-24 13:03:43', 0,
-        'user@gmail.com');
-
+        'user@gmail.com'),
+       (3, 'test1',
+        '5fc8e0faa224c788ffc83fc02400e9be58f8a0946c6dff3adb6902c6e786097f', 1,
+        'Sergei', 375291897586, '2019-12-15 00:00:00',
+        0, 'user1@gmail.com'),
+       (4, 'test2',
+        'b25ea70c3bf580e837ef00e331774a1041354a92dc3d990af7a929010104c7d7', 1,
+        'Andrey', 375291855586, '2019-12-15 00:00:00',
+        0, 'user2@gmail.com'),
+       (5, 'test3',
+        '113f714a09f9a7e06e53d8a33937169772d96fb77b584918610d8b22b87e932e', 1,
+        'Alex', 375291897586, '2019-12-15 00:00:00',
+        0, 'user3@gmail.com');
 
 INSERT INTO `ads`
 (`id`, `heading`, `text`, `price`, `state`, `bargain`, `register_date`,
