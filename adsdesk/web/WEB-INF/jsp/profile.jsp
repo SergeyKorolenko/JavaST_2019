@@ -216,92 +216,94 @@
 
             </div>
             <!--Grid row-->
-            <!--Grid row-->
-            <div class="row">
-                <jsp:useBean id="userAdsList" scope="request"
-                             type="java.util.List"/>
-                <c:forEach var="elem" items="${userAdsList}">
-                    <!--Grid column-->
-                    <div class="col-md-12 mb-4">
-                        <!--Card-->
-                        <div class="card mb-4 wow fadeIn">
+            <c:if test="${sessionScope.authorizedUser.role == 'USER'}">
+                <!--Grid row-->
+                <div class="row">
+                    <jsp:useBean id="userAdsList" scope="request"
+                                 type="java.util.List"/>
+                    <c:forEach var="elem" items="${userAdsList}">
+                        <!--Grid column-->
+                        <div class="col-md-12 mb-4">
+                            <!--Card-->
+                            <div class="card mb-4 wow fadeIn">
 
-                            <div class="card-header font-weight-bold">
-                                <span>${elem.heading}</span>
-                                <span>${elem.price}</span>
-                            </div>
+                                <div class="card-header font-weight-bold">
+                                    <span>${elem.heading}</span>
+                                    <span>${elem.price}</span>
+                                </div>
 
-                            <!--Card content-->
-                            <div class="card-body">
+                                <!--Card content-->
+                                <div class="card-body">
 
-                                <div class="media d-block d-md-flex mt-3">
-                                    <img class="d-flex mb-3 mx-auto z-depth-1"
-                                         src="<c:url value="/img/profile.png"/>"
-                                         alt="Generic placeholder image"
-                                         style="width: 100px;">
-                                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                            ${elem.text}
+                                    <div class="media d-block d-md-flex mt-3">
+                                        <img class="d-flex mb-3 mx-auto z-depth-1"
+                                             src="<c:url value="/img/profile.png"/>"
+                                             alt="Generic placeholder image"
+                                             style="width: 100px;">
+                                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                                ${elem.text}
+                                        </div>
                                     </div>
+
+                                </div>
+
+                                <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
+                                    <span>${elem.registerDate}</span>
+                                    <form action="<c:url value="/ads/detail.html"/>?adsId=${elem.id}"
+                                          method="post">
+                                        <button type="submit"
+                                                class="btn btn-primary"
+                                                value="${elem.id}"
+                                                name="adsDetail">View details
+                                        </button>
+                                    </form>
+                                    <c:if test="${elem.status == 'INACTIVE'}">
+                                        <form action="<c:url value="/ads/activate.html"/>"
+                                              method="post">
+                                            <input type="hidden" name="adsId"
+                                                   value="${elem.id}">
+                                            <button type="submit"
+                                                    class="btn btn-orange"
+                                                    value="${elem.id}"
+                                                    name="activate">Activate
+                                            </button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${elem.status == 'ACTIVE'}">
+                                        <form action="<c:url value="/ads/deactivate.html"/>"
+                                              method="post">
+                                            <input type="hidden" name="adsId"
+                                                   value="${elem.id}">
+                                            <button type="submit"
+                                                    class="btn btn-orange"
+                                                    value="${elem.id}"
+                                                    name="deactivate">Deactivate
+                                            </button>
+                                        </form>
+                                    </c:if>
+                                    <form action="<c:url value="/ads/delete.html"/>"
+                                          method="post">
+                                        <input type="hidden" name="adsId"
+                                               value="${elem.id}">
+                                        <button type="submit"
+                                                class="btn btn-red"
+                                                value="${elem.id}"
+                                                name="adsDetail">Delete
+                                        </button>
+                                    </form>
                                 </div>
 
                             </div>
+                            <!--/.Card-->
 
-                            <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
-                                <span>${elem.registerDate}</span>
-                                <form action="<c:url value="/ads/detail.html"/>?adsId=${elem.id}"
-                                      method="post">
-                                    <button type="submit"
-                                            class="btn btn-primary"
-                                            value="${elem.id}"
-                                            name="adsDetail">View details
-                                    </button>
-                                </form>
-                                <c:if test="${elem.status == 'INACTIVE'}">
-                                    <form action="<c:url value="/ads/activate.html"/>"
-                                          method="post">
-                                        <input type="hidden" name="adsId"
-                                               value="${elem.id}">
-                                        <button type="submit"
-                                                class="btn btn-orange"
-                                                value="${elem.id}"
-                                                name="activate">Activate
-                                        </button>
-                                    </form>
-                                </c:if>
-                                <c:if test="${elem.status == 'ACTIVE'}">
-                                    <form action="<c:url value="/ads/deactivate.html"/>"
-                                          method="post">
-                                        <input type="hidden" name="adsId"
-                                               value="${elem.id}">
-                                        <button type="submit"
-                                                class="btn btn-orange"
-                                                value="${elem.id}"
-                                                name="deactivate">Deactivate
-                                        </button>
-                                    </form>
-                                </c:if>
-                                <form action="<c:url value="/ads/delete.html"/>"
-                                      method="post">
-                                    <input type="hidden" name="adsId"
-                                           value="${elem.id}">
-                                    <button type="submit"
-                                            class="btn btn-red"
-                                            value="${elem.id}"
-                                            name="adsDetail">Delete
-                                    </button>
-                                </form>
-                            </div>
 
                         </div>
-                        <!--/.Card-->
+                        <!--Grid column-->
+                    </c:forEach>
 
-
-                    </div>
-                    <!--Grid column-->
-                </c:forEach>
-
-            </div>
-            <!--Grid row-->
+                </div>
+                <!--Grid row-->
+            </c:if>
         </section>
         <!--Section: Post-->
 

@@ -1,5 +1,8 @@
 package by.korolenko.adsdesk.dao.pool;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -11,6 +14,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public final class ConnectionPool {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private static ConnectionPool instance;
     private static ReentrantLock locker = new ReentrantLock();
@@ -100,7 +105,7 @@ public final class ConnectionPool {
             try {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.debug("Error of deregister drivers");
             }
         }
     }

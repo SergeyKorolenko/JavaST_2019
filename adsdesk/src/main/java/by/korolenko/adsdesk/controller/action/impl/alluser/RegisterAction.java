@@ -1,15 +1,17 @@
-package by.korolenko.adsdesk.controller.action.impl;
+package by.korolenko.adsdesk.controller.action.impl.alluser;
 
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
-import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.controller.action.AllUserAction;
 import by.korolenko.adsdesk.service.UserService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RegisterAction extends Action {
+public class RegisterAction extends AllUserAction {
+
+    private static final String FORWARD_PAGE = "/registration.jsp";
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String name = req.getParameter("name");
@@ -31,15 +33,15 @@ public class RegisterAction extends Action {
                 try {
                     userService.register(user);
                 } catch (ServiceException e) {
-                    return "/registration.jsp";
+                    return FORWARD_PAGE;
                 }
                 setRedirect(true);
                 return "/login.html";
             }
             req.setAttribute("message", "password and confirm password are different");
-            return "/registration.jsp";
+            return FORWARD_PAGE;
         }
         req.setAttribute("message", "not all data");
-        return "/registration.jsp";
+        return FORWARD_PAGE;
     }
 }

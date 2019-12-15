@@ -1,9 +1,10 @@
-package by.korolenko.adsdesk.controller.action.impl;
+package by.korolenko.adsdesk.controller.action.impl.user;
 
 import by.korolenko.adsdesk.bean.Category;
 import by.korolenko.adsdesk.bean.Locality;
 import by.korolenko.adsdesk.bean.enums.EntityType;
-import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.controller.action.AuthorizedUserAction;
+import by.korolenko.adsdesk.controller.action.UserAction;
 import by.korolenko.adsdesk.service.CategoryService;
 import by.korolenko.adsdesk.service.LocalityService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class AddAdsPageAction extends Action {
+public class AddAdsPageAction extends UserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         try {

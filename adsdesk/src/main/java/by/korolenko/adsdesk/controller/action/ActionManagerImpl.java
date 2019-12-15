@@ -6,9 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ActionManagerImpl implements ActionManager {
+
     private ServiceFactory factory;
 
-    public ActionManagerImpl(ServiceFactory factory) {
+    ActionManagerImpl(ServiceFactory factory) {
         this.factory = factory;
     }
 

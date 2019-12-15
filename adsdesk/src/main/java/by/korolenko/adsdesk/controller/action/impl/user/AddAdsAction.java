@@ -1,4 +1,4 @@
-package by.korolenko.adsdesk.controller.action.impl;
+package by.korolenko.adsdesk.controller.action.impl.user;
 
 import by.korolenko.adsdesk.bean.Ads;
 import by.korolenko.adsdesk.bean.Category;
@@ -6,14 +6,15 @@ import by.korolenko.adsdesk.bean.Locality;
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.bean.enums.State;
-import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.controller.action.AuthorizedUserAction;
+import by.korolenko.adsdesk.controller.action.UserAction;
 import by.korolenko.adsdesk.service.AdsService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddAdsAction extends Action {
+public class AddAdsAction extends UserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String heading = req.getParameter("heading");

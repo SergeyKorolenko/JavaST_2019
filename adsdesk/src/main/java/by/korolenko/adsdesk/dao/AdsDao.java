@@ -12,8 +12,6 @@ import java.util.List;
  */
 public interface AdsDao extends Dao<Ads> {
 
-    void delete(Integer adsId) throws DaoException;
-
     List<Ads> readAll() throws DaoException;
 
     List<Ads> findByCategory(Integer categoryId) throws DaoException;

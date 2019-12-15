@@ -3,14 +3,15 @@ package by.korolenko.adsdesk.dao.transaction;
 import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.Transaction;
+import by.korolenko.adsdesk.dao.exception.DaoException;
 import by.korolenko.adsdesk.dao.mysqlimpl.*;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public class TransactionImpl implements Transaction {
 
@@ -51,5 +52,23 @@ public class TransactionImpl implements Transaction {
             dao.setConnection(connection);
         }
         return (T) dao;
+    }
+
+    @Override
+    public void commit() throws DaoException {
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void rollback() throws DaoException {
+        try {
+            connection.rollback();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 }

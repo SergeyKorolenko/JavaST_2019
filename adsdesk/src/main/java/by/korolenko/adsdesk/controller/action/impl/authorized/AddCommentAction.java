@@ -1,10 +1,10 @@
-package by.korolenko.adsdesk.controller.action.impl;
+package by.korolenko.adsdesk.controller.action.impl.authorized;
 
 import by.korolenko.adsdesk.bean.Ads;
 import by.korolenko.adsdesk.bean.Comment;
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
-import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.controller.action.AuthorizedUserAction;
 import by.korolenko.adsdesk.service.CommentService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-public class AddCommentAction extends Action {
+public class AddCommentAction extends AuthorizedUserAction {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -33,7 +33,7 @@ public class AddCommentAction extends Action {
                 CommentService commentService = factory.createService(EntityType.COMMENT);
                 commentService.add(comment);
                 setRedirect(true);
-                return "/ads/detail.html?adsId=" + adsId;
+                return req.getHeader("referer");
             } catch (ServiceException | NumberFormatException e) {
                 return "/error.jsp";
             }

@@ -1,14 +1,14 @@
-package by.korolenko.adsdesk.controller.action.impl;
+package by.korolenko.adsdesk.controller.action.impl.authorized;
 
 import by.korolenko.adsdesk.bean.enums.EntityType;
-import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.controller.action.AuthorizedUserAction;
 import by.korolenko.adsdesk.service.UserService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ChangePasswordAction extends Action {
+public class ChangePasswordAction extends AuthorizedUserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String oldPassword = req.getParameter("oldPassword");
@@ -20,7 +20,7 @@ public class ChangePasswordAction extends Action {
                 try {
                     userService.changePassword(oldPassword, newPassword);
                     setRedirect(true);
-                    return "/main.html";
+                    return req.getHeader("referer");
                 } catch (ServiceException e) {
                     return "/error.jsp";
                 }

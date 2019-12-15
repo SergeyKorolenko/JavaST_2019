@@ -2,7 +2,6 @@ package by.korolenko.adsdesk.dao.mysqlimpl;
 
 import by.korolenko.adsdesk.bean.Ads;
 import by.korolenko.adsdesk.bean.Image;
-import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.dao.AbstractDao;
 import by.korolenko.adsdesk.dao.ImageDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;

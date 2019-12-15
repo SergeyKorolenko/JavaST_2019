@@ -5,7 +5,6 @@ import java.io.Serializable;
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public class Entity implements Serializable {
 
@@ -55,13 +54,9 @@ public class Entity implements Serializable {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || getClass() != obj.getClass())
             return false;
         Entity other = (Entity) obj;
-        if (id != other.id)
-            return false;
-        return true;
+        return id != other.id;
     }
 }

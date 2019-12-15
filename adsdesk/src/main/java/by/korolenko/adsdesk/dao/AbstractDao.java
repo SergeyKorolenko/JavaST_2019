@@ -5,9 +5,8 @@ import java.sql.Connection;
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
-abstract public class AbstractDao {
+public abstract class AbstractDao {
 
     protected Connection connection;
 

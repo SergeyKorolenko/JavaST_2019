@@ -1,7 +1,9 @@
 package by.korolenko.adsdesk.controller.filter;
 
 import by.korolenko.adsdesk.controller.action.Action;
-import by.korolenko.adsdesk.controller.action.impl.*;
+import by.korolenko.adsdesk.controller.action.impl.alluser.*;
+import by.korolenko.adsdesk.controller.action.impl.authorized.*;
+import by.korolenko.adsdesk.controller.action.impl.user.*;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +13,6 @@ public class ActionFromUriFilter implements Filter {
 
     private Action createActionByUri(String uri) {
         switch (uri) {
-            case "/":
-            case "/main":
-                return new MainAction();
             case "/login":
                 return new LoginAction();
             case "/register":
@@ -57,7 +56,7 @@ public class ActionFromUriFilter implements Filter {
             case "/ads/deactivate":
                 return new AdsDeactivateAction();
             default:
-                return null;
+                return new MainAction();
         }
     }
 
@@ -83,16 +82,8 @@ public class ActionFromUriFilter implements Filter {
                 actionName = uri.substring(beginAction);
             }
             Action action = createActionByUri(actionName);
-            if (action != null) {
-                action.setActionName(actionName);
-                action.setUri(uri);
-                httpRequest.setAttribute("action", action);
-                filterChain.doFilter(request, response);
-            } else {
-                httpRequest.getServletContext().
-                        getRequestDispatcher("/WEB-INF/jsp/error.jsp").
-                        forward(request, response);
-            }
+            httpRequest.setAttribute("action", action);
+            filterChain.doFilter(request, response);
         } else {
             request.getServletContext().
                     getRequestDispatcher("/WEB-INF/jsp/error.jsp").

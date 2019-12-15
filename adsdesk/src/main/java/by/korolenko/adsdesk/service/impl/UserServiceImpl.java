@@ -44,8 +44,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     @Override
     public void register(User user) throws ServiceException {
-        UserDataValidator validator = new UserDataValidator();
         UserDao userDao = transaction.createDao(EntityType.USER);
+        UserDataValidator validator = new UserDataValidator();
         try {
             user.setRole(Role.USER);
             user.setStatus(State.ACTIVE);
@@ -60,8 +60,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public void changePassword(String oldPassword, String newPassword) throws ServiceException {
         UserDao userDao = transaction.createDao(EntityType.USER);
+        UserDataValidator validator = new UserDataValidator();
         try {
-            userDao.changePassword(createHash(oldPassword), createHash(newPassword));
+            if (validator.isPassword(newPassword)) {
+                userDao.changePassword(createHash(oldPassword), createHash(newPassword));
+            }
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

@@ -56,8 +56,17 @@
                         <a class="nav-link dropdown-toggle" href="#"
                            id="language"
                            data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false"><span
-                                class="flag-icon flag-icon-gb"> </span> English</a>
+                           aria-expanded="false">
+                            <c:if test="${sessionScope.lang == 'en'}">
+                                <span class="flag-icon flag-icon-gb"> </span> English
+                            </c:if>
+                            <c:if test="${sessionScope.lang == 'ru' || sessionScope.lang == null}">
+                                <span class="flag-icon flag-icon-ru"> </span> Russia
+                            </c:if>
+                            <c:if test="${sessionScope.lang == 'be'}">
+                                <span class="flag-icon flag-icon-by"> </span> Belarusian
+                            </c:if>
+                        </a>
                         <div class="dropdown-menu" onchange="submit()"
                              role="menu" aria-labelledby="language">
                             <a class="dropdown-item" role="menuitem"
@@ -94,10 +103,12 @@
                                         <em class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></em><fmt:message
                                             key="label.profile"/>
                                     </a>
-                                    <a class="dropdown-item"
-                                       href="<c:url value="/page/ads/add.html"/>">
-                                        <em class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></em><fmt:message
-                                            key="label.addAds"/></a>
+                                    <c:if test="${sessionScope.authorizedUser.role == 'USER'}">
+                                        <a class="dropdown-item"
+                                           href="<c:url value="/page/ads/add.html"/>">
+                                            <em class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></em><fmt:message
+                                                key="label.addAds"/></a>
+                                    </c:if>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#"
                                        data-toggle="modal"

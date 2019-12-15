@@ -3,6 +3,8 @@ package by.korolenko.adsdesk.dao.factory;
 import by.korolenko.adsdesk.dao.TransactionFactory;
 import by.korolenko.adsdesk.dao.pool.ConnectionPool;
 import by.korolenko.adsdesk.dao.transaction.TransactionImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,6 +15,8 @@ import java.sql.SQLException;
  * @since 14.11.2019
  */
 public class TransactionFactoryImpl implements TransactionFactory {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private Connection connection;
 
@@ -30,7 +34,7 @@ public class TransactionFactoryImpl implements TransactionFactory {
         try {
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.debug("Error of connection closing", e);
         }
     }
 }

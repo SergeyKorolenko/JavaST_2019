@@ -2,15 +2,11 @@ package by.korolenko.adsdesk.bean;
 
 import by.korolenko.adsdesk.bean.enums.Role;
 import by.korolenko.adsdesk.bean.enums.State;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public class User extends Entity {
 

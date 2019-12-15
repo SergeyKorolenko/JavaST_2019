@@ -1,0 +1,4 @@
+package by.korolenko.adsdesk.service.validator;
+
+public class CommentDataValidator {
+}

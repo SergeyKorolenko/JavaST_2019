@@ -1,11 +1,11 @@
-package by.korolenko.adsdesk.controller.action.impl;
+package by.korolenko.adsdesk.controller.action.impl.authorized;
 
-import by.korolenko.adsdesk.controller.action.Action;
+import by.korolenko.adsdesk.controller.action.AuthorizedUserAction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdsFilterAction extends Action {
+public class UserSaveAction extends AuthorizedUserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         return null;
