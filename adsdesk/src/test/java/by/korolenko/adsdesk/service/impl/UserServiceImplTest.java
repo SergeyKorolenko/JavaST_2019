@@ -65,12 +65,34 @@ public class UserServiceImplTest {
         };
     }
 
-    @Test(description = "user register", dataProvider = "userForRegister")
+    @Test(dataProvider = "userForRegister")
     public void registerTest(User user) throws ServiceException {
         userService.register(user);
         int actual = userService.countUser();
         int expected = ++countUser;
         assertEquals(actual, expected);
+    }
+
+    @DataProvider(name = "dataForLogin")
+    public Object[][] createDataForLogin() {
+        return new Object[][]{
+                {new String[]{"test1", "0aA@password1"}, new User("test1", Role.USER, "Sergei")},
+                {new String[]{"test2", "0aA@password2"}, new User("test2", Role.USER, "Andrey")},
+                {new String[]{"test3", "0aA@password3"}, new User("test3", Role.USER, "Alex")},
+                {new String[]{"test4", "0aA@password4"}, new User("test4", Role.USER, "Igor")},
+                {new String[]{"test5", "0aA@password5"}, new User("test5", Role.USER, "Yagor")},
+                {new String[]{"test6", "0aA@password6"}, new User("test6", Role.USER, "Vera")},
+                {new String[]{"test7", "0aA@password7"}, new User("test7", Role.USER, "Lena")},
+                {new String[]{"test8", "0aA@password8"}, new User("test8", Role.USER, "Veronika")},
+        };
+    }
+
+    @Test(dataProvider = "dataForLogin")
+    public void findByLoginAndPasswordTest(String[] array, User expected) throws ServiceException {
+        User actual = userService.findByLoginAndPassword(array[0], array[1]);
+        assertEquals(actual.getLogin(), expected.getLogin());
+        assertEquals(actual.getName(), expected.getName());
+        assertEquals(actual.getRole(), expected.getRole());
     }
 
     @AfterMethod

@@ -68,39 +68,6 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
         }
     }
 
-    /**
-     * This method deletes an entity by id.
-     *
-     * @param id id
-     * @throws DaoException exception
-     */
-    @Override
-    public void delete(Integer id) throws DaoException {
-
-    }
-
-    /**
-     * This method adds an entity to the database.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void create(User entity) throws DaoException {
-
-    }
-
-    /**
-     * This method updates an entity.
-     *
-     * @param entity entity
-     * @throws DaoException exception
-     */
-    @Override
-    public void update(User entity) throws DaoException {
-
-    }
-
     @Override
     public User findByLoginAndPassword(String login, String password)
             throws DaoException {
@@ -114,7 +81,6 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
                     user = new User();
                     user.setId(resultSet.getInt("id"));
                     user.setLogin(login);
-                    user.setPassword(password);
                     user.setRole(Role.getById(resultSet.
                             getInt("role")));
                     user.setName(resultSet.getString("name"));
