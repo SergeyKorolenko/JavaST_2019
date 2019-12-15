@@ -5,9 +5,22 @@ import by.korolenko.adsdesk.service.ServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public abstract class Action {
 
     private boolean isRedirect;
+    private boolean isHeader;
+
+    public boolean isHeader() {
+        return isHeader;
+    }
+
+    public void setHeader(boolean header) {
+        isHeader = header;
+    }
 
     public boolean isRedirect() {
         return isRedirect;

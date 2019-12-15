@@ -5,7 +5,6 @@ import by.korolenko.adsdesk.dao.Transaction;
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public abstract class AbstractService {
 

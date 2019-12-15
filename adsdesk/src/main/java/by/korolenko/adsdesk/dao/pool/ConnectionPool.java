@@ -13,6 +13,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public final class ConnectionPool {
 
     private static final Logger LOGGER = LogManager.getLogger();

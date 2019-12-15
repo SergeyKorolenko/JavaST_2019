@@ -78,12 +78,12 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-label-group">
-                                                <input type="text" id="mainText"
-                                                       class="form-control"
-                                                       placeholder="Text"
-                                                       required="required"
-                                                       autofocus="autofocus"
-                                                       name="mainText">
+                                                <textarea class="form-control"
+                                                          id="mainText"
+                                                          rows="5"
+                                                          required="required"
+                                                          autofocus="autofocus"
+                                                          name="mainText"></textarea>
                                                 <label for="mainText">Text</label>
                                             </div>
                                         </div>

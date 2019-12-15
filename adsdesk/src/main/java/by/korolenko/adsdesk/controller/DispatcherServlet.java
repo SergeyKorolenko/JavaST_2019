@@ -52,8 +52,12 @@ public final class DispatcherServlet extends HttpServlet {
         String pagePart = actionManager.execute(action, request, response);
         actionManager.close();
         if (action.isRedirect() && pagePart != null) {
-            String redirectUri = request.getContextPath() + pagePart;
-            response.sendRedirect(redirectUri);
+            if (action.isHeader()) {
+                response.sendRedirect(pagePart);
+            } else {
+                String redirectUri = request.getContextPath() + pagePart;
+                response.sendRedirect(redirectUri);
+            }
         } else {
             getServletContext().getRequestDispatcher(COMMON_RELATIVE_PATH + pagePart).
                     forward(request, response);

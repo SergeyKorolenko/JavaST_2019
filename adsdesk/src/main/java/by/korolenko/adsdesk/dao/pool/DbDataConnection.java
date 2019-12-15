@@ -1,6 +1,10 @@
 package by.korolenko.adsdesk.dao.pool;
 
-class DbDataConnection {
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
+final class DbDataConnection {
 
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/ads_desk?useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=UTC";

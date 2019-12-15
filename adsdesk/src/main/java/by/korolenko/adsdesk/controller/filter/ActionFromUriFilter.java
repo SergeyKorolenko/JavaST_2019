@@ -9,6 +9,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class ActionFromUriFilter implements Filter {
 
     private Action createActionByUri(String uri) {

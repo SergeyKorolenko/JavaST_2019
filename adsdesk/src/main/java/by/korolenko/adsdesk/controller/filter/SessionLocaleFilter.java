@@ -7,6 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class SessionLocaleFilter implements Filter {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -24,7 +28,6 @@ public class SessionLocaleFilter implements Filter {
 
             LOGGER.info("Session locale filter");
             if (req.getParameter("locale") != null) {
-                LOGGER.info("LOCALE " + req.getParameter("locale"));
                 req.getSession(false).setAttribute("lang", req.getParameter("locale"));
             }
             filterChain.doFilter(servletRequest, servletResponse);

@@ -5,13 +5,22 @@ import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.controller.action.AllUserAction;
 import by.korolenko.adsdesk.service.UserService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class RegisterAction extends AllUserAction {
 
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private static final String FORWARD_PAGE = "/registration.jsp";
+
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String name = req.getParameter("name");
@@ -33,6 +42,11 @@ public class RegisterAction extends AllUserAction {
                 try {
                     userService.register(user);
                 } catch (ServiceException e) {
+                    req.setAttribute("message", e.getMessage());
+                    LOGGER.debug(e.getMessage());
+                    return FORWARD_PAGE;
+                } catch (NumberFormatException e) {
+                    req.setAttribute("message", "invalid number");
                     return FORWARD_PAGE;
                 }
                 setRedirect(true);

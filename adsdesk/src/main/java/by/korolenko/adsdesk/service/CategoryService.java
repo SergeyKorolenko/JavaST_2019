@@ -5,6 +5,10 @@ import by.korolenko.adsdesk.service.exception.ServiceException;
 
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public interface CategoryService {
 
     List<Category> readCategory() throws ServiceException;

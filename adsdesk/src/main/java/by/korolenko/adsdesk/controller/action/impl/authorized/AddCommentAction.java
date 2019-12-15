@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class AddCommentAction extends AuthorizedUserAction {
 
     @Override
@@ -33,6 +37,7 @@ public class AddCommentAction extends AuthorizedUserAction {
                 CommentService commentService = factory.createService(EntityType.COMMENT);
                 commentService.add(comment);
                 setRedirect(true);
+                setHeader(true);
                 return req.getHeader("referer");
             } catch (ServiceException | NumberFormatException e) {
                 return "/error.jsp";

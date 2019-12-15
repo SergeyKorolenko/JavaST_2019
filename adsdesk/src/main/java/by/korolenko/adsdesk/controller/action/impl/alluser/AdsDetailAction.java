@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class AdsDetailAction extends AllUserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {

@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class SecurityFilter implements Filter {
 
     private static final Logger LOGGER = LogManager.getLogger();

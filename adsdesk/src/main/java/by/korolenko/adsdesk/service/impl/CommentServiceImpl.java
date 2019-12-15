@@ -6,14 +6,15 @@ import by.korolenko.adsdesk.dao.CommentDao;
 import by.korolenko.adsdesk.dao.exception.DaoException;
 import by.korolenko.adsdesk.service.AbstractService;
 import by.korolenko.adsdesk.service.CommentService;
+import by.korolenko.adsdesk.service.exception.ServiceDataException;
 import by.korolenko.adsdesk.service.exception.ServiceException;
+import by.korolenko.adsdesk.service.validator.CommentDataValidator;
 
 import java.util.List;
 
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public class CommentServiceImpl extends AbstractService implements CommentService {
     @Override
@@ -29,9 +30,13 @@ public class CommentServiceImpl extends AbstractService implements CommentServic
     @Override
     public void add(Comment comment) throws ServiceException {
         CommentDao commentDao = transaction.createDao(EntityType.COMMENT);
+        CommentDataValidator validator = new CommentDataValidator();
         try {
+            if (!validator.isText(comment.getComment())) {
+                throw new ServiceDataException("invalid comment data");
+            }
             commentDao.create(comment);
-        } catch (DaoException e) {
+        } catch (DaoException | ServiceDataException e) {
             throw new ServiceException(e);
         }
     }

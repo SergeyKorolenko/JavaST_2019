@@ -12,7 +12,6 @@ import java.sql.SQLException;
 /**
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public class TransactionFactoryImpl implements TransactionFactory {
 

@@ -6,7 +6,6 @@ import by.korolenko.adsdesk.bean.Locality;
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.bean.enums.State;
-import by.korolenko.adsdesk.controller.action.AuthorizedUserAction;
 import by.korolenko.adsdesk.controller.action.UserAction;
 import by.korolenko.adsdesk.service.AdsService;
 import by.korolenko.adsdesk.service.exception.ServiceException;
@@ -14,6 +13,10 @@ import by.korolenko.adsdesk.service.exception.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class AddAdsAction extends UserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -47,8 +50,10 @@ public class AddAdsAction extends UserAction {
             ads.setLocality(locality);
             try {
                 adsService.create(ads);
-            } catch (ServiceException e) {
-                return "/error.jsp";
+            } catch (ServiceException | NumberFormatException e) {
+                setRedirect(true);
+                setHeader(true);
+                return req.getHeader("referer");
             }
             setRedirect(true);
             return "/main.html";

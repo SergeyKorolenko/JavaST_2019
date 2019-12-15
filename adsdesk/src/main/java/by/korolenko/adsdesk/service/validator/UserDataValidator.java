@@ -3,6 +3,10 @@ package by.korolenko.adsdesk.service.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class UserDataValidator {
 
     private static final String FIO_REGEX = "[A-Za-zА-Яа-яЁё]+[-]*[A-Za-zА-Яа-яЁё]+";
@@ -12,6 +16,10 @@ public class UserDataValidator {
     private static final String PASS_REGEX = "(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,15}";
 
     private static final String LOGIN_REGEX = "^[\\w]{3,32}$";
+
+    private static final long MIN_NUMBER = 375_25_100_00_00L;
+
+    private static final long MAX_NUMBER = 375_33_999_99_99L;
 
     public boolean isFIO(String name) {
         Pattern pattern = Pattern.compile(FIO_REGEX);
@@ -32,7 +40,7 @@ public class UserDataValidator {
     }
 
     public boolean isPhoneNumber(long phone) {
-        return false;
+        return phone >= MIN_NUMBER && phone <= MAX_NUMBER;
     }
 
     public boolean isEmail(String email) {

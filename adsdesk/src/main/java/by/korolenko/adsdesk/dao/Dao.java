@@ -7,7 +7,6 @@ import by.korolenko.adsdesk.dao.exception.DaoException;
  * @param <T> type of entity
  * @author Sergei Korolenko
  * @version 1.0
- * @since 14.11.2019
  */
 public interface Dao<T extends Entity> {
 

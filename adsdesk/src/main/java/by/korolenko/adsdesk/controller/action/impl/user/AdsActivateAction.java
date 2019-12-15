@@ -8,6 +8,10 @@ import by.korolenko.adsdesk.service.exception.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Sergei Korolenko
+ * @version 1.0
+ */
 public class AdsActivateAction extends UserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {

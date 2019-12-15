@@ -2,6 +2,7 @@ package by.korolenko.adsdesk.bean;
 
 /**
  * @author Sergei Korolenko
+ * @version 1.0
  */
 public class Category extends Entity {
 
