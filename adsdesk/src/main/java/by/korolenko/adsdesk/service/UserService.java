@@ -17,4 +17,6 @@ public interface UserService {
     void register(User user) throws ServiceException;
 
     void changePassword(String oldPassword, String newPassword) throws ServiceException;
+
+    int countUser() throws ServiceException;
 }

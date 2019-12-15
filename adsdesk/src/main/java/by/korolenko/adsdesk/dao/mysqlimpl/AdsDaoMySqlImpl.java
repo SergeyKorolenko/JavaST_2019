@@ -24,49 +24,49 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     private static final String SQL_READ_ALL_ADS = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE state = 0";
+            "category_id, user_id FROM ads WHERE state = 0";
 
     private static final String SQL_SORT_BY_DATE = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE state = 0 ORDER BY register_date";
+            "category_id, user_id FROM ads WHERE state = 0 ORDER BY register_date";
 
     private static final String SQL_SORT_BY_INCREASE_PRICE = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE state = 0 ORDER BY price";
+            "category_id, user_id FROM ads WHERE state = 0 ORDER BY price";
 
     private static final String SQL_SORT_BY_DECREASE_PRICE = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE state = 0 ORDER BY price DESC";
+            "category_id, user_id FROM ads WHERE state = 0 ORDER BY price DESC";
 
     private static final String SQL_FIND_ADS_BY_CATEGORY_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE category_id = ? AND state = 0";
+            "category_id, user_id FROM ads WHERE category_id = ? AND state = 0";
 
     private static final String SQL_FIND_BY_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE id = ? AND state = 0";
+            "category_id, user_id FROM ads WHERE id = ? AND state = 0";
 
     private static final String SQL_FIND_BY_PAGE = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE state = 0 LIMIT ?, ?";
+            "category_id, user_id FROM ads WHERE state = 0 LIMIT ?, ?";
 
-    private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads_desk.ads WHERE state = 0";
+    private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads WHERE state = 0";
 
     private static final String SQL_FIND_ADS_BY_USER_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE user_id = ?";
+            "category_id, user_id FROM ads WHERE user_id = ?";
 
     private static final String SQL_DELETE_BY_ID = "DELETE FROM ads_desk.ads WHERE id = ?";
 
     private static final String SQL_FIND_ADS_BY_SUBSTRING = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads_desk.ads WHERE text LIKE ? AND state = 0";
+            "category_id, user_id FROM ads WHERE text LIKE ? AND state = 0";
 
-    private static final String SQL_ACTIVATE = "UPDATE ads_desk.ads SET state = 0 WHERE id = ?";
+    private static final String SQL_ACTIVATE = "UPDATE ads SET state = 0 WHERE id = ?";
 
-    private static final String SQL_DEACTIVATE = "UPDATE ads_desk.ads SET state = 1 WHERE id = ?";
+    private static final String SQL_DEACTIVATE = "UPDATE ads SET state = 1 WHERE id = ?";
 
-    private static final String SQL_CREATE = "INSERT INTO ads_desk.ads (heading, text, price, state, bargain, register_date, locality_id, category_id, user_id) VALUES " +
+    private static final String SQL_CREATE = "INSERT INTO ads (heading, text, price, state, bargain, register_date, locality_id, category_id, user_id) VALUES " +
             "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     /**
      * This method returns an entity by id.

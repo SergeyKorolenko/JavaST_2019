@@ -19,10 +19,10 @@ import java.util.List;
 public class LocalityDaoMySqlImpl extends AbstractDao implements LocalityDao {
 
     private static final String SQL_FIND_BY_ID = "SELECT id, name, region_id " +
-            "FROM ads_desk.locality WHERE id = ?";
+            "FROM locality WHERE id = ?";
 
     private static final String SQL_READ_ALL = "SELECT id, name, region_id " +
-            "FROM ads_desk.locality";
+            "FROM locality";
 
     /**
      * This method returns an entity by id.

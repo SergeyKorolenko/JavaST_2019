@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class RegionDaoMySqlImpl extends AbstractDao implements RegionDao {
 
     private static final String SQL_FIND_BY_ID = "SELECT id, name, country_id" +
-            " FROM  ads_desk.region WHERE id = ?";
+            " FROM region WHERE id = ?";
 
     /**
      * This method returns an entity by id.

@@ -17,16 +17,19 @@ import java.sql.*;
 public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
 
     private static final String SQL_FIND_BY_LOGIN_ADN_PASSWORD =
-            "SELECT id, role, name FROM ads_desk.user " +
+            "SELECT id, role, name FROM user " +
                     "WHERE login = ? AND password = ?";
 
     private static final String SQL_FIND_BY_ID = "SELECT id, login, password," +
             "role, name, surname, patronymic, phone, register_date, status," +
-            "email, avatar_url, locality_id FROM ads_desk.user WHERE id = ?";
+            "email, avatar_url, locality_id FROM user WHERE id = ?";
 
-    private static final String SQL_REGISTER = "INSERT INTO ads_desk.user (login, password, role, name, phone, register_date, status, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_REGISTER = "INSERT INTO user (login, password, role, name, phone, register_date, status, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String SQL_CHANGE_PASSWORD = "UPDATE ads_desk.user SET password = ? WHERE password = ?";
+    private static final String SQL_CHANGE_PASSWORD = "UPDATE user SET password = ? WHERE password = ?";
+
+    private static final String SQL_COUNT_USER = "SELECT COUNT(id) AS count FROM user";
+
     /**
      * This method returns an entity by id.
      *
@@ -146,6 +149,20 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
             statement.setString(1, newPassword);
             statement.setString(2, oldPassword);
             statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public int countUser() throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_COUNT_USER);
+             ResultSet resultSet = statement.executeQuery()) {
+            int number = 0;
+            while (resultSet.next()) {
+                number = resultSet.getInt("count");
+            }
+            return number;
         } catch (SQLException e) {
             throw new DaoException(e);
         }

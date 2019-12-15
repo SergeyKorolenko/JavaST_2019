@@ -1,18 +1,26 @@
 package by.korolenko.adsdesk.dao.pool;
 
+import java.util.ResourceBundle;
+
 /**
  * @author Sergei Korolenko
  * @version 1.0
  */
 final class DbDataConnection {
 
-    private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:3306/ads_desk?useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private String user = "adsdesk_user";
-    private String password = "adsdesk_password";
-    private int poolSize = 100;
+    private String driver;
+    private String url;
+    private String user;
+    private String pass;
+    private int poolSize;
 
     DbDataConnection() {
+        ResourceBundle bundle = ResourceBundle.getBundle("dbparameters");
+        driver = bundle.getString("db.driver");
+        url = bundle.getString("db.url");
+        user = bundle.getString("db.login");
+        pass = bundle.getString("db.password");
+        poolSize = Integer.parseInt(bundle.getString("db.poolSize"));
     }
 
     public String getUrl() {
@@ -31,12 +39,12 @@ final class DbDataConnection {
         this.user = user;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public int getPoolSize() {

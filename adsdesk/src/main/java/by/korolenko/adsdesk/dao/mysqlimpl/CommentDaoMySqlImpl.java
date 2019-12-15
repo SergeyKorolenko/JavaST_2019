@@ -21,19 +21,19 @@ import java.util.List;
 public class CommentDaoMySqlImpl extends AbstractDao implements CommentDao {
 
     private static final String SQL_FIND_BY_ID = "SELECT id, comment," +
-            "added_datetime, ads_id, user_id FROM ads_desk.comment WHERE id = ?";
+            "added_datetime, ads_id, user_id FROM comment WHERE id = ?";
 
     private static final String SQL_FIND_BY_ADS_ID = "SELECT id, comment," +
-            "added_datetime, ads_id, user_id FROM ads_desk.comment " +
+            "added_datetime, ads_id, user_id FROM comment " +
             "WHERE ads_id = ?";
 
     private static final String SQL_FIND_BY_USER_ID = "SELECT id, comment," +
-            "added_datetime, ads_id, user_id FROM ads_desk.comment " +
+            "added_datetime, ads_id, user_id FROM comment " +
             "WHERE user_id = ?";
 
-    private static final String SQL_ADD = "INSERT ads_desk.comment (comment, added_datetime, ads_id, user_id) VALUES (?, ?, ?, ?)";
+    private static final String SQL_ADD = "INSERT comment (comment, added_datetime, ads_id, user_id) VALUES (?, ?, ?, ?)";
 
-    private static final String SQL_COMMENT_OF_ADS = "SELECT COUNT(id) AS count FROM ads_desk.comment WHERE ads_id = ?";
+    private static final String SQL_COMMENT_OF_ADS = "SELECT COUNT(id) AS count FROM comment WHERE ads_id = ?";
 
     /**
      * This method returns an entity by id.

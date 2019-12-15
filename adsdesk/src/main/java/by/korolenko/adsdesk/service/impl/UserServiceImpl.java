@@ -70,8 +70,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             user.setRole(Role.USER);
             user.setStatus(State.ACTIVE);
             user.setRegisterDate(new Date());
-            userDao.register(user);
             user.setPassword(createHash(user.getPassword()));
+            userDao.register(user);
         } catch (DaoException | ServiceDataException e) {
             LOGGER.debug(e.getMessage());
             throw new ServiceException(e);
@@ -86,6 +86,16 @@ public class UserServiceImpl extends AbstractService implements UserService {
             if (validator.isPassword(newPassword)) {
                 userDao.changePassword(createHash(oldPassword), createHash(newPassword));
             }
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public int countUser() throws ServiceException {
+        UserDao userDao = transaction.createDao(EntityType.USER);
+        try {
+            return userDao.countUser();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

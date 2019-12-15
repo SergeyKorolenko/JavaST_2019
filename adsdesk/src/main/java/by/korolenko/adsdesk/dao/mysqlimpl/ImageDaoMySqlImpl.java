@@ -19,10 +19,10 @@ import java.util.List;
 public class ImageDaoMySqlImpl extends AbstractDao implements ImageDao {
 
     private static final String SQL_FIND_BY_ID = "SELECT id, image_url," +
-            "ads_id FROM ads_desk.image WHERE id = ?";
+            "ads_id FROM image WHERE id = ?";
 
     private static final String SQL_FIND_BY_ADS_ID = "SELECT id, image_url," +
-            "ads_id FROM ads_desk.image WHERE ads_id = ?";
+            "ads_id FROM image WHERE ads_id = ?";
 
     /**
      * This method returns an entity by id.

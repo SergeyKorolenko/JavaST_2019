@@ -76,7 +76,7 @@ public final class ConnectionPool {
 
     private ProxyConnection createConnection() throws SQLException {
         return new ProxyConnection(DriverManager.getConnection(dataConnection.getUrl(),
-                dataConnection.getUser(), dataConnection.getPassword()));
+                dataConnection.getUser(), dataConnection.getPass()));
     }
 
     public void returnConnection(Connection connection) {

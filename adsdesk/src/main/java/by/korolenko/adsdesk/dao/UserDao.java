@@ -14,4 +14,6 @@ public interface UserDao extends Dao<User> {
     void register(User user) throws DaoException;
 
     void changePassword(String oldPassword, String newPassword) throws DaoException;
+
+    int countUser() throws DaoException;
 }
