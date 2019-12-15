@@ -30,6 +30,8 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
 
     private static final String SQL_COUNT_USER = "SELECT COUNT(id) AS count FROM user";
 
+    private static final String SQL_UPDATE_PROFILE = "UPDATE user SET name = ?, surname = ?, patronymic = ?, phone = ? WHERE id = ?";
+
     /**
      * This method returns an entity by id.
      *
@@ -128,6 +130,26 @@ public class UserDaoMySqlImpl extends AbstractDao implements UserDao {
                 number = resultSet.getInt("count");
             }
             return number;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    /**
+     * This method updates an entity.
+     *
+     * @param entity entity
+     * @throws DaoException exception
+     */
+    @Override
+    public void update(User entity) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_PROFILE)) {
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getSurname());
+            statement.setString(3, entity.getPatronymic());
+            statement.setLong(4, entity.getPhone());
+            statement.setInt(5, entity.getId());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
         }

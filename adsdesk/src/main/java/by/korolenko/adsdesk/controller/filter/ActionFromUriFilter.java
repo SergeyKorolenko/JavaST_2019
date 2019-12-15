@@ -31,6 +31,8 @@ public class ActionFromUriFilter implements Filter {
                 return new AdsDetailAction();
             case "/ads/sort":
                 return new AdsSortAction();
+            case "/user/update":
+                return new UserInfoUpdateAction();
             case "/user/profile":
                 return new UserProfileAction();
             case "/user/change/password":
@@ -41,10 +43,6 @@ public class ActionFromUriFilter implements Filter {
                 return new RegisterPageAction();
             case "/ads/filter":
                 return new AdsFilterAction();
-            case "/user/update":
-                return new UserUpdateAction();
-            case "/user/save":
-                return new UserSaveAction();
             case "/ads/delete":
                 return new AdsDeleteAction();
             case "/search/substring":

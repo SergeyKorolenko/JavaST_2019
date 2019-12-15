@@ -102,6 +102,29 @@ public class UserServiceImpl extends AbstractService implements UserService {
         }
     }
 
+    @Override
+    public void update(User user) throws ServiceException {
+        UserDao userDao = transaction.createDao(EntityType.USER);
+        UserDataValidator validator = new UserDataValidator();
+        try {
+            if (user.getName() != null && !validator.isFIO(user.getName())) {
+                throw new ServiceDataException();
+            }
+            if (user.getSurname() != null && !validator.isFIO(user.getSurname())) {
+                throw new ServiceDataException();
+            }
+            if (user.getPatronymic() != null && !validator.isFIO(user.getPatronymic())) {
+                throw new ServiceDataException();
+            }
+            if (!validator.isPhoneNumber(user.getPhone())) {
+                throw new ServiceDataException();
+            }
+            userDao.update(user);
+        } catch (DaoException | ServiceDataException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     private String createHash(String password) {
         return DigestUtils.sha256Hex(password);
     }

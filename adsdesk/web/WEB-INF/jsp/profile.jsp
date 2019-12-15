@@ -77,9 +77,8 @@
                         <div class="card-body">
 
                             <!-- Default form login -->
-                            <form action="<c:url value="/user/edit/profile.html"/>"
+                            <form action="<c:url value="/user/update.html"/>"
                                   method="post">
-
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input id="name" class="form-control"
@@ -118,17 +117,6 @@
                                                name="phone"
                                                value="${user.phone}">
                                         <label for="phone">Phone</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <input type="email" id="email"
-                                               required="required"
-                                               class="form-control"
-                                               placeholder="Email"
-                                               name="email"
-                                               value="${user.email}">
-                                        <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div class="text-center mt-4">

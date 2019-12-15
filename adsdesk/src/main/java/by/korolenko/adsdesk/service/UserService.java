@@ -19,4 +19,6 @@ public interface UserService {
     void changePassword(String oldPassword, String newPassword) throws ServiceException;
 
     int countUser() throws ServiceException;
+
+    void update(User user) throws ServiceException;
 }

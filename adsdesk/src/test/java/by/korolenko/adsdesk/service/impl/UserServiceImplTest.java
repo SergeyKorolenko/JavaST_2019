@@ -24,7 +24,7 @@ public class UserServiceImplTest {
 
     private int countUser = 5;
 
-    @BeforeTest
+    @BeforeSuite
     public static void init() {
         ConnectionPool.getInstance();
     }
@@ -97,7 +97,7 @@ public class UserServiceImplTest {
         factory.close();
     }
 
-    @AfterTest
+    @AfterSuite
     public static void destroy() {
         ConnectionPool.getInstance().closePool();
     }

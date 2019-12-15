@@ -1,22 +1,10 @@
-[DEBUG] 2019-12-15 19:59:41.653 [main] UserServiceImpl -
-                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test' for key 'login'
-[DEBUG] 2019-12-15 20:32:20.023 [main] UserServiceImpl -
-                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test1' for key 'login'
-[DEBUG] 2019-12-15 20:32:20.191 [main] UserServiceImpl -
-                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test1' for key 'login'
-[DEBUG] 2019-12-15 20:58:04.622 [main] UserServiceImpl -
-                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test2' for key 'login'
-[DEBUG] 2019-12-15 20:58:05.203 [main] UserServiceImpl -
-                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test3' for key 'login'
-[DEBUG] 2019-12-15 20:58:05.342 [main] UserServiceImpl -
+[DEBUG] 2019-12-16 00:54:53.104 [main] UserServiceImpl -
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test4' for key 'login'
-[DEBUG] 2019-12-15 23:57:13.125 [main] UserServiceImpl -
-                    java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test4' for key 'login'
-[DEBUG] 2019-12-15 23:57:13.420 [main] UserServiceImpl -
+[DEBUG] 2019-12-16 00:54:53.169 [main] UserServiceImpl -
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test5' for key 'login'
-[DEBUG] 2019-12-15 23:57:13.477 [main] UserServiceImpl -
+[DEBUG] 2019-12-16 00:54:53.203 [main] UserServiceImpl -
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test6' for key 'login'
-[DEBUG] 2019-12-15 23:57:13.612 [main] UserServiceImpl -
+[DEBUG] 2019-12-16 00:54:53.257 [main] UserServiceImpl -
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test7' for key 'login'
-[DEBUG] 2019-12-15 23:57:13.690 [main] UserServiceImpl -
+[DEBUG] 2019-12-16 00:54:53.346 [main] UserServiceImpl -
                     java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test8' for key 'login'
