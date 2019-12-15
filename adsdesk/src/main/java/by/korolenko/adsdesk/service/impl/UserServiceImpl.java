@@ -83,10 +83,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
         UserDao userDao = transaction.createDao(EntityType.USER);
         UserDataValidator validator = new UserDataValidator();
         try {
-            if (validator.isPassword(newPassword)) {
-                userDao.changePassword(createHash(oldPassword), createHash(newPassword));
+            if (!validator.isPassword(newPassword)) {
+                throw new ServiceDataException("invalid password");
             }
-        } catch (DaoException e) {
+            userDao.changePassword(createHash(oldPassword), createHash(newPassword));
+        } catch (DaoException | ServiceDataException e) {
             throw new ServiceException(e);
         }
     }
