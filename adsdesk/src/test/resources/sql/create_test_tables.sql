@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `ads_desk_test`.`ads`
     CONSTRAINT `fk_ads_user`
         FOREIGN KEY (`user_id`)
             REFERENCES `ads_desk_test`.`user` (`id`)
-            ON DELETE NO ACTION
+            ON DELETE CASCADE
             ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARACTER SET utf8;
