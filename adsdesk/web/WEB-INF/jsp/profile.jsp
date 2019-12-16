@@ -216,8 +216,13 @@
                             <div class="card mb-4 wow fadeIn">
 
                                 <div class="card-header font-weight-bold">
-                                    <span>${elem.heading}</span>
-                                    <span>${elem.price}</span>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <span>${elem.heading}</span></div>
+                                        <div class="col-4">
+                                            <span class="float-right">${elem.price}р</span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!--Card content-->

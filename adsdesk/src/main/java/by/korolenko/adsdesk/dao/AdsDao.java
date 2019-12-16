@@ -34,4 +34,5 @@ public interface AdsDao extends Dao<Ads> {
     void activate(Integer adsId) throws DaoException;
 
     void deactivate(Integer adsId) throws DaoException;
+
 }

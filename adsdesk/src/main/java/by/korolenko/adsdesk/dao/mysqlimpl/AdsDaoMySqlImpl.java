@@ -38,7 +38,11 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
             "heading, text, price, state, bargain, register_date, locality_id," +
             "category_id, user_id FROM ads WHERE state = 0 ORDER BY price DESC";
 
-    private static final String SQL_FIND_ADS_BY_CATEGORY_ID = "SELECT id," +
+    private static final String SQL_FIND_ADS_BY_CATEGORY_ID = "SELECT ads.id," +
+            "heading, text, price, state, bargain, register_date, locality_id," +
+            "category_id, user_id FROM ads INNER JOIN category ON category.id = category_id WHERE parent_id = ? AND state = 0";
+
+    private static final String SQL_FIND_ADS_BY_SUBCATEGORY_ID = "SELECT id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
             "category_id, user_id FROM ads WHERE category_id = ? AND state = 0";
 
@@ -310,7 +314,36 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     @Override
     public List<Ads> findBySubcategory(Integer subcategoryId) throws DaoException {
-        return null;
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_FIND_ADS_BY_SUBCATEGORY_ID)) {
+            statement.setInt(1, subcategoryId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                List<Ads> adsList = new ArrayList<>();
+                while (resultSet.next()) {
+                    Ads ads = new Ads();
+                    ads.setId(resultSet.getInt("id"));
+                    ads.setHeading(resultSet.getString("heading"));
+                    ads.setText(resultSet.getString("text"));
+                    ads.setPrice(resultSet.getDouble("price"));
+                    ads.setStatus(State.getById(resultSet.getInt("state")));
+                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
+                    ads.setRegisterDate(resultSet.getDate("register_date"));
+                    Category category = new Category();
+                    category.setId(subcategoryId);
+                    ads.setCategory(category);
+                    Locality locality = new Locality();
+                    locality.setId(resultSet.getInt("locality_id"));
+                    ads.setLocality(locality);
+                    User user = new User();
+                    user.setId(resultSet.getInt("user_id"));
+                    ads.setUser(user);
+                    adsList.add(ads);
+                }
+                return adsList;
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     @Override

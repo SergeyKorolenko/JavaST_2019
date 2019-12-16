@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
  */
 public class AdsDataValidator {
 
-    private static final String TEXT_REGEX = "[A-Za-zА-Яа-яЁё\".?,!0-9 ]{10,4000}";
-    private static final String HEADING_REGEX = "[A-Za-zА-Яа-яЁё\".?,!0-9 ]{10,100}";
+    private static final String TEXT_REGEX = "[A-Za-zА-Яа-яЁё\".?,:;!0-9 -]{10,4000}";
+    private static final String HEADING_REGEX = "[A-Za-zА-Яа-яЁё\".?,:;!0-9 -]{10,100}";
 
     public boolean isText(String text) {
         Pattern pattern = Pattern.compile(TEXT_REGEX);

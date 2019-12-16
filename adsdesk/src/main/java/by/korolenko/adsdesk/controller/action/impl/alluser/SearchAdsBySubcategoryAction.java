@@ -23,7 +23,7 @@ public class SearchAdsBySubcategoryAction extends AllUserAction {
         if (id != null) {
             try {
                 AdsService adsService = factory.createService(EntityType.ADS);
-                List<Ads> adsList = adsService.findByCategory(Integer.parseInt(id));
+                List<Ads> adsList = adsService.findBySubcategory(Integer.parseInt(id));
                 req.setAttribute("adsList", adsList);
                 CategoryService categoryService = factory.createService(EntityType.CATEGORY);
                 List<Category> categories = categoryService.readCategory();

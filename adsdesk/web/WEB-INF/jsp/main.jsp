@@ -51,7 +51,9 @@
                                      type="java.util.List"/>
                         <!--Card content-->
                         <div class="card-body">
-
+                            <a class="dropdown-item"
+                               href="<c:url value="/main.html"/>">ВСЕ
+                                КАТЕГОРИИ</a>
                             <c:forEach var="elem" items="${categoryList}">
                                 <a class="dropdown-item"
                                    href="<c:url value="/search/ads/category.html"/>?id=${elem.id}">${elem.categoryName}</a>
@@ -72,7 +74,7 @@
 
                                 <c:forEach var="el" items="${subcategoryList}">
                                     <a class="dropdown-item"
-                                       href="<c:url value="/search/ads/subcategory.html"/>?id=${el.parent.id}">${el.categoryName}</a>
+                                       href="<c:url value="/search/ads/subcategory.html"/>?id=${el.id}">${el.categoryName}</a>
                                 </c:forEach>
 
                             </div>
@@ -152,8 +154,13 @@
                         <div class="card mb-4 wow fadeIn">
 
                             <div class="card-header font-weight-bold">
-                                <span>${elem.heading}</span>
-                                <span>${elem.price}</span>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <span>${elem.heading}</span></div>
+                                    <div class="col-4">
+                                        <span class="float-right">${elem.price}р</span>
+                                    </div>
+                                </div>
                             </div>
 
                             <!--Card content-->
@@ -172,7 +179,7 @@
                             </div>
 
                             <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
-                                <span>${elem.registerDate}</span>
+                                <span>added at ${elem.registerDate}</span>
                                 <a class="btn btn-primary"
                                    href="<c:url value="/ads/detail.html"/>?adsId=${elem.id}"><fmt:message
                                         key="label.button.detail"/></a>

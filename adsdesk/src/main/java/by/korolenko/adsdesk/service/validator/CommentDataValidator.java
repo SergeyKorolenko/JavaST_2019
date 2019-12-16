@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class CommentDataValidator {
 
-    private static final String TEXT_REGEX = "[A-Za-zА-Яа-яЁё\".?,!0-9 ]{10,2000}";
+    private static final String TEXT_REGEX = "[A-Za-zА-Яа-яЁё\".?,:;!0-9 -]{1,2000}";
 
     public boolean isText(String text) {
         Pattern pattern = Pattern.compile(TEXT_REGEX);
