@@ -6,13 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error page</title>
+    <title>404</title>
     <meta charset="utf-8">
+
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
-404 ERROR
+<div class="container-fluid">
+    <!-- Page Content -->
+    <h1 class="display-1">404</h1>
+    <p class="lead">Page not found. You can <a
+            href="<c:url value="/main.html"/>">return to the main page</a>.</p>
+
+</div>
 </body>
 </html>

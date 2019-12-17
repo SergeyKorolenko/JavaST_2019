@@ -82,27 +82,7 @@
                         </div>
                         <!--/.Card : Dynamic content wrapper-->
                     </c:if>
-                    <!--Card : Dynamic content wrapper-->
-                    <div class="card mb-4 text-center wow fadeIn">
 
-                        <div class="card-header"><fmt:message
-                                key="label.filters"/></div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-
-                            <!-- Default form login -->
-                            <form action="<c:url value="/ads/filter.html"/>"
-                                  method="post">
-
-
-                            </form>
-                            <!-- Default form login -->
-
-                        </div>
-
-                    </div>
-                    <!--/.Card : Dynamic content wrapper-->
                     <!--Card : Dynamic content wrapper-->
                     <div class="card mb-4 text-center wow fadeIn">
 
@@ -179,7 +159,10 @@
                             </div>
 
                             <div class="card-footer font-weight-bold d-flex flex-row align-items-center justify-content-between">
-                                <span>added at ${elem.registerDate}</span>
+                                <span><fmt:message
+                                        key="label.added"/> <fmt:formatDate
+                                        type="date"
+                                        value="${elem.registerDate}"/></span>
                                 <a class="btn btn-primary"
                                    href="<c:url value="/ads/detail.html"/>?adsId=${elem.id}"><fmt:message
                                         key="label.button.detail"/></a>
