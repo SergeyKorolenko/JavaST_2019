@@ -17,6 +17,11 @@ import java.util.List;
  * @version 1.0
  */
 public class AdsSortAction extends AllUserAction {
+
+    private static final String SORT_BY_DATE = "date";
+    private static final String INCREASE_PRICE_SORT = "increase";
+    private static final String DECREASE_PRICE_SORT = "decrease";
+
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String sort = req.getParameter("sort");
@@ -24,13 +29,13 @@ public class AdsSortAction extends AllUserAction {
             try {
                 AdsService adsService = factory.createService(EntityType.ADS);
                 List<Ads> adsList = null;
-                if ("date".equals(sort)) {
+                if (SORT_BY_DATE.equals(sort)) {
                     adsList = adsService.sortByDate();
                 }
-                if ("increase".equals(sort)) {
+                if (INCREASE_PRICE_SORT.equals(sort)) {
                     adsList = adsService.sortByIncreasePrice();
                 }
-                if ("decrease".equals(sort)) {
+                if (DECREASE_PRICE_SORT.equals(sort)) {
                     adsList = adsService.sortByDecreasePrice();
                 }
                 req.setAttribute("adsList", adsList);

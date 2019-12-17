@@ -5,6 +5,7 @@ import by.korolenko.adsdesk.bean.Comment;
 import by.korolenko.adsdesk.bean.User;
 import by.korolenko.adsdesk.bean.enums.EntityType;
 import by.korolenko.adsdesk.controller.action.AllUserAction;
+import by.korolenko.adsdesk.controller.manager.PagePathManager;
 import by.korolenko.adsdesk.service.AdsService;
 import by.korolenko.adsdesk.service.CommentService;
 import by.korolenko.adsdesk.service.UserService;
@@ -35,11 +36,11 @@ public class AdsDetailAction extends AllUserAction {
                 req.setAttribute("user", user);
                 req.setAttribute("ads", ads);
                 req.setAttribute("comments", comments);
-                return "/detail.jsp";
+                return PagePathManager.getProperty("path.page.detail");
             } catch (ServiceException | NumberFormatException e) {
-                return "/error.jsp";
+                return PagePathManager.getProperty("path.page.error");
             }
         }
-        return "/error.jsp";
+        return PagePathManager.getProperty("path.page.error");
     }
 }

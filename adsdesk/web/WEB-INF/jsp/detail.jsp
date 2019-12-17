@@ -76,8 +76,7 @@
                                          src="<c:url value="/img/profile.png"/>"
                                          alt="Generic placeholder image">
                                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                                        <h5 class="mt-0 font-weight-bold">Miley
-                                            Steward
+                                        <h5 class="mt-0 font-weight-bold">${elem.user.login}
                                         </h5>
                                             ${elem.comment}
                                     </div>

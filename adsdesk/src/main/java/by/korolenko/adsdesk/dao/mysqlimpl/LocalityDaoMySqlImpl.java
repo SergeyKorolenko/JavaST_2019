@@ -38,7 +38,7 @@ public class LocalityDaoMySqlImpl extends AbstractDao implements LocalityDao {
             statement.setString(1, id.toString());
             try (ResultSet resultSet = statement.executeQuery()) {
                 Locality locality = new Locality();
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     locality.setId(id);
                     locality.setLocalityName(resultSet.getString("name"));
                     Region region = new Region();

@@ -22,49 +22,33 @@ import java.util.List;
  */
 public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
-    private static final String SQL_READ_ALL_ADS = "SELECT id," +
+    private static final String COMMON_INFO = "SELECT ads.id," +
             "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE state = 0";
+            "category_id, user_id FROM ads";
 
-    private static final String SQL_SORT_BY_DATE = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE state = 0 ORDER BY register_date";
+    private static final String SQL_READ_ALL_ADS = COMMON_INFO + " WHERE state = 0";
 
-    private static final String SQL_SORT_BY_INCREASE_PRICE = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE state = 0 ORDER BY price";
+    private static final String SQL_SORT_BY_DATE = COMMON_INFO + " WHERE state = 0 ORDER BY register_date";
 
-    private static final String SQL_SORT_BY_DECREASE_PRICE = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE state = 0 ORDER BY price DESC";
+    private static final String SQL_SORT_BY_INCREASE_PRICE = COMMON_INFO + " WHERE state = 0 ORDER BY price";
 
-    private static final String SQL_FIND_ADS_BY_CATEGORY_ID = "SELECT ads.id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads INNER JOIN category ON category.id = category_id WHERE parent_id = ? AND state = 0";
+    private static final String SQL_SORT_BY_DECREASE_PRICE = COMMON_INFO + " WHERE state = 0 ORDER BY price DESC";
 
-    private static final String SQL_FIND_ADS_BY_SUBCATEGORY_ID = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE category_id = ? AND state = 0";
+    private static final String SQL_FIND_ADS_BY_CATEGORY_ID = COMMON_INFO + " INNER JOIN category ON category.id = category_id WHERE parent_id = ? AND state = 0";
 
-    private static final String SQL_FIND_BY_ID = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE id = ? AND state = 0";
+    private static final String SQL_FIND_ADS_BY_SUBCATEGORY_ID = COMMON_INFO + " WHERE category_id = ? AND state = 0";
 
-    private static final String SQL_FIND_BY_PAGE = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE state = 0 LIMIT ?, ?";
+    private static final String SQL_FIND_BY_ID = COMMON_INFO + " WHERE id = ? AND state = 0";
+
+    private static final String SQL_FIND_BY_PAGE = COMMON_INFO + " WHERE state = 0 LIMIT ?, ?";
 
     private static final String SQL_ADS_NUMBER = "SELECT COUNT(id) AS count FROM ads WHERE state = 0";
 
-    private static final String SQL_FIND_ADS_BY_USER_ID = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE user_id = ?";
+    private static final String SQL_FIND_ADS_BY_USER_ID = COMMON_INFO + " WHERE user_id = ?";
 
     private static final String SQL_DELETE_BY_ID = "DELETE FROM ads_desk.ads WHERE id = ?";
 
-    private static final String SQL_FIND_ADS_BY_SUBSTRING = "SELECT id," +
-            "heading, text, price, state, bargain, register_date, locality_id," +
-            "category_id, user_id FROM ads WHERE text LIKE ? AND state = 0";
+    private static final String SQL_FIND_ADS_BY_SUBSTRING = COMMON_INFO + " WHERE text LIKE ? AND state = 0";
 
     private static final String SQL_ACTIVATE = "UPDATE ads SET state = 0 WHERE id = ?";
 
@@ -133,28 +117,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         try (PreparedStatement statement = connection.
                 prepareStatement(SQL_READ_ALL_ADS); ResultSet resultSet =
                      statement.executeQuery()) {
-            List<Ads> adsList = new ArrayList<>();
-            while (resultSet.next()) {
-                Ads ads = new Ads();
-                ads.setId(resultSet.getInt("id"));
-                ads.setHeading(resultSet.getString("heading"));
-                ads.setText(resultSet.getString("text"));
-                ads.setPrice(resultSet.getDouble("price"));
-                ads.setStatus(State.getById(resultSet.getInt("state")));
-                ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                ads.setRegisterDate(resultSet.getDate("register_date"));
-                Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                ads.setCategory(category);
-                Locality locality = new Locality();
-                locality.setId(resultSet.getInt("locality_id"));
-                ads.setLocality(locality);
-                User user = new User();
-                user.setId(resultSet.getInt("user_id"));
-                ads.setUser(user);
-                adsList.add(ads);
-            }
-            return adsList;
+            return getAds(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -164,30 +127,9 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
     public List<Ads> findByCategory(Integer categoryId) throws DaoException {
         try (PreparedStatement statement = connection.
                 prepareStatement(SQL_FIND_ADS_BY_CATEGORY_ID)) {
-            statement.setString(1, categoryId.toString());
+            statement.setInt(1, categoryId);
             try (ResultSet resultSet = statement.executeQuery()) {
-                List<Ads> adsList = new ArrayList<>();
-                while (resultSet.next()) {
-                    Ads ads = new Ads();
-                    ads.setId(resultSet.getInt("id"));
-                    ads.setHeading(resultSet.getString("heading"));
-                    ads.setText(resultSet.getString("text"));
-                    ads.setPrice(resultSet.getDouble("price"));
-                    ads.setStatus(State.getById(resultSet.getInt("state")));
-                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                    ads.setRegisterDate(resultSet.getDate("register_date"));
-                    Category category = new Category();
-                    category.setId(categoryId);
-                    ads.setCategory(category);
-                    Locality locality = new Locality();
-                    locality.setId(resultSet.getInt("locality_id"));
-                    ads.setLocality(locality);
-                    User user = new User();
-                    user.setId(resultSet.getInt("user_id"));
-                    ads.setUser(user);
-                    adsList.add(ads);
-                }
-                return adsList;
+                return getAds(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -196,7 +138,8 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
 
     @Override
     public int countAdsNumber() throws DaoException {
-        try (PreparedStatement statement = connection.prepareStatement(SQL_ADS_NUMBER);
+        try (PreparedStatement statement = connection.
+                prepareStatement(SQL_ADS_NUMBER);
              ResultSet resultSet = statement.executeQuery()) {
             int number = 0;
             while (resultSet.next()) {
@@ -211,33 +154,12 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
     @Override
     public List<Ads> findAdsByPage(int currentPage, int recordsPerPage) throws DaoException {
         try (PreparedStatement statement = connection.
-                prepareStatement(SQL_FIND_BY_PAGE);) {
+                prepareStatement(SQL_FIND_BY_PAGE)) {
             int start = currentPage * recordsPerPage - recordsPerPage;
             statement.setInt(1, start);
             statement.setInt(2, recordsPerPage);
             try (ResultSet resultSet = statement.executeQuery()) {
-                List<Ads> adsList = new ArrayList<>();
-                while (resultSet.next()) {
-                    Ads ads = new Ads();
-                    ads.setId(resultSet.getInt("id"));
-                    ads.setHeading(resultSet.getString("heading"));
-                    ads.setText(resultSet.getString("text"));
-                    ads.setPrice(resultSet.getDouble("price"));
-                    ads.setStatus(State.getById(resultSet.getInt("state")));
-                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                    ads.setRegisterDate(resultSet.getDate("register_date"));
-                    Category category = new Category();
-                    category.setId(resultSet.getInt("category_id"));
-                    ads.setCategory(category);
-                    Locality locality = new Locality();
-                    locality.setId(resultSet.getInt("locality_id"));
-                    ads.setLocality(locality);
-                    User user = new User();
-                    user.setId(resultSet.getInt("user_id"));
-                    ads.setUser(user);
-                    adsList.add(ads);
-                }
-                return adsList;
+                return getAds(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -250,28 +172,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
                 prepareStatement(SQL_FIND_ADS_BY_USER_ID)) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
-                List<Ads> adsList = new ArrayList<>();
-                while (resultSet.next()) {
-                    Ads ads = new Ads();
-                    ads.setId(resultSet.getInt("id"));
-                    ads.setHeading(resultSet.getString("heading"));
-                    ads.setText(resultSet.getString("text"));
-                    ads.setPrice(resultSet.getDouble("price"));
-                    ads.setStatus(State.getById(resultSet.getInt("state")));
-                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                    ads.setRegisterDate(resultSet.getDate("register_date"));
-                    Category category = new Category();
-                    category.setId(Integer.parseInt(resultSet.getString("category_id")));
-                    ads.setCategory(category);
-                    Locality locality = new Locality();
-                    locality.setId(resultSet.getInt("locality_id"));
-                    ads.setLocality(locality);
-                    User user = new User();
-                    user.setId(userId);
-                    ads.setUser(user);
-                    adsList.add(ads);
-                }
-                return adsList;
+                return getAds(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -284,28 +185,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
                 prepareStatement(SQL_FIND_ADS_BY_SUBSTRING)) {
             statement.setString(1, "%" + substring + "%");
             try (ResultSet resultSet = statement.executeQuery()) {
-                List<Ads> adsList = new ArrayList<>();
-                while (resultSet.next()) {
-                    Ads ads = new Ads();
-                    ads.setId(resultSet.getInt("id"));
-                    ads.setHeading(resultSet.getString("heading"));
-                    ads.setText(resultSet.getString("text"));
-                    ads.setPrice(resultSet.getDouble("price"));
-                    ads.setStatus(State.getById(resultSet.getInt("state")));
-                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                    ads.setRegisterDate(resultSet.getDate("register_date"));
-                    Category category = new Category();
-                    category.setId(resultSet.getInt("category_id"));
-                    ads.setCategory(category);
-                    Locality locality = new Locality();
-                    locality.setId(resultSet.getInt("locality_id"));
-                    ads.setLocality(locality);
-                    User user = new User();
-                    user.setId(resultSet.getInt("user_id"));
-                    ads.setUser(user);
-                    adsList.add(ads);
-                }
-                return adsList;
+                return getAds(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -318,28 +198,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
                 prepareStatement(SQL_FIND_ADS_BY_SUBCATEGORY_ID)) {
             statement.setInt(1, subcategoryId);
             try (ResultSet resultSet = statement.executeQuery()) {
-                List<Ads> adsList = new ArrayList<>();
-                while (resultSet.next()) {
-                    Ads ads = new Ads();
-                    ads.setId(resultSet.getInt("id"));
-                    ads.setHeading(resultSet.getString("heading"));
-                    ads.setText(resultSet.getString("text"));
-                    ads.setPrice(resultSet.getDouble("price"));
-                    ads.setStatus(State.getById(resultSet.getInt("state")));
-                    ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                    ads.setRegisterDate(resultSet.getDate("register_date"));
-                    Category category = new Category();
-                    category.setId(subcategoryId);
-                    ads.setCategory(category);
-                    Locality locality = new Locality();
-                    locality.setId(resultSet.getInt("locality_id"));
-                    ads.setLocality(locality);
-                    User user = new User();
-                    user.setId(resultSet.getInt("user_id"));
-                    ads.setUser(user);
-                    adsList.add(ads);
-                }
-                return adsList;
+                return getAds(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -351,28 +210,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         try (PreparedStatement statement = connection.
                 prepareStatement(SQL_SORT_BY_DATE); ResultSet resultSet =
                      statement.executeQuery()) {
-            List<Ads> adsList = new ArrayList<>();
-            while (resultSet.next()) {
-                Ads ads = new Ads();
-                ads.setId(resultSet.getInt("id"));
-                ads.setHeading(resultSet.getString("heading"));
-                ads.setText(resultSet.getString("text"));
-                ads.setPrice(resultSet.getDouble("price"));
-                ads.setStatus(State.getById(resultSet.getInt("state")));
-                ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                ads.setRegisterDate(resultSet.getDate("register_date"));
-                Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                ads.setCategory(category);
-                Locality locality = new Locality();
-                locality.setId(resultSet.getInt("locality_id"));
-                ads.setLocality(locality);
-                User user = new User();
-                user.setId(resultSet.getInt("user_id"));
-                ads.setUser(user);
-                adsList.add(ads);
-            }
-            return adsList;
+            return getAds(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -383,28 +221,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         try (PreparedStatement statement = connection.
                 prepareStatement(SQL_SORT_BY_DECREASE_PRICE); ResultSet resultSet =
                      statement.executeQuery()) {
-            List<Ads> adsList = new ArrayList<>();
-            while (resultSet.next()) {
-                Ads ads = new Ads();
-                ads.setId(resultSet.getInt("id"));
-                ads.setHeading(resultSet.getString("heading"));
-                ads.setText(resultSet.getString("text"));
-                ads.setPrice(resultSet.getDouble("price"));
-                ads.setStatus(State.getById(resultSet.getInt("state")));
-                ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                ads.setRegisterDate(resultSet.getDate("register_date"));
-                Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                ads.setCategory(category);
-                Locality locality = new Locality();
-                locality.setId(resultSet.getInt("locality_id"));
-                ads.setLocality(locality);
-                User user = new User();
-                user.setId(resultSet.getInt("user_id"));
-                ads.setUser(user);
-                adsList.add(ads);
-            }
-            return adsList;
+            return getAds(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -415,28 +232,7 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         try (PreparedStatement statement = connection.
                 prepareStatement(SQL_SORT_BY_INCREASE_PRICE); ResultSet resultSet =
                      statement.executeQuery()) {
-            List<Ads> adsList = new ArrayList<>();
-            while (resultSet.next()) {
-                Ads ads = new Ads();
-                ads.setId(resultSet.getInt("id"));
-                ads.setHeading(resultSet.getString("heading"));
-                ads.setText(resultSet.getString("text"));
-                ads.setPrice(resultSet.getDouble("price"));
-                ads.setStatus(State.getById(resultSet.getInt("state")));
-                ads.setBargain(State.getById(resultSet.getInt("bargain")));
-                ads.setRegisterDate(resultSet.getDate("register_date"));
-                Category category = new Category();
-                category.setId(resultSet.getInt("category_id"));
-                ads.setCategory(category);
-                Locality locality = new Locality();
-                locality.setId(resultSet.getInt("locality_id"));
-                ads.setLocality(locality);
-                User user = new User();
-                user.setId(resultSet.getInt("user_id"));
-                ads.setUser(user);
-                adsList.add(ads);
-            }
-            return adsList;
+            return getAds(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -484,5 +280,30 @@ public class AdsDaoMySqlImpl extends AbstractDao implements AdsDao {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
+    }
+
+    private List<Ads> getAds(ResultSet resultSet) throws SQLException {
+        List<Ads> adsList = new ArrayList<>();
+        while (resultSet.next()) {
+            Ads ads = new Ads();
+            ads.setId(resultSet.getInt("id"));
+            ads.setHeading(resultSet.getString("heading"));
+            ads.setText(resultSet.getString("text"));
+            ads.setPrice(resultSet.getDouble("price"));
+            ads.setStatus(State.getById(resultSet.getInt("state")));
+            ads.setBargain(State.getById(resultSet.getInt("bargain")));
+            ads.setRegisterDate(resultSet.getDate("register_date"));
+            Category category = new Category();
+            category.setId(resultSet.getInt("category_id"));
+            ads.setCategory(category);
+            Locality locality = new Locality();
+            locality.setId(resultSet.getInt("locality_id"));
+            ads.setLocality(locality);
+            User user = new User();
+            user.setId(resultSet.getInt("user_id"));
+            ads.setUser(user);
+            adsList.add(ads);
+        }
+        return adsList;
     }
 }

@@ -20,16 +20,22 @@ public class UserProfileAction extends AuthorizedUserAction {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         String id = req.getParameter("id");
-        UserService userService = factory.createService(EntityType.USER);
-        try {
-            User user = userService.findById(Integer.parseInt(id));
-            req.setAttribute("user", user);
-            AdsService adsService = factory.createService(EntityType.ADS);
-            List<Ads> adsList = adsService.findByUserId(Integer.parseInt(id));
-            req.setAttribute("userAdsList", adsList);
-            return "/profile.jsp";
-        } catch (ServiceException | NumberFormatException e) {
-            return "/error.jsp";
+        if (id != null) {
+            try {
+                UserService userService = factory.createService(EntityType.USER);
+                User authorizedUser = (User) req.getSession(false).getAttribute("authorizedUser");
+                if (authorizedUser.getId() == Integer.parseInt(id)) {
+                    User user = userService.findById(Integer.parseInt(id));
+                    req.setAttribute("user", user);
+                    AdsService adsService = factory.createService(EntityType.ADS);
+                    List<Ads> adsList = adsService.findByUserId(Integer.parseInt(id));
+                    req.setAttribute("userAdsList", adsList);
+                    return "/profile.jsp";
+                }
+            } catch (ServiceException | NumberFormatException e) {
+                return "/error.jsp";
+            }
         }
+        return "/error.jsp";
     }
 }

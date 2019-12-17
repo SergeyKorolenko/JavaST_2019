@@ -9,6 +9,8 @@ import by.korolenko.adsdesk.service.AdsService;
 import by.korolenko.adsdesk.service.exception.ServiceDataException;
 import by.korolenko.adsdesk.service.exception.ServiceException;
 import by.korolenko.adsdesk.service.validator.AdsDataValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -17,11 +19,15 @@ import java.util.List;
  * @version 1.0
  */
 public class AdsServiceImpl extends AbstractService implements AdsService {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+
     @Override
     public void delete(Integer adsId) throws ServiceException {
         AdsDao adsDao = transaction.createDao(EntityType.ADS);
         try {
             adsDao.delete(adsId);
+            LOGGER.info("Ads has been deleted. Ads id = " + adsId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
